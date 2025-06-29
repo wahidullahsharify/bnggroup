@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شرکت ملی نفت و گاز - پیشرو در صنعت انرژی</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif']
+                    },
+                    colors: {
+                        primary: '#0c4a6e',
+                        secondary: '#0891b2',
+                        accent: '#ea580c',
+                        dark: '#0f172a',
+                        light: '#f1f5f9'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(12, 74, 110, 0.85), rgba(8, 145, 178, 0.9)), 
+                        url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .stats-counter {
+            transition: all 0.5s ease-out;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-value {
+            height: 100%;
+            background-color: #0ea5e9;
+            transition: width 1s ease-in-out;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #0ea5e9;
+            border-radius: 50%;
+            right: -10px;
+            top: 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 250px;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .map-container {
+            height: 300px;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-top: 4px solid;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-tab.active {
+            color: #0ea5e9;
+            border-bottom: 3px solid #0ea5e9;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-primary text-white py-2 px-4 text-center">
+        <div class="container mx-auto flex justify-center items-center">
+            <span class="bg-accent px-3 py-1 rounded-full text-xs font-bold ml-2">اخبار فوری</span>
+            <marquee behavior="scroll" direction="rtl" class="text-sm">
+                افتتاح فاز جدید پالایشگاه جنوب با حضور وزیر نفت | افزایش 30% در تولید میدان گازی پارس جنوبی | شرکت ملی نفت و گاز در رتبه بندی جهانی 100 شرکت برتر انرژی قرار گرفت
+            </marquee>
+        </div>
+    </div>
+
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 lg:px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="text-2xl font-bold text-primary flex items-center">
+                    <div class="bg-primary p-2 rounded-full mr-2">
+                        <i class="fas fa-oil-well text-white text-xl"></i>
+                    </div>
+                    <a href="#">شرکت نفت و گاز</a>
+                </div>
+            </div>
+            <div class="hidden lg:flex space-x-8 items-center">
+                <a href="#home" class="text-gray-700 hover:text-primary transition duration-300 font-medium">صفحه اصلی</a>
+                <a href="#services" class="text-gray-700 hover:text-primary transition duration-300 font-medium">خدمات</a>
+                <a href="#projects" class="text-gray-700 hover:text-primary transition duration-300 font-medium">پروژه‌ها</a>
+                <a href="#news" class="text-gray-700 hover:text-primary transition duration-300 font-medium">اخبار</a>
+                <a href="#gallery" class="text-gray-700 hover:text-primary transition duration-300 font-medium">گالری</a>
+                <a href="#about" class="text-gray-700 hover:text-primary transition duration-300 font-medium">درباره ما</a>
+                <a href="#contact" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition duration-300 font-medium">تماس با ما</a>
+            </div>
+            <div class="lg:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white absolute w-full z-50 shadow-xl">
+            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+                <a href="#home" class="text-gray-700 hover:text-primary transition duration-300 py-2 border-b border-gray-100">صفحه اصلی</a>
+                <a href="#services" class="text-gray-700 hover:text-primary transition duration-300 py-2 border-b border-gray-100">خدمات</a>
+                <a href="#projects" class="text-gray-700 hover:text-primary transition duration-300 py-2 border-b border-gray-100">پروژه‌ها</a>
+                <a href="#news" class="text-gray-700 hover:text-primary transition duration-300 py-2 border-b border-gray-100">اخبار</a>
+                <a href="#gallery" class="text-gray-700 hover:text-primary transition duration-300 py-2 border-b border-gray-100">گالری</a>
+                <a href="#about" class="text-gray-700 hover:text-primary transition duration-300 py-2 border-b border-gray-100">درباره ما</a>
+                <a href="#contact" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition duration-300 text-center">تماس با ما</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section h-screen flex items-center justify-center text-white relative overflow-hidden">
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">پیشرو در صنعت انرژی و نفت و گاز</h1>
+                <p class="text-xl md:text-2xl mb-8 font-light max-w-3xl mx-auto">تعهد به نوآوری، کیفیت و توسعه پایدار برای تأمین انرژی آینده با استانداردهای جهانی</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#services" class="bg-accent text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-orange-700 transition duration-300 shadow-lg hover:shadow-xl">کاوش در خدمات ما</a>
+                    <a href="#contact" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-white hover:text-primary transition duration-300">درخواست همکاری</a>
+                </div>
+            </div>
+            
+            <!-- Floating animated elements -->
+            <div class="absolute bottom-20 right-1/4 floating-animation">
+                <i class="fas fa-oil-well text-blue-300 text-4xl opacity-50"></i>
+            </div>
+            <div class="absolute top-1/3 left-1/4 floating-animation" style="animation-delay: 1s;">
+                <i class="fas fa-gas-pump text-orange-300 text-4xl opacity-50"></i>
+            </div>
+            <div class="absolute top-1/2 left-1/3 floating-animation" style="animation-delay: 2s;">
+                <i class="fas fa-industry text-white text-4xl opacity-50"></i>
+            </div>
+            
+            <!-- Scroll down indicator -->
+            <a href="#services" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </section>
+
+        <!-- Clients Logo Section -->
+        <section class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h3 class="text-center text-gray-500 text-sm font-semibold mb-8">همکاری با برترین شرکت‌های انرژی جهان</h3>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/TotalEnergies_logo.svg/800px-TotalEnergies_logo.svg.png" alt="Total" class="h-8 md:h-10 object-contain">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Shell_logo.svg/800px-Shell_logo.svg.png" alt="Shell" class="h-8 md:h-10 object-contain">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/BP_Logo.svg/800px-BP_Logo.svg.png" alt="BP" class="h-8 md:h-10 object-contain">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/ExxonMobil_logo.svg/800px-ExxonMobil_logo.svg.png" alt="ExxonMobil" class="h-8 md:h-10 object-contain">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sinopec_Logo.svg/800px-Sinopec_Logo.svg.png" alt="Sinopec" class="h-8 md:h-10 object-contain">
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-16 bg-white">
+            <div class="container mx-auto px-4 text-center">
+                <div class="max-w-2xl mx-auto mb-12">
+                    <span class="text-primary font-semibold text-lg">خدمات تخصصی</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">راهکارهای جامع صنعت نفت و گاز</h2>
+                    <p class="text-gray-600">ما با بهره‌گیری از فناوری‌های روز و تیم متخصص، خدمات جامعی در تمامی حوزه‌های صنعت نفت و گاز ارائه می‌دهیم.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="service-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500">
+                        <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-search text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">اکتشاف و تولید</h3>
+                        <p class="text-gray-600 mb-4 text-sm">بهره‌برداری از پیشرفته‌ترین فناوری‌ها برای شناسایی و استخراج منابع هیدروکربنی با بالاترین بازدهی.</p>
+                        <a href="#" class="text-primary font-semibold hover:text-secondary transition flex items-center justify-center text-sm">
+                            اطلاعات بیشتر <i class="fas fa-arrow-left mr-2 text-xs"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="service-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
+                        <div class="bg-orange-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-industry text-orange-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">پالایش و پتروشیمی</h3>
+                        <p class="text-gray-600 mb-4 text-sm">تبدیل نفت خام به فرآورده‌های با ارزش افزوده بالا و محصولات پتروشیمیایی با کیفیت جهانی.</p>
+                        <a href="#" class="text-primary font-semibold hover:text-secondary transition flex items-center justify-center text-sm">
+                            اطلاعات بیشتر <i class="fas fa-arrow-left mr-2 text-xs"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="service-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500">
+                        <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-truck text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">توزیع و لجستیک</h3>
+                        <p class="text-gray-600 mb-4 text-sm">شبکه گسترده حمل و نقل و توزیع ایمن فرآورده‌ها در سراسر کشور و منطقه با استانداردهای بین‌المللی.</p>
+                        <a href="#" class="text-primary font-semibold hover:text-secondary transition flex items-center justify-center text-sm">
+                            اطلاعات بیشتر <i class="fas fa-arrow-left mr-2 text-xs"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="service-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-purple-500">
+                        <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-solar-panel text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">انرژی‌های نوین</h3>
+                        <p class="text-gray-600 mb-4 text-sm">سرمایه‌گذاری و تحقیق در زمینه انرژی‌های پاک و تجدیدپذیر برای آینده‌ای پایدار و دوستدار محیط زیست.</p>
+                        <a href="#" class="text-primary font-semibold hover:text-secondary transition flex items-center justify-center text-sm">
+                            اطلاعات بیشتر <i class="fas fa-arrow-left mr-2 text-xs"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="service-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500">
+                        <div class="bg-red-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-flask text-red-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">تحقیق و توسعه</h3>
+                        <p class="text-gray-600 mb-4 text-sm">مراکز تحقیقاتی پیشرفته برای توسعه فناوری‌های نوین در صنعت نفت، گاز و پتروشیمی.</p>
+                        <a href="#" class="text-primary font-semibold hover:text-secondary transition flex items-center justify-center text-sm">
+                            اطلاعات بیشتر <i class="fas fa-arrow-left mr-2 text-xs"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="service-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-500">
+                        <div class="bg-yellow-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-shield-alt text-yellow-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">مشاوره و HSE</h3>
+                        <p class="text-gray-600 mb-4 text-sm">مشاوره تخصصی و پیاده‌سازی سیستم‌های ایمنی، بهداشت و محیط زیست مطابق با استانداردهای جهانی.</p>
+                        <a href="#" class="text-primary font-semibold hover:text-secondary transition flex items-center justify-center text-sm">
+                            اطلاعات بیشتر <i class="fas fa-arrow-left mr-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-16 bg-primary text-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
+                    <div>
+                        <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="50">0</h3>
+                        <p class="text-blue-200">سال تجربه</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="250">0</h3>
+                        <p class="text-blue-200">پروژه موفق</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="7500">0</h3>
+                        <p class="text-blue-200">نیروی متخصص</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="2.5">0</h3>
+                        <p class="text-blue-200">میلیون بشکه تولید روزانه</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <span class="text-primary font-semibold text-lg">پروژه‌های ما</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">پروژه‌های برجسته و دستاوردها</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">مروری بر پروژه‌های کلان و دستاوردهای فنی شرکت نفت و گاز در سال‌های اخیر</p>
+                </div>
+                
+                <!-- Projects Tabs -->
+                <div class="mb-8">
+                    <div class="flex flex-wrap justify-center border-b border-gray-200">
+                        <button class="project-tab active px-4 py-3 font-medium" data-tab="all">همه پروژه‌ها</button>
+                        <button class="project-tab px-4 py-3 font-medium text-gray-500 hover:text-primary" data-tab="upstream">بالادستی</button>
+                        <button class="project-tab px-4 py-3 font-medium text-gray-500 hover:text-primary" data-tab="downstream">پایین‌دستی</button>
+                        <button class="project-tab px-4 py-3 font-medium text-gray-500 hover:text-primary" data-tab="petrochemical">پتروشیمی</button>
+                    </div>
+                </div>
+                
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-container">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1583324113626-70df0f4deaab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1789&q=80" alt="پروژه اکتشاف نفت" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded-full">بالادستی</span>
+                            <h3 class="text-xl font-bold mt-3 mb-2">پروژه اکتشاف نفت در خلیج فارس</h3>
+                            <p class="text-gray-600 text-sm mb-4">اکتشاف منابع جدید نفتی در منطقه جنوبی خلیج فارس با فناوری‌های نوین</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500"><i class="far fa-calendar-alt ml-1"></i> ۱۴۰۱-۱۴۰۳</span>
+                                <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">جزئیات بیشتر</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1565373679100-7a0154e8d4f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="پالایشگاه جدید" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-sm bg-orange-100 text-orange-800 px-2 py-1 rounded-full">پایین‌دستی</span>
+                            <h3 class="text-xl font-bold mt-3 mb-2">احداث پالایشگاه جدید در منطقه ویژه</h3>
+                            <p class="text-gray-600 text-sm mb-4">احداث پالایشگاه مدرن با ظرفیت ۲۰۰ هزار بشکه در روز</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500"><i class="far fa-calendar-alt ml-1"></i> ۱۴۰۰-۱۴۰۲</span>
+                                <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">جزئیات بیشتر</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="پتروشیمی" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-sm bg-purple-100 text-purple-800 px-2 py-1 rounded-full">پتروشیمی</span>
+                            <h3 class="text-xl font-bold mt-3 mb-2">مجتمع پتروشیمی پارس جنوبی</h3>
+                            <p class="text-gray-600 text-sm mb-4">توسعه مجتمع پتروشیمی با ظرفیت تولید ۵ میلیون تن محصولات پتروشیمی</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500"><i class="far fa-calendar-alt ml-1"></i> ۱۳۹۸-۱۴۰۲</span>
+                                <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">جزئیات بیشتر</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-secondary transition duration-300 shadow-lg hover:shadow-xl">
+                        مشاهده همه پروژه‌ها
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+                    <div class="mb-6 md:mb-0">
+                        <span class="text-primary font-semibold text-lg">اخبار و رویدادها</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2">آخرین اخبار شرکت</h2>
+                    </div>
+                    <a href="#" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition duration-300 font-medium">
+                        مشاهده همه اخبار
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1581578021230-91c8c5ba2d3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="افتتاح پالایشگاه" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs bg-primary text-white px-2 py-1 rounded-full">پروژه‌ها</span>
+                            <h3 class="text-xl font-bold mt-3 mb-2">افتتاح فاز جدید پالایشگاه جنوب</h3>
+                            <p class="text-gray-600 text-sm mb-4">فاز جدید پالایشگاه جنوب با حضور وزیر نفت و مسئولان کشوری به بهره‌برداری رسید.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-gray-500"><i class="far fa-calendar-alt ml-1"></i> ۱۴۰۲/۰۵/۱۲</span>
+                                <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">ادامه خبر</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="رتبه بندی جهانی" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-full">افتخارات</span>
+                            <h3 class="text-xl font-bold mt-3 mb-2">شرکت نفت و گاز در میان ۱۰۰ شرکت برتر انرژی جهان</h3>
+                            <p class="text-gray-600 text-sm mb-4">بر اساس رتبه‌بندی جهانی، شرکت ملی نفت و گاز در میان ۱۰۰ شرکت برتر انرژی جهان قرار گرفت.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-gray-500"><i class="far fa-calendar-alt ml-1"></i> ۱۴۰۲/۰۴/۲۸</span>
+                                <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">ادامه خبر</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="انرژی تجدیدپذیر" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs bg-green-500 text-white px-2 py-1 rounded-full">انرژی نو</span>
+                            <h3 class="text-xl font-bold mt-3 mb-2">سرمایه‌گذاری ۵۰۰ میلیون دلاری در انرژی‌های تجدیدپذیر</h3>
+                            <p class="text-gray-600 text-sm mb-4">شرکت نفت و گاز برای توسعه انرژی‌های پاک، ۵۰۰ میلیون دلار سرمایه‌گذاری می‌کند.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-gray-500"><i class="far fa-calendar-alt ml-1"></i> ۱۴۰۲/۰۴/۱۵</span>
+                                <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">ادامه خبر</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div class="lg:pr-8">
+                        <span class="text-primary font-semibold text-lg">درباره ما</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 my-3">چشم‌انداز ما برای آینده انرژی</h2>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            شرکت نفت و گاز با بیش از نیم قرن تجربه، به عنوان یکی از ستون‌های اصلی صنعت انرژی کشور شناخته می‌شود. ما با تکیه بر دانش فنی، نیروی انسانی متخصص و مدیریت نوین، همواره در تلاش برای بهینه‌سازی فرآیندهای تولید، افزایش کیفیت محصولات و حرکت به سوی توسعه پایدار بوده‌ایم.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            ماموریت ما تأمین امن و پایدار انرژی برای نسل امروز و فردا، با رعایت بالاترین استانداردهای زیست‌محیطی و مسئولیت‌های اجتماعی است.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-6 mt-8">
+                            <div>
+                                <h3 class="text-lg font-bold text-primary flex items-center">
+                                    <i class="fas fa-bullseye text-primary mr-2"></i>
+                                    چشم‌انداز
+                                </h3>
+                                <p class="text-gray-600 mt-2 text-sm">
+                                    تبدیل شدن به یکی از ۵۰ شرکت برتر انرژی جهان تا سال ۱۴۱۰
+                                </p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-primary flex items-center">
+                                    <i class="fas fa-hand-holding-heart text-primary mr-2"></i>
+                                    ارزش‌ها
+                                </h3>
+                                <p class="text-gray-600 mt-2 text-sm">
+                                    نوآوری، مسئولیت‌پذیری، ایمنی، توسعه پایدار
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <a href="#" class="inline-flex items-center text-primary font-semibold hover:text-secondary transition">
+                                <span>مشاهده گواهی‌نامه‌ها و جوایز</span>
+                                <i class="fas fa-arrow-left mr-2 text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1542382156942-0268f1181249?q=80&w=1964&auto=format&fit=crop" 
+                             alt="تیم مهندسی شرکت نفت و گاز" 
+                             class="rounded-xl shadow-xl w-full">
+                             
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg w-10/12">
+                            <h3 class="font-bold text-lg text-primary mb-2">تیم مدیریت ارشد</h3>
+                            <p class="text-gray-600 text-sm">
+                                تیم متخصص و با تجربه ما با بیش از ۳۰ سال سابقه در صنعت نفت و گاز
+                            </p>
+                            <div class="flex mt-3">
+                                <img src="https://randomuser.me/api/portraits/men/41.jpg" class="w-10 h-10 rounded-full border-2 border-white -mr-2" alt="مدیر عامل">
+                                <img src="https://randomuser.me/api/portraits/women/32.jpg" class="w-10 h-10 rounded-full border-2 border-white -mr-2" alt="مدیر فنی">
+                                <img src="https://randomuser.me/api/portraits/men/22.jpg" class="w-10 h-10 rounded-full border-2 border-white -mr-2" alt="مدیر مالی">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 text-primary border-2 border-white -mr-2 flex items-center justify-center">
+                                    +5
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <span class="text-primary font-semibold text-lg">گالری تصاویر</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">تصاویری از فعالیت‌ها و پروژه‌های ما</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">نگاهی به پروژه‌ها، تأسیسات و دستاوردهای ما بیندازید</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1627843563915-a89255a052da?q=80&w=1974&auto=format&fit=crop" alt="پالایشگاه نفت در شب">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1611299442131-73477f0a4344?q=80&w=1965&auto=format&fit=crop" alt="مهندسان در حال کار">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1583324132930-5b5a7f92035d?q=80&w=2070&auto=format&fit=crop" alt="دکل حفاری نفت">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=2070&auto=format&fit=crop" alt="تاسیسات صنعتی">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=2070&auto=format&fit=crop" alt="نمودارهای تحلیل انرژی">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1621254033333-535334a36b33?q=80&w=2070&auto=format&fit=crop" alt="خطوط لوله انتقال گاز">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1619522340313-05e836b8c963?q=80&w=2070&auto=format&fit=crop" alt="مخازن ذخیره سازی">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1605711221431-15055b3d0a0c?q=80&w=2070&auto=format&fit=crop" alt="کشتی نفتکش">
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <button class="bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-secondary transition duration-300 shadow-lg hover:shadow-xl">
+                        مشاهده گالری کامل
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 bg-gray-100 relative">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-cyan-50 z-0"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="max-w-5xl mx-auto text-center mb-12">
+                    <span class="text-primary font-semibold text-lg">ارتباط با ما</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">با ما در تماس باشید</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">برای سوالات، پیشنهادات و همکاری، می‌توانید از طریق راه‌های زیر با ما تماس بگیرید.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="contact-card p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">فرم تماس با ما</h3>
+                        <form id="contact-form">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-gray-700 mb-2">نام شما</label>
+                                    <input type="text" id="name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-gray-700 mb-2">ایمیل شما</label>
+                                    <input type="email" id="email" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label for="subject" class="block text-gray-700 mb-2">موضوع</label>
+                                <input type="text" id="subject" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 mb-2">پیام شما</label>
+                                <textarea id="message" rows="5" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="bg-primary text-white font-bold py-3 px-10 rounded-full hover:bg-secondary transition duration-300">ارسال پیام</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div>
+                        <div class="contact-card p-8 mb-8">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-6">اطلاعات تماس</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-3 rounded-full text-primary mr-4">
+                                        <i class="fas fa-map-marker-alt text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">آدرس دفتر مرکزی</h4>
+                                        <p class="text-gray-600 mt-1">تهران، خیابان ولیعصر، پلاک ۱۰۰۰، برج انرژی</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-3 rounded-full text-primary mr-4">
+                                        <i class="fas fa-phone-alt text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">تلفن تماس</h4>
+                                        <p class="text-gray-600 mt-1">۰۲۱-۲۲۳۳۴۴۵۵</p>
+                                        <p class="text-gray-600">۰۲۱-۲۲۳۳۴۴۶۶</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-3 rounded-full text-primary mr-4">
+                                        <i class="fas fa-envelope text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">پست الکترونیک</h4>
+                                        <p class="text-gray-600 mt-1">info@oil-gas.com</p>
+                                        <p class="text-gray-600">support@oil-gas.com</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-3 rounded-full text-primary mr-4">
+                                        <i class="fas fa-clock text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">ساعات کاری</h4>
+                                        <p class="text-gray-600 mt-1">شنبه تا چهارشنبه: ۸ صبح تا ۵ بعدازظهر</p>
+                                        <p class="text-gray-600">پنجشنبه: ۸ صبح تا ۱۲ ظهر</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.910875621768!2d51.38827731527219!3d35.71591798018804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0100ecf5c3f1%3A0x3dd971d8e1d04949!2sMilad%20Tower!5e0!3m2!1sen!2s!4v1659787896826!5m2!1sen!2s" 
+                                    width="100%" 
+                                    height="100%" 
+                                    style="border:0;" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+                <div>
+                    <div class="text-xl font-bold text-white mb-4 flex items-center">
+                        <div class="bg-primary p-2 rounded-full mr-2">
+                            <i class="fas fa-oil-well text-white"></i>
+                        </div>
+                        شرکت نفت و گاز
+                    </div>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        پیشرو در صنعت انرژی با بیش از ۵۰ سال سابقه درخشان در اکتشاف، تولید و توزیع محصولات نفتی و گازی
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-telegram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2">لینک‌های سریع</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition text-sm">صفحه اصلی</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition text-sm">درباره ما</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition text-sm">خدمات ما</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white transition text-sm">پروژه‌ها</a></li>
+                        <li><a href="#news" class="text-gray-400 hover:text-white transition text-sm">اخبار و رویدادها</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition text-sm">تماس با ما</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2">خدمات ما</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">اکتشاف و تولید</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">پالایش و پتروشیمی</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">توزیع و لجستیک</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">انرژی‌های نوین</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">تحقیق و توسعه</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2">خبرنامه</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        برای دریافت آخرین اخبار و به‌روزرسانی‌ها در خبرنامه ما عضو شوید
+                    </p>
+                    <form class="flex">
+                        <input type="email" placeholder="ایمیل شما" class="w-full px-4 py-2 rounded-l-lg focus:outline-none text-gray-800">
+                        <button type="submit" class="bg-primary px-4 py-2 rounded-r-lg hover:bg-secondary transition">
+                            <i class="fas fa-paper-plane text-white"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6 mt-6 text-center">
+                <p class="text-sm">&copy; ۱۴۰۲ شرکت ملی نفت و گاز. تمام حقوق محفوظ است.</p>
+                <div class="mt-2 text-gray-500 text-xs">
+                    طراحی و توسعه توسط تیم فناوری اطلاعات شرکت نفت و گاز
+                </div>
+            </div>
+        </div>
+    </footer>
+
+ 
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on links
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Animated counters
+        const counters = document.querySelectorAll('.stats-counter');
+        const speed = 200;
+        
+        const startCounter = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText.replace(',', '');
+            
+            const inc = target / speed;
+            
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc).toLocaleString();
+                setTimeout(() => startCounter(counter), 10);
+            } else {
+                counter.innerText = target.toLocaleString();
+            }
+        };
+        
+        // Start counters when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        counters.forEach(counter => {
+            observer.observe(counter);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Gallery modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeModal = document.querySelector('.close-modal');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.getAttribute('data-src');
+                modalImg.src = imgSrc;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Contact form submission
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('پیام شما با موفقیت ارسال شد. با تشکر از ارتباط شما!');
+            contactForm.reset();
+        });
+        
+        // Floating animations for decorative elements
+        const floatingElements = document.querySelectorAll('.floating');
+        
+        floatingElements.forEach((element, index) => {
+            element.style.animationDelay = `${index * 1}s`;
+        });
+    </script>
+</body>
+</html>
+</body>
+</html>

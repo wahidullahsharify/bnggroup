@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شرکت پترول ایران - پیشگام در انرژی آینده</title>
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Vazirmatn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Alpine.js for simpler interactivity -->
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Custom CSS for Theming, Animations, and Advanced Styles -->
+    <style>
+        /* --- Base Font and Smooth Scrolling --- */
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* --- Color Palette Variables for Theming --- */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f3f4f6;
+            --bg-accent: #1e3a8a;
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --text-accent: #ffffff;
+            --border-color: #e5e7eb;
+            --primary-accent-color: #fb923c;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --hero-overlay-color: rgba(17, 24, 39, 0.6);
+            --modal-bg-color: rgba(0, 0, 0, 0.85);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --bg-accent: #dbeafe;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --text-accent: #111827;
+            --border-color: #374151;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --hero-overlay-color: rgba(0, 0, 0, 0.7);
+            --modal-bg-color: rgba(0, 0, 0, 0.9);
+        }
+
+        /* --- Smooth Transition for All Elements on Theme Change --- */
+        .color-theme-in-transition, .color-theme-in-transition * {
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease !important;
+        }
+
+        /* --- Dynamic Hero Section Styling --- */
+        .hero-section {
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1.5s ease-in-out;
+            position: relative;
+        }
+        .hero-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: var(--hero-overlay-color);
+            z-index: 1;
+            transition: background-color 0.4s ease;
+        }
+        .hero-content { position: relative; z-index: 2; }
+        
+        /* --- Scroll Reveal Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Custom Styles for Cards and Buttons --- */
+        .service-card, .project-card, .gallery-item-wrapper {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover, .project-card:hover, .gallery-item-wrapper:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px var(--shadow-color), 0 8px 10px -6px var(--shadow-color);
+        }
+        .btn-primary {
+            background-color: var(--primary-accent-color);
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #f97316;
+            transform: scale(1.05);
+        }
+        
+        /* --- Advanced Gallery & Modal Styling --- */
+        body.modal-open { overflow: hidden; }
+        .gallery-item-wrapper { overflow: hidden; position: relative; cursor: pointer; }
+        .gallery-item-wrapper img { transition: transform 0.4s ease; }
+        .gallery-item-wrapper:hover img { transform: scale(1.1); }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .gallery-item-wrapper:hover .gallery-overlay { opacity: 1; }
+        #imageModal {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s;
+        }
+        #imageModal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        #modalContent {
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        #imageModal.active #modalContent {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        /* --- Project Filtering --- */
+        .project-filter-btn {
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .project-filter-btn.active {
+            background-color: var(--primary-accent-color);
+            color: white;
+            border-color: var(--primary-accent-color);
+        }
+    </style>
+</head>
+<body style="background-color: var(--bg-secondary); color: var(--text-primary);" x-data="{ isMobileMenuOpen: false }">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 shadow-md" style="background-color: var(--bg-primary);">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold" style="color: var(--text-primary);">
+                <a href="#">پترول ایران</a>
+            </div>
+            <div class="hidden lg:flex items-center space-x-6 space-x-reverse">
+                <a href="#home" class="font-medium hover:text-orange-400 transition-colors duration-300" style="color: var(--text-secondary);">صفحه اصلی</a>
+                <a href="#about" class="font-medium hover:text-orange-400 transition-colors duration-300" style="color: var(--text-secondary);">درباره ما</a>
+                <a href="#services" class="font-medium hover:text-orange-400 transition-colors duration-300" style="color: var(--text-secondary);">خدمات</a>
+                <a href="#projects" class="font-medium hover:text-orange-400 transition-colors duration-300" style="color: var(--text-secondary);">پروژه‌ها</a>
+                <a href="#gallery" class="font-medium hover:text-orange-400 transition-colors duration-300" style="color: var(--text-secondary);">گالری</a>
+                <a href="#contact" class="font-medium hover:text-orange-400 transition-colors duration-300" style="color: var(--text-secondary);">تماس</a>
+            </div>
+            <div class="flex items-center">
+                <button id="theme-toggle" class="p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400" style="background-color: var(--bg-secondary); color: var(--text-primary);">
+                    <svg id="theme-toggle-light-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="theme-toggle-dark-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <button @click="isMobileMenuOpen = !isMobileMenuOpen" class="lg:hidden ml-4 p-2 rounded-md focus:outline-none" style="color: var(--text-primary);">
+                    <svg x-show="!isMobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg x-show="isMobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div x-show="isMobileMenuOpen" @click.away="isMobileMenuOpen = false" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-4" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-4" class="lg:hidden absolute top-full right-0 w-full shadow-lg" style="background-color: var(--bg-primary);">
+            <div class="flex flex-col p-5 space-y-4">
+                 <a href="#home" @click="isMobileMenuOpen = false" class="font-medium hover:text-orange-400 transition-colors duration-300" style="color: var(--text-secondary);">صفحه اصلی</a>
+                 <a href="#about" @click="isMobileMenuOpen = false" class="font-medium hover:text-orange-400 transition-colors duration-300" style="color: var(--text-secondary);">درباره ما</a>
+                 <a href="#services" @click="isMobileMenuOpen = false" class="font-medium hover:text-orange-400 transition-colors duration-300" style="color: var(--text-secondary);">خدمات</a>
+                 <a href="#projects" @click="isMobileMenuOpen = false" class="font-medium hover:text-orange-400 transition-colors duration-300" style="color: var(--text-secondary);">پروژه‌ها</a>
+                 <a href="#gallery" @click="isMobileMenuOpen = false" class="font-medium hover:text-orange-400 transition-colors duration-300" style="color: var(--text-secondary);">گالری</a>
+                 <a href="#contact" @click="isMobileMenuOpen = false" class="font-medium hover:text-orange-400 transition-colors duration-300" style="color: var(--text-secondary);">تماس</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section 1: Hero -->
+        <section id="home" class="hero-section h-screen flex items-center justify-center text-white">
+            <div class="hero-overlay"></div>
+            <div class="hero-content text-center max-w-4xl mx-auto px-4 reveal">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight">انرژی برای فردایی روشن</h1>
+                <p class="text-lg md:text-xl mb-8 font-light max-w-2xl mx-auto">با تعهد به نوآوری، پایداری و کیفیت، آینده انرژی جهان را شکل می‌دهیم.</p>
+                <a href="#services" class="btn-primary font-bold py-3 px-8 rounded-full text-lg hover:shadow-xl transition duration-300">خدمات ما را بشناسید</a>
+            </div>
+        </section>
+
+        <!-- Section 2: About Us -->
+        <section id="about" class="py-20 lg:py-32" style="background-color: var(--bg-primary);">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    <div class="reveal">
+                        <img src="https://images.unsplash.com/photo-1542382156942-0268f1181249?q=80&w=1964&auto=format&fit=crop" alt="تیم مهندسی شرکت پترول" class="rounded-2xl shadow-2xl w-full h-auto object-cover">
+                    </div>
+                    <div class="reveal md:pr-8">
+                        <span class="font-bold uppercase tracking-wider" style="color: var(--primary-accent-color);">درباره ما</span>
+                        <h2 class="text-3xl lg:text-4xl font-bold my-4" style="color: var(--text-primary);">نیم قرن تجربه در صنعت انرژی</h2>
+                        <p class="text-lg leading-relaxed mb-6" style="color: var(--text-secondary);">شرکت پترول ایران، با تکیه بر دانش فنی روز دنیا و نیروی انسانی متخصص، به عنوان یکی از ستون‌های اصلی صنعت انرژی کشور و منطقه شناخته می‌شود.</p>
+                        <a href="#contact" class="font-semibold text-lg hover:underline" style="color: var(--primary-accent-color);">با ما در ارتباط باشید &larr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Services -->
+        <section id="services" class="py-20 lg:py-32" style="background-color: var(--bg-secondary);">
+             <div class="container mx-auto px-6 text-center">
+                <div class="reveal max-w-3xl mx-auto">
+                    <span class="font-bold uppercase tracking-wider" style="color: var(--primary-accent-color);">خدمات کلیدی</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold my-4" style="color: var(--text-primary);">راهکارهای جامع در زنجیره ارزش انرژی</h2>
+                    <p class="text-lg leading-relaxed" style="color: var(--text-secondary);">از اکتشاف و استخراج تا پالایش و توزیع، ما طیف کاملی از خدمات تخصصی را با بالاترین استانداردها ارائه می‌دهیم.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+                    <div class="service-card p-8 reveal">
+                        <div class="mx-auto mb-6 w-20 h-20 rounded-full flex items-center justify-center" style="background-color: var(--bg-primary);"><svg class="w-10 h-10" style="color: var(--primary-accent-color);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" /></svg></div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">اکتشاف و تولید</h3>
+                        <p style="color: var(--text-secondary);">استفاده از فناوری‌های لرزه‌نگاری سه‌بعدی و هوش مصنوعی برای شناسایی و استخراج بهینه منابع.</p>
+                    </div>
+                    <div class="service-card p-8 reveal" style="transition-delay: 100ms;">
+                        <div class="mx-auto mb-6 w-20 h-20 rounded-full flex items-center justify-center" style="background-color: var(--bg-primary);"><svg class="w-10 h-10" style="color: var(--primary-accent-color);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008Zm0 3h.008v.008H8.25v-.008Zm0 3h.008v.008H8.25v-.008Zm3-6h.008v.008H11.25v-.008Zm0 3h.008v.008H11.25v-.008Zm0 3h.008v.008H11.25v-.008Z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 6.75v10.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V6.75" /></svg></div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">پالایش و پتروشیمی</h3>
+                        <p style="color: var(--text-secondary);">تولید فرآورده‌های با ارزش افزوده بالا و محصولات پتروشیمیایی مطابق با استانداردهای جهانی.</p>
+                    </div>
+                    <div class="service-card p-8 reveal" style="transition-delay: 200ms;">
+                        <div class="mx-auto mb-6 w-20 h-20 rounded-full flex items-center justify-center" style="background-color: var(--bg-primary);"><svg class="w-10 h-10" style="color: var(--primary-accent-color);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5v-1.875a3.375 3.375 0 0 1 3.375-3.375h9.75a3.375 3.375 0 0 1 3.375 3.375v1.875m-17.25 4.5h16.5M3.375 6.375h17.25M3.375 10.125h17.25" /></svg></div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">لجستیک و توزیع</h3>
+                        <p style="color: var(--text-secondary);">شبکه یکپارچه حمل و نقل دریایی و زمینی برای توزیع ایمن و به موقع محصولات در سراسر جهان.</p>
+                    </div>
+                    <div class="service-card p-8 reveal" style="transition-delay: 300ms;">
+                        <div class="mx-auto mb-6 w-20 h-20 rounded-full flex items-center justify-center" style="background-color: var(--bg-primary);"><svg class="w-10 h-10" style="color: var(--primary-accent-color);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+                        <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">انرژی‌های تجدیدپذیر</h3>
+                        <p style="color: var(--text-secondary);">سرمایه‌گذاری در پروژه‌های خورشیدی و بادی به عنوان بخشی از تعهد ما به آینده‌ای پایدار.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Projects with Filtering -->
+        <section id="projects" class="py-20 lg:py-32" style="background-color: var(--bg-primary);">
+            <div class="container mx-auto px-6" x-data="{ filter: 'all' }">
+                <div class="reveal text-center max-w-3xl mx-auto">
+                    <span class="font-bold uppercase tracking-wider" style="color: var(--primary-accent-color);">پروژه‌های ما</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold my-4" style="color: var(--text-primary);">نوآوری در عمل</h2>
+                    <p class="text-lg leading-relaxed" style="color: var(--text-secondary);">نگاهی به برخی از پروژه‌های موفق و در حال اجرای ما که مرزهای صنعت انرژی را جابجا کرده‌اند.</p>
+                </div>
+                <!-- Filter Buttons -->
+                <div class="flex justify-center space-x-2 space-x-reverse my-12 reveal">
+                    <button @click="filter = 'all'" :class="{'active': filter === 'all'}" class="project-filter-btn font-semibold py-2 px-6 rounded-full">همه</button>
+                    <button @click="filter = 'upstream'" :class="{'active': filter === 'upstream'}" class="project-filter-btn font-semibold py-2 px-6 rounded-full">اکتشاف و تولید</button>
+                    <button @click="filter = 'downstream'" :class="{'active': filter === 'downstream'}" class="project-filter-btn font-semibold py-2 px-6 rounded-full">پالایش و پتروشیمی</button>
+                    <button @click="filter = 'renewable'" :class="{'active': filter === 'renewable'}" class="project-filter-btn font-semibold py-2 px-6 rounded-full">تجدیدپذیر</button>
+                </div>
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div x-show="filter === 'all' || filter === 'downstream'" x-transition class="project-card reveal">
+                        <img src="https://images.unsplash.com/photo-1627843563915-a89255a052da?q=80&w=800&auto=format&fit=crop" class="rounded-t-2xl w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">مجتمع پتروشیمی خلیج فارس</h3>
+                            <p style="color: var(--text-secondary);">بزرگترین مجتمع پتروشیمی خاورمیانه با هدف تولید سالانه ۳ میلیون تن محصول.</p>
+                        </div>
+                    </div>
+                     <div x-show="filter === 'all' || filter === 'upstream'" x-transition class="project-card reveal">
+                        <img src="https://images.unsplash.com/photo-1583324132930-5b5a7f92035d?q=80&w=800&auto=format&fit=crop" class="rounded-t-2xl w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">توسعه میدان گازی پارس جنوبی</h3>
+                            <p style="color: var(--text-secondary);">فاز جدید توسعه با هدف افزایش تولید گاز شیرین و میعانات گازی.</p>
+                        </div>
+                    </div>
+                     <div x-show="filter === 'all' || filter === 'renewable'" x-transition class="project-card reveal">
+                        <img src="https://images.unsplash.com/photo-1508515053969-7b945941de04?q=80&w=800&auto=format&fit=crop" class="rounded-t-2xl w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">نیروگاه خورشیدی یزد</h3>
+                            <p style="color: var(--text-secondary);">تولید ۱۰۰ مگاوات برق پاک از طریق پنل‌های خورشیدی پیشرفته.</p>
+                        </div>
+                    </div>
+                     <div x-show="filter === 'all' || filter === 'downstream'" x-transition class="project-card reveal">
+                        <img src="https://images.unsplash.com/photo-1619522340313-05e836b8c963?q=80&w=800&auto=format&fit=crop" class="rounded-t-2xl w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">پایانه نفتی خارک</h3>
+                            <p style="color: var(--text-secondary);">مدرن‌سازی و افزایش ظرفیت ذخیره‌سازی و صادرات نفت خام.</p>
+                        </div>
+                    </div>
+                    <div x-show="filter === 'all' || filter === 'upstream'" x-transition class="project-card reveal">
+                        <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=800&auto=format&fit=crop" class="rounded-t-2xl w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">میدان نفتی آزادگان</h3>
+                            <p style="color: var(--text-secondary);">استفاده از روش‌های نوین ازدیاد برداشت برای به حداکثر رساندن تولید.</p>
+                        </div>
+                    </div>
+                    <div x-show="filter === 'all' || filter === 'renewable'" x-transition class="project-card reveal">
+                        <img src="https://images.unsplash.com/photo-1597761279533-528c02202758?q=80&w=800&auto=format&fit=crop" class="rounded-t-2xl w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">مزرعه بادی منجیل</h3>
+                            <p style="color: var(--text-secondary);">توسعه توربین‌های بادی نسل جدید برای افزایش تولید انرژی پاک در کشور.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Gallery -->
+        <section id="gallery" class="py-20 lg:py-32" style="background-color: var(--bg-secondary);">
+            <div class="container mx-auto px-6">
+                <div class="reveal text-center max-w-3xl mx-auto">
+                    <span class="font-bold uppercase tracking-wider" style="color: var(--primary-accent-color);">گالری تصاویر</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold my-4" style="color: var(--text-primary);">مقیاس جهانی، عملکرد جهانی</h2>
+                    <p class="text-lg leading-relaxed" style="color: var(--text-secondary);">تصاویری از پروژه‌ها، تأسیسات و دستاوردهای ما در سراسر جهان.</p>
+                </div>
+                <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-16">
+                    <!-- Gallery items will be injected here by JavaScript -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 6: Contact -->
+        <section id="contact" class="py-20 lg:py-32" style="background-color: var(--bg-primary);">
+            <div class="container mx-auto px-6">
+                <div class="reveal text-center max-w-3xl mx-auto">
+                     <span class="font-bold uppercase tracking-wider" style="color: var(--primary-accent-color);">تماس با ما</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold my-4" style="color: var(--text-primary);">آماده همکاری با شما هستیم</h2>
+                    <p class="text-lg leading-relaxed" style="color: var(--text-secondary);">برای سوالات، پیشنهادات و همکاری، می‌توانید از طریق فرم زیر با ما تماس بگیرید.</p>
+                </div>
+                <form id="contactForm" class="max-w-3xl mx-auto mt-12 reveal" novalidate>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="form-group">
+                            <label for="name" class="block mb-2 font-medium" style="color: var(--text-secondary);">نام کامل</label>
+                            <input type="text" id="name" name="name" class="w-full p-3 rounded-lg focus:outline-none focus:ring-2" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); focus:ring-color: var(--primary-accent-color);" required>
+                            <p class="error-message text-red-500 text-sm mt-1 hidden">لطفاً نام خود را وارد کنید.</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="block mb-2 font-medium" style="color: var(--text-secondary);">ایمیل</label>
+                            <input type="email" id="email" name="email" class="w-full p-3 rounded-lg focus:outline-none focus:ring-2" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); focus:ring-color: var(--primary-accent-color);" required>
+                            <p class="error-message text-red-500 text-sm mt-1 hidden">لطفاً یک ایمیل معتبر وارد کنید.</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 form-group">
+                         <label for="subject" class="block mb-2 font-medium" style="color: var(--text-secondary);">موضوع</label>
+                         <input type="text" id="subject" name="subject" class="w-full p-3 rounded-lg focus:outline-none focus:ring-2" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); focus:ring-color: var(--primary-accent-color);" required>
+                         <p class="error-message text-red-500 text-sm mt-1 hidden">لطفاً موضوع پیام را مشخص کنید.</p>
+                    </div>
+                    <div class="mt-6 form-group">
+                         <label for="message" class="block mb-2 font-medium" style="color: var(--text-secondary);">پیام شما</label>
+                        <textarea id="message" name="message" rows="6" class="w-full p-3 rounded-lg focus:outline-none focus:ring-2" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); focus:ring-color: var(--primary-accent-color);" required></textarea>
+                        <p class="error-message text-red-500 text-sm mt-1 hidden">متن پیام نمی‌تواند خالی باشد.</p>
+                    </div>
+                    <div class="mt-8 text-center">
+                        <button type="submit" class="btn-primary w-full md:w-auto font-bold py-4 px-12 rounded-full text-lg">ارسال پیام</button>
+                    </div>
+                    <div id="form-feedback" class="text-center mt-4 text-lg"></div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer style="background-color: #111827; color: #d1d5db;">
+        <div class="container mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="col-span-1 lg:col-span-1">
+                    <h3 class="text-xl font-bold text-white mb-4">پترول ایران</h3>
+                    <p class="text-gray-400 leading-relaxed">پیشگام در صنعت انرژی، متعهد به نوآوری و توسعه پایدار برای نسل‌های آینده.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">دسترسی سریع</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="hover:text-white transition-colors">درباره ما</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">خدمات</a></li>
+                        <li><a href="#projects" class="hover:text-white transition-colors">پروژه‌ها</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">فرصت‌های شغلی</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">اطلاعات تماس</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                           <svg class="w-5 h-5 mt-1 ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                           <span>تهران، خیابان ولیعصر، برج انرژی، طبقه ۲۰</span>
+                        </li>
+                         <li class="flex items-center">
+                           <svg class="w-5 h-5 ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                           <span>info@petrol-iran.com</span>
+                        </li>
+                    </ul>
+                </div>
+                 <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">ما را دنبال کنید</h3>
+                    <div class="flex space-x-4 space-x-reverse">
+                        <a href="#" class="p-2 bg-gray-700 rounded-full hover:bg-orange-500 transition-colors"><svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
+                        <a href="#" class="p-2 bg-gray-700 rounded-full hover:bg-orange-500 transition-colors"><svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM12 7.177a4.823 4.823 0 100 9.646 4.823 4.823 0 000-9.646zM12 15a3 3 0 110-6 3 3 0 010 6zm4.838-9.002a1.146 1.146 0 100 2.292 1.146 1.146 0 000-2.292z" clip-rule="evenodd" /></svg></a>
+                        <a href="#" class="p-2 bg-gray-700 rounded-full hover:bg-orange-500 transition-colors"><svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 border-t border-gray-700 text-center text-gray-500">
+                <p>&copy; ۱۴۰۴ شرکت پترول ایران. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Image Modal for Gallery -->
+    <div id="imageModal" class="fixed inset-0 z-50 flex justify-center items-center p-4" style="background-color: var(--modal-bg-color);">
+        <div id="modalContent" class="relative max-w-5xl max-h-[90vh] w-full">
+            <button id="closeModal" class="absolute -top-4 -right-4 md:top-0 md:-right-12 text-white bg-black bg-opacity-50 rounded-full p-2 focus:outline-none z-10 hover:bg-opacity-75 transition-colors">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <img id="modalImage" src="" alt="تصویر گالری" class="rounded-lg shadow-2xl object-contain w-full h-auto max-h-[90vh]">
+             <p id="modalCaption" class="text-center text-white text-lg mt-4"></p>
+            <button id="prevModal" class="absolute top-1/2 -translate-y-1/2 right-0 md:-right-12 text-white bg-black bg-opacity-50 rounded-full p-3 hover:bg-opacity-75 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+            <button id="nextModal" class="absolute top-1/2 -translate-y-1/2 left-0 md:-left-12 text-white bg-black bg-opacity-50 rounded-full p-3 hover:bg-opacity-75 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- THEME TOGGLER (DARK/LIGHT MODE) ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const htmlEl = document.documentElement;
+
+        const applyTheme = (theme) => {
+            htmlEl.dataset.theme = theme;
+            lightIcon.classList.toggle('hidden', theme === 'dark');
+            darkIcon.classList.toggle('hidden', theme !== 'dark');
+        };
+
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        applyTheme(savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.add('color-theme-in-transition');
+            const newTheme = htmlEl.dataset.theme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+            setTimeout(() => document.body.classList.remove('color-theme-in-transition'), 400);
+        });
+
+        // --- DYNAMIC HERO IMAGE SLIDER ---
+        const heroSection = document.getElementById('home');
+        const heroImages = [
+            'https://images.unsplash.com/photo-1599839578842-54f34a215b2a?q=80&w=2200&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1627843563915-a89255a052da?q=80&w=2200&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1583324132930-5b5a7f92035d?q=80&w=2200&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1605711221431-15055b3d0a0c?q=80&w=2200&auto=format&fit=crop'
+        ];
+        let currentHeroIndex = 0;
+        heroImages.forEach(src => { new Image().src = src; });
+        heroSection.style.backgroundImage = `url('${heroImages[0]}')`;
+        setInterval(() => {
+            currentHeroIndex = (currentHeroIndex + 1) % heroImages.length;
+            heroSection.style.backgroundImage = `url('${heroImages[currentHeroIndex]}')`;
+        }, 6000);
+
+        // --- SCROLL REVEAL ANIMATIONS ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+
+        // --- ADVANCED GALLERY & MODAL LOGIC ---
+        const galleryData = [
+            { src: 'https://images.unsplash.com/photo-1627843563915-a89255a052da?q=80&w=1974&auto=format&fit=crop', title: 'پالایشگاه نفت در شب' },
+            { src: 'https://images.unsplash.com/photo-1611299442131-73477f0a4344?q=80&w=1965&auto=format&fit=crop', title: 'مهندسان در حال کار' },
+            { src: 'https://images.unsplash.com/photo-1583324132930-5b5a7f92035d?q=80&w=2070&auto=format&fit=crop', title: 'دکل حفاری نفت فراساحلی' },
+            { src: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=2070&auto=format&fit=crop', title: 'تاسیسات صنعتی پتروشیمی' },
+            { src: 'https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=2070&auto=format&fit=crop', title: 'تحلیل داده‌های انرژی' },
+            { src: 'https://images.unsplash.com/photo-1621254033333-535334a36b33?q=80&w=2070&auto=format&fit=crop', title: 'خطوط لوله انتقال گاز' },
+            { src: 'https://images.unsplash.com/photo-1619522340313-05e836b8c963?q=80&w=2070&auto=format&fit=crop', title: 'مخازن عظیم ذخیره‌سازی' },
+            { src: 'https://images.unsplash.com/photo-1605711221431-15055b3d0a0c?q=80&w=2070&auto=format&fit=crop', title: 'کشتی نفت‌کش در اقیانوس' }
+        ];
+
+        const galleryGrid = document.getElementById('galleryGrid');
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeModalBtn = document.getElementById('closeModal');
+        const prevBtn = document.getElementById('prevModal');
+        const nextBtn = document.getElementById('nextModal');
+        let currentImageIndex = 0;
+
+        galleryData.forEach((item, index) => {
+            const galleryItemHTML = `
+                <div class="gallery-item-wrapper reveal" data-index="${index}">
+                    <img src="${item.src}" alt="${item.title}" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <h4 class="text-white font-bold">${item.title}</h4>
+                    </div>
+                </div>
+            `;
+            galleryGrid.innerHTML += galleryItemHTML;
+        });
+
+        const openModal = (index) => {
+            currentImageIndex = index;
+            const item = galleryData[index];
+            modalImage.src = item.src;
+            modalCaption.textContent = item.title;
+            document.body.classList.add('modal-open');
+            modal.classList.add('active');
+        };
+
+        const closeModal = () => {
+            document.body.classList.remove('modal-open');
+            modal.classList.remove('active');
+        };
+
+        galleryGrid.addEventListener('click', (e) => {
+            const item = e.target.closest('.gallery-item-wrapper');
+            if (item) {
+                openModal(parseInt(item.dataset.index));
+            }
+        });
+        
+        const showNextImage = () => openModal((currentImageIndex + 1) % galleryData.length);
+        const showPrevImage = () => openModal((currentImageIndex - 1 + galleryData.length) % galleryData.length);
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+        nextBtn.addEventListener('click', showNextImage);
+        prevBtn.addEventListener('click', showPrevImage);
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowRight') showPrevImage(); // Farsi is RTL
+            if (e.key === 'ArrowLeft') showNextImage(); // Farsi is RTL
+        });
+
+        // --- ADVANCED CONTACT FORM VALIDATION ---
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            const inputs = this.querySelectorAll('[required]');
+            
+            inputs.forEach(input => {
+                const group = input.closest('.form-group');
+                const errorEl = group.querySelector('.error-message');
+                let inputValid = true;
+
+                if (input.type === 'email') {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(input.value.trim())) inputValid = false;
+                } else {
+                    if (input.value.trim() === '') inputValid = false;
+                }
+                
+                if(!inputValid) {
+                    isValid = false;
+                    errorEl.classList.remove('hidden');
+                    input.classList.add('border-red-500', 'ring-red-500');
+                    input.classList.remove('border-green-500', 'ring-green-500');
+                } else {
+                     errorEl.classList.add('hidden');
+                     input.classList.remove('border-red-500', 'ring-red-500');
+                     input.classList.add('border-green-500', 'ring-green-500');
+                }
+            });
+
+            const feedbackEl = document.getElementById('form-feedback');
+            if (isValid) {
+                feedbackEl.textContent = 'پیام شما با موفقیت ارسال شد. سپاسگزاریم!';
+                feedbackEl.style.color = 'green';
+                contactForm.reset();
+                 inputs.forEach(input => input.classList.remove('border-green-500', 'ring-green-500'));
+            } else {
+                feedbackEl.textContent = 'لطفاً خطاهای فرم را برطرف کنید.';
+                feedbackEl.style.color = 'red';
+            }
+            setTimeout(() => { feedbackEl.textContent = ''; }, 5000);
+        });
+
+    });
+    </script>
+</body>
+</html>
