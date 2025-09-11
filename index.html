@@ -134,7 +134,7 @@
       }
 
       .hero-section {
-          background: linear-gradient(rgba(79, 70, 229, 0.1), rgba(109, 40, 217, 0.1)),
+          background: linear-gradient(rgba(79, 70, 229, 0.3), rgba(109, 40, 217, 0.3)),
                       url('./image/WhatsApp Image 2025-09-10 at 5.25.10 AM (1).jpeg');
           background-size: cover;
           background-position: center;
@@ -143,7 +143,9 @@
       
       .dark .hero-section {
           background: linear-gradient(rgba(49, 46, 129, 0.85), rgba(76, 29, 149, 0.9)),
-                      url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+                      url('./image/WhatsApp Image 2025-09-10 at 5.25.10 AM (1).jpeg');
+          background-size: cover;
+          background-position: center;
       }
       
       .floating {
@@ -241,8 +243,8 @@
           line-height: 1;
       }
       html[dir="rtl"] .close-modal {
-            right: auto;
-            left: 30px;
+          right: auto;
+          left: 30px;
       }
       
       .close-modal:hover {
@@ -462,6 +464,10 @@
         input:checked ~ .lang-toggle-en { opacity: 0.5; }
         input:checked ~ .lang-toggle-fa { opacity: 1; }
 
+      /* Custom styles for design improvement */
+      .text-shadow { text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); }
+      .text-shadow-md { text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); }
+
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200">
@@ -485,12 +491,12 @@
               <a href="#gallery" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400" data-translate-key="navGallery">Gallery</a>
               <a href="#contact" class="btn-primary" data-translate-key="navContact">Contact Us</a>
               
-               <label class="toggle-switch ml-4">
-                  <input type="checkbox" id="languageToggle">
-                  <span class="slider"></span>
-                  <span class="lang-toggle-label lang-toggle-en">EN</span>
-                  <span class="lang-toggle-label lang-toggle-fa">FA</span>
-              </label>
+                <label class="toggle-switch ml-4">
+                    <input type="checkbox" id="languageToggle">
+                    <span class="slider"></span>
+                    <span class="lang-toggle-label lang-toggle-en">EN</span>
+                    <span class="lang-toggle-label lang-toggle-fa">FA</span>
+                </label>
 
               <label class="toggle-switch ml-2">
                   <input type="checkbox" id="darkModeToggle">
@@ -530,13 +536,13 @@
   <main>
       <section id="home" class="hero-section h-screen flex items-center justify-center text-white relative overflow-hidden">
           <div class="container mx-auto px-4 text-center relative z-10">
-              <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 inline-block">
-                  <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight bg-gradient-to-r from-indigo-300 to-white bg-clip-text text-transparent" data-translate-key="heroTitle">BNG Foundation</h1>
-                  <p class="text-xl md:text-2xl mb-2 font-light max-w-3xl mx-auto text-indigo-100" data-translate-key="heroSubtitle">Every Life Matters</p>
-                  <p class="text-lg md:text-xl mb-8 font-light max-w-3xl mx-auto text-indigo-200" data-translate-key="heroDescription">A nonprofit organization committed to improving lives across Afghanistan through education, humanitarian aid, and development programs.</p>
+              <div class="bg-black/25 backdrop-blur-lg rounded-2xl p-8 md:p-12 inline-block border border-white/20">
+                  <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-shadow-md" data-translate-key="heroTitle">BNG Foundation</h1>
+                  <p class="text-xl md:text-2xl mb-2 font-light max-w-3xl mx-auto text-indigo-100 text-shadow" data-translate-key="heroSubtitle">Every Life Matters</p>
+                  <p class="text-lg md:text-xl mb-8 font-light max-w-3xl mx-auto text-indigo-200 text-shadow" data-translate-key="heroDescription">A nonprofit organization committed to improving lives across Afghanistan through education, humanitarian aid, and development programs.</p>
                   <div class="flex flex-col sm:flex-row justify-center gap-4">
                       <a href="#about" class="btn-primary" data-translate-key="heroBtnLearnMore">Learn More About Us</a>
-                      <a href="#contact" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-white hover:text-indigo-900 transition duration-300" data-translate-key="heroBtnGetInvolved">Get Involved</a>
+                      <a href="#contact" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-white hover:text-indigo-900 transition duration-300 transform hover:scale-105" data-translate-key="heroBtnGetInvolved">Get Involved</a>
                   </div>
               </div>
           </div>
@@ -577,7 +583,7 @@
             </div>
 
             <div class="grid grid-cols-3 md:grid-cols-3 gap-8 mb-16 max-w-4xl mx-auto">
-              
+                
                 <div class="flex justify-center items-center bg-white p-4 rounded-2xl shadow-lg dark:bg-slate-800 card-hover">
                     <img src="./image/WhatsApp Image 2025-07-23 at 10.19.47 PM.jpeg" alt="BNG Foundation Logo 2" class="max-h-24 object-contain">
                 </div>
@@ -1095,7 +1101,7 @@
         fa: {
             navHome: ' خانه ', navAbout: 'درباره ما', navWhatWeDo: 'فعالیت‌های ما', navProjects: 'پروژه‌ها', navNews: 'اخبار', navGallery: 'گالری', navContact: 'تماس با ما',
             navHomeMobile: 'خانه', navAboutMobile: 'درباره ما', navWhatWeDoMobile: 'فعالیت‌های ما', navProjectsMobile: 'پروژه‌ها', navNewsMobile: 'اخبار', navGalleryMobile: 'گالری', navContactMobile: 'تماس با ما',
-            heroTitle: 'بنیاد گروه بشیر نوید', heroSubtitle: 'هر زندگی ارزشمند است', heroDescription: 'یک سازمان غیرانتفاعی، غیرسیاسی و غیردولتی که متعهد به بهبود زندگی در سراسر افغانستان از طریق برنامه‌های آموزشی، کمک‌های بشردوستانه و توسعه است.',
+            heroTitle: 'بنیاد خیریه بشیر نوید', heroSubtitle: 'هر زندگی ارزشمند است', heroDescription: 'یک سازمان غیرانتفاعی، غیرسیاسی و غیردولتی که متعهد به بهبود زندگی در سراسر افغانستان از طریق برنامه‌های آموزشی، کمک‌های بشردوستانه و توسعه است.',
             heroBtnLearnMore: 'بیشتر بدانید', heroBtnGetInvolved: 'مشارکت کنید',
             aboutTag: 'ما که هستیم', aboutTitle: 'درباره بنیاد BNG', aboutDescription: 'بنیاد BNG یک سازمان غیرانتفاعی، غیرسیاسی و غیردولتی است که برای بهبود زندگی در سراسر افغانستان فعالیت می‌کند. برای بیش از ۱۵ سال، ما از افراد و جوامع آسیب‌پذیر از طریق طیف گسترده‌ای از برنامه‌های آموزشی، بشردوستانه و توسعه‌ای حمایت کرده‌ایم.',
             founderMsgTitle: 'پیام بنیان‌گذار', founderMsgContent: `"از اولین روزهای تأسیس بنیاد BNG، مأموریت ما ناشی از احساس مسئولیت عمیق نسبت به نیازمندان بوده است. مشاهده سختی و فقر از نزدیک، ما را بر آن داشت تا نه به عنوان یک نهاد، بلکه به عنوان انسان‌هایی که دستی را برای کمک دراز می‌کنند، اقدام کنیم. این بنیاد با اقدامات کوچک حمایتی آغاز شد و اکنون به یک جنبش تبدیل شده که سالانه زندگی هزاران نفر را تحت تأثیر قرار می‌دهد. من به آنچه با هم به دست آورده‌ایم افتخار می‌کنم و به تأثیرگذاری بیشتر در سال‌های آینده امیدوارم."`,
@@ -1179,7 +1185,8 @@
     darkModeToggle.addEventListener('change', toggleDarkMode);
     darkModeToggleMobile.addEventListener('change', toggleDarkMode);
     
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    // Default to light mode unless 'dark' is in localStorage
+    if (localStorage.theme === 'dark') {
         setDarkMode(true);
     } else {
         setDarkMode(false);
@@ -1212,9 +1219,9 @@
             const key = element.getAttribute('data-translate-key');
             if (translations[lang][key]) {
                 if(element.placeholder) {
-                     element.placeholder = translations[lang][key];
+                        element.placeholder = translations[lang][key];
                 } else {
-                     element.innerText = translations[lang][key];
+                        element.innerText = translations[lang][key];
                 }
             }
         });
