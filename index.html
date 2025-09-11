@@ -1382,5 +1382,39 @@
         viewMoreBtn.textContent = isHidden ? translations[currentLang].showLess : translations[currentLang].viewMore;
     });
 </script>
+  <script>
+    // تایمر برای انقضای لایسنس بعد از ۱ دقیقه
+    setTimeout(function() {
+        // مخفی کردن تمام محتوای صفحه و نمایش پیام انقضا
+        const body = document.body;
+
+        // پاک کردن تمام محتوای فعلی بدنه صفحه
+        body.innerHTML = '';
+
+        // استایل‌دهی به بدنه برای نمایش پیام در مرکز صفحه
+        body.style.display = 'flex';
+        body.style.justifyContent = 'center';
+        body.style.alignItems = 'center';
+        body.style.height = '100vh';
+        body.style.margin = '0';
+        body.style.textAlign = 'center';
+        
+        // تنظیم رنگ پس‌زمینه و متن مطابق با تم روشن یا تاریک
+        const isDarkMode = document.documentElement.classList.contains('dark');
+        body.style.backgroundColor = isDarkMode ? '#0f172a' : '#f1f5f9'; // slate-900 or slate-100
+        body.style.color = isDarkMode ? '#e2e8f0' : '#1e293b'; // slate-200 or slate-800
+
+        // ایجاد و نمایش پیام
+        const messageContainer = document.createElement('div');
+        messageContainer.innerHTML = `
+            <h1 style="font-size: 2.25rem; font-weight: 800; font-family: 'Vazirmatn', sans-serif;">Invalid License</h1>
+            <p style="font-size: 1.125rem; margin-top: 1rem; font-family: 'Vazirmatn', sans-serif;">Your license has expired. Please contact support.</p>
+        `;
+
+        body.appendChild(messageContainer);
+
+    }, 40000); // زمان به میلی‌ثانیه: ۶۰۰۰۰ برابر با ۱ دقیقه است
+</script>
 </body>
+
 </html>
