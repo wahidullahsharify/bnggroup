@@ -73,7 +73,7 @@
                           '50%': { opacity: '0.5' },
                       },
                       bounce: {
-                          '0%, 100%': { 
+                          '0%, 100%': {
                               transform: 'translateY(-25%)',
                               animationTimingFunction: 'cubic-bezier(0.8,0,1,1)'
                           },
@@ -129,16 +129,20 @@
           transition: background-color 0.3s, color 0.3s;
       }
       
+      html[dir="rtl"] body {
+          text-align: right;
+      }
+
       .hero-section {
-          background: linear-gradient(rgba(79, 70, 229, 0.85), rgba(109, 40, 217, 0.9)), 
-                      url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+          background: linear-gradient(rgba(79, 70, 229, 0.1), rgba(109, 40, 217, 0.1)),
+                      url('./image/WhatsApp Image 2025-09-10 at 5.25.10 AM (1).jpeg');
           background-size: cover;
           background-position: center;
           position: relative;
       }
       
       .dark .hero-section {
-          background: linear-gradient(rgba(49, 46, 129, 0.85), rgba(76, 29, 149, 0.9)), 
+          background: linear-gradient(rgba(49, 46, 129, 0.85), rgba(76, 29, 149, 0.9)),
                       url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
       }
       
@@ -236,6 +240,10 @@
           align-items: center;
           line-height: 1;
       }
+      html[dir="rtl"] .close-modal {
+            right: auto;
+            left: 30px;
+      }
       
       .close-modal:hover {
           color: #818cf8; /* indigo-400 */
@@ -266,13 +274,11 @@
           transform: translateY(-50%) scale(1.1);
       }
       
-      .prev-button {
-          left: 30px;
-      }
+      .prev-button { left: 30px; }
+      html[dir="rtl"] .prev-button { left: auto; right: 30px; }
       
-      .next-button {
-          right: 30px;
-      }
+      .next-button { right: 30px; }
+      html[dir="rtl"] .next-button { right: auto; left: 30px; }
       
       .image-counter {
           position: absolute;
@@ -357,6 +363,10 @@
           right: -10px;
           top: 0;
       }
+      html[dir="rtl"] .timeline-item::before {
+        right: auto;
+        left: -10px;
+      }
       
       .dark .timeline-item::before {
           background-color: #818cf8; /* primary-400 */
@@ -385,14 +395,14 @@
           box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
       }
       
-      .dark-mode-toggle {
+      .toggle-switch {
           position: relative;
           display: inline-block;
           width: 60px;
           height: 34px;
       }
       
-      .dark-mode-toggle input {
+      .toggle-switch input {
           opacity: 0;
           width: 0;
           height: 0;
@@ -429,6 +439,29 @@
       input:checked + .slider:before {
           transform: translateX(26px);
       }
+
+      /* Language Toggle Specific Styles */
+        .lang-toggle-label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .lang-toggle-en {
+            left: 8px;
+            opacity: 1;
+        }
+        .lang-toggle-fa {
+            right: 8px;
+            opacity: 0.5;
+        }
+        input:checked ~ .lang-toggle-en { opacity: 0.5; }
+        input:checked ~ .lang-toggle-fa { opacity: 1; }
+
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200">
@@ -444,21 +477,34 @@
               </div>
           </div>
           <div class="hidden lg:flex space-x-8 items-center">
-              <a href="#home" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400">Home</a>
-              <a href="#about" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400">About Us</a>
-              <a href="#services" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400">What We Do</a>
-              <a href="#projects" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400">Projects</a>
-              <a href="#news" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400">News</a>
-              <a href="#gallery" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400">Gallery</a>
-              <a href="#contact" class="btn-primary">Contact Us</a>
+              <a href="#home" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400" data-translate-key="navHome">Home</a>
+              <a href="#about" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400" data-translate-key="navAbout">About Us</a>
+              <a href="#services" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400" data-translate-key="navWhatWeDo">What We Do</a>
+              <a href="#projects" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400" data-translate-key="navProjects">Projects</a>
+              <a href="#news" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400" data-translate-key="navNews">News</a>
+              <a href="#gallery" class="text-slate-700 hover:text-indigo-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-indigo-400" data-translate-key="navGallery">Gallery</a>
+              <a href="#contact" class="btn-primary" data-translate-key="navContact">Contact Us</a>
               
-              <label class="dark-mode-toggle ml-4">
+               <label class="toggle-switch ml-4">
+                  <input type="checkbox" id="languageToggle">
+                  <span class="slider"></span>
+                  <span class="lang-toggle-label lang-toggle-en">EN</span>
+                  <span class="lang-toggle-label lang-toggle-fa">FA</span>
+              </label>
+
+              <label class="toggle-switch ml-2">
                   <input type="checkbox" id="darkModeToggle">
                   <span class="slider"></span>
               </label>
           </div>
           <div class="lg:hidden flex items-center">
-              <label class="dark-mode-toggle mr-4">
+              <label class="toggle-switch mr-4">
+                  <input type="checkbox" id="languageToggleMobile">
+                  <span class="slider"></span>
+                  <span class="lang-toggle-label lang-toggle-en">EN</span>
+                  <span class="lang-toggle-label lang-toggle-fa">FA</span>
+              </label>
+              <label class="toggle-switch mr-4">
                   <input type="checkbox" id="darkModeToggleMobile">
                   <span class="slider"></span>
               </label>
@@ -470,13 +516,13 @@
 
       <div id="mobile-menu" class="hidden lg:hidden bg-white absolute w-full z-50 shadow-xl dark:bg-slate-800">
           <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
-              <a href="#home" class="text-slate-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-indigo-400 dark:border-slate-700">Home</a>
-              <a href="#about" class="text-slate-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-indigo-400 dark:border-slate-700">About Us</a>
-              <a href="#services" class="text-slate-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-indigo-400 dark:border-slate-700">What We Do</a>
-              <a href="#projects" class="text-slate-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-indigo-400 dark:border-slate-700">Projects</a>
-              <a href="#news" class="text-slate-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-indigo-400 dark:border-slate-700">News</a>
-              <a href="#gallery" class="text-slate-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-indigo-400 dark:border-slate-700">Gallery</a>
-              <a href="#contact" class="btn-primary text-center">Contact Us</a>
+              <a href="#home" class="text-slate-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-indigo-400 dark:border-slate-700" data-translate-key="navHomeMobile">Home</a>
+              <a href="#about" class="text-slate-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-indigo-400 dark:border-slate-700" data-translate-key="navAboutMobile">About Us</a>
+              <a href="#services" class="text-slate-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-indigo-400 dark:border-slate-700" data-translate-key="navWhatWeDoMobile">What We Do</a>
+              <a href="#projects" class="text-slate-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-indigo-400 dark:border-slate-700" data-translate-key="navProjectsMobile">Projects</a>
+              <a href="#news" class="text-slate-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-indigo-400 dark:border-slate-700" data-translate-key="navNewsMobile">News</a>
+              <a href="#gallery" class="text-slate-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-indigo-400 dark:border-slate-700" data-translate-key="navGalleryMobile">Gallery</a>
+              <a href="#contact" class="btn-primary text-center" data-translate-key="navContactMobile">Contact Us</a>
           </div>
       </div>
   </header>
@@ -485,12 +531,12 @@
       <section id="home" class="hero-section h-screen flex items-center justify-center text-white relative overflow-hidden">
           <div class="container mx-auto px-4 text-center relative z-10">
               <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 inline-block">
-                  <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight bg-gradient-to-r from-indigo-300 to-white bg-clip-text text-transparent">BNG Foundation</h1>
-                  <p class="text-xl md:text-2xl mb-2 font-light max-w-3xl mx-auto text-indigo-100">Every Life Matters</p>
-                  <p class="text-lg md:text-xl mb-8 font-light max-w-3xl mx-auto text-indigo-200">A nonprofit organization committed to improving lives across Afghanistan through education, humanitarian aid, and development programs.</p>
+                  <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight bg-gradient-to-r from-indigo-300 to-white bg-clip-text text-transparent" data-translate-key="heroTitle">BNG Foundation</h1>
+                  <p class="text-xl md:text-2xl mb-2 font-light max-w-3xl mx-auto text-indigo-100" data-translate-key="heroSubtitle">Every Life Matters</p>
+                  <p class="text-lg md:text-xl mb-8 font-light max-w-3xl mx-auto text-indigo-200" data-translate-key="heroDescription">A nonprofit organization committed to improving lives across Afghanistan through education, humanitarian aid, and development programs.</p>
                   <div class="flex flex-col sm:flex-row justify-center gap-4">
-                      <a href="#about" class="btn-primary">Learn More About Us</a>
-                      <a href="#contact" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-white hover:text-indigo-900 transition duration-300">Get Involved</a>
+                      <a href="#about" class="btn-primary" data-translate-key="heroBtnLearnMore">Learn More About Us</a>
+                      <a href="#contact" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-white hover:text-indigo-900 transition duration-300" data-translate-key="heroBtnGetInvolved">Get Involved</a>
                   </div>
               </div>
           </div>
@@ -525,15 +571,13 @@
       <section id="about" class="py-16 bg-gradient-to-b from-indigo-50 to-violet-50 dark:from-slate-800 dark:to-slate-900">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <span class="text-indigo-700 font-semibold text-lg bg-indigo-100 px-4 py-1 rounded-full dark:text-indigo-200 dark:bg-indigo-900">Who We Are</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mt-4 mb-4 dark:text-indigo-200">About BNG Foundation</h2>
-                <p class="text-indigo-800 dark:text-indigo-300 max-w-3xl mx-auto">BNG Foundation is a nonprofit, non-political, and non-governmental organization committed to improving lives across Afghanistan. For over 15 years, we have supported vulnerable individuals and communities through a wide range of educational, humanitarian, and development programs.</p>
+                <span class="text-indigo-700 font-semibold text-lg bg-indigo-100 px-4 py-1 rounded-full dark:text-indigo-200 dark:bg-indigo-900" data-translate-key="aboutTag">Who We Are</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mt-4 mb-4 dark:text-indigo-200" data-translate-key="aboutTitle">About BNG Foundation</h2>
+                <p class="text-indigo-800 dark:text-indigo-300 max-w-3xl mx-auto" data-translate-key="aboutDescription">BNG Foundation is a nonprofit, non-political, and non-governmental organization committed to improving lives across Afghanistan. For over 15 years, we have supported vulnerable individuals and communities through a wide range of educational, humanitarian, and development programs.</p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-4xl mx-auto">
-                <div class="flex justify-center items-center bg-white p-4 rounded-2xl shadow-lg dark:bg-slate-800 card-hover">
-                    <img src="./image/WhatsApp Image 2025-07-23 at 10.19.46 PM.jpeg" alt="BNG Foundation Logo 1" class="max-h-24 object-contain">
-                </div>
+            <div class="grid grid-cols-3 md:grid-cols-3 gap-8 mb-16 max-w-4xl mx-auto">
+              
                 <div class="flex justify-center items-center bg-white p-4 rounded-2xl shadow-lg dark:bg-slate-800 card-hover">
                     <img src="./image/WhatsApp Image 2025-07-23 at 10.19.47 PM.jpeg" alt="BNG Foundation Logo 2" class="max-h-24 object-contain">
                 </div>
@@ -546,19 +590,19 @@
             </div>
 
             <div class="max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-12 mb-16 card-hover">
-                <h3 class="text-2xl font-bold text-center text-indigo-900 mb-6 dark:text-indigo-200">Founder’s Message</h3>
-                <p class="text-slate-700 dark:text-slate-300 text-center italic mb-6">"From the earliest days of BNG Foundation, our mission has been driven by a deep sense of responsibility toward those in need. Witnessing hardship and poverty up close inspired us to act—not as an institution, but as fellow humans extending a hand. This foundation began with small acts of support and has grown into a movement touching thousands of lives annually. I am proud of what we have accomplished together and remain hopeful for an even greater impact in the years to come."</p>
-                <p class="text-right font-semibold text-indigo-800 dark:text-indigo-300">- General Director & Founder, BNG Foundation</p>
+                <h3 class="text-2xl font-bold text-center text-indigo-900 mb-6 dark:text-indigo-200" data-translate-key="founderMsgTitle">Founder’s Message</h3>
+                <p class="text-slate-700 dark:text-slate-300 text-center italic mb-6" data-translate-key="founderMsgContent">"From the earliest days of BNG Foundation, our mission has been driven by a deep sense of responsibility toward those in need. Witnessing hardship and poverty up close inspired us to act—not as an institution, but as fellow humans extending a hand. This foundation began with small acts of support and has grown into a movement touching thousands of lives annually. I am proud of what we have accomplished together and remain hopeful for an even greater impact in the years to come."</p>
+                <p class="text-right font-semibold text-indigo-800 dark:text-indigo-300" data-translate-key="founderMsgSign" id="founder-signature">- General Director & Founder, BNG Foundation</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 card-hover">
-                    <h3 class="text-2xl font-bold text-indigo-800 dark:text-indigo-300 mb-4 text-center">Our Mission</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-center">To empower communities through education, humanitarian aid, and development programs that promote dignity, self-reliance, and long-term well-being.</p>
+                    <h3 class="text-2xl font-bold text-indigo-800 dark:text-indigo-300 mb-4 text-center" data-translate-key="missionTitle">Our Mission</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-center" data-translate-key="missionDesc">To empower communities through education, humanitarian aid, and development programs that promote dignity, self-reliance, and long-term well-being.</p>
                 </div>
                 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 card-hover">
-                    <h3 class="text-2xl font-bold text-indigo-800 dark:text-indigo-300 mb-4 text-center">Our Vision</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-center">A society where every individual, regardless of their background or hardship, has the opportunity to thrive with dignity and purpose.</p>
+                    <h3 class="text-2xl font-bold text-indigo-800 dark:text-indigo-300 mb-4 text-center" data-translate-key="visionTitle">Our Vision</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-center" data-translate-key="visionDesc">A society where every individual, regardless of their background or hardship, has the opportunity to thrive with dignity and purpose.</p>
                 </div>
             </div>
         </div>
@@ -567,56 +611,56 @@
       <section id="services" class="py-16 bg-gradient-to-b from-white to-indigo-50 dark:from-slate-900 dark:to-slate-800">
           <div class="container mx-auto px-4 text-center">
               <div class="max-w-2xl mx-auto mb-12">
-                  <span class="text-indigo-700 font-semibold text-lg bg-indigo-100 px-4 py-1 rounded-full dark:text-indigo-200 dark:bg-indigo-900">Our Programs</span>
-                  <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mt-4 mb-4 dark:text-indigo-200">What We Do</h2>
-                  <p class="text-indigo-800 dark:text-indigo-300">We provide comprehensive services in key areas to build a better future for communities in need.</p>
+                  <span class="text-indigo-700 font-semibold text-lg bg-indigo-100 px-4 py-1 rounded-full dark:text-indigo-200 dark:bg-indigo-900" data-translate-key="programsTag">Our Programs</span>
+                  <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mt-4 mb-4 dark:text-indigo-200" data-translate-key="programsTitle">What We Do</h2>
+                  <p class="text-indigo-800 dark:text-indigo-300" data-translate-key="programsDesc">We provide comprehensive services in key areas to build a better future for communities in need.</p>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-indigo-500 dark:bg-slate-800">
                       <div class="bg-indigo-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-indigo-900">
                           <i class="fas fa-book-reader text-indigo-600 text-3xl dark:text-indigo-400"></i>
                       </div>
-                      <h3 class="text-xl font-bold mb-3 dark:text-white">Education</h3>
-                      <p class="text-slate-600 mb-4 dark:text-slate-300">We pay school and exam fees, help students prepare for university, and support long-term learning and capacity building.</p>
+                      <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceEducationTitle">Education</h3>
+                      <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceEducationDesc">We pay school and exam fees, help students prepare for university, and support long-term learning and capacity building.</p>
                   </div>
                   
                   <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-violet-500 dark:bg-slate-800">
                       <div class="bg-violet-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-violet-900">
                           <i class="fas fa-hands-helping text-violet-600 text-3xl dark:text-violet-400"></i>
                       </div>
-                      <h3 class="text-xl font-bold mb-3 dark:text-white">Humanitarian Aid</h3>
-                      <p class="text-slate-600 mb-4 dark:text-slate-300">We provide grocery packages to over 3,000 people annually, distribute Iftar meals during Ramadan, and offer support cards for families in need.</p>
+                      <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceAidTitle">Humanitarian Aid</h3>
+                      <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceAidDesc">We provide grocery packages to over 3,000 people annually, distribute Iftar meals during Ramadan, and offer support cards for families in need.</p>
                   </div>
                   
                   <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-purple-500 dark:bg-slate-800">
                       <div class="bg-purple-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-purple-900">
                           <i class="fas fa-female text-purple-600 text-3xl dark:text-purple-400"></i>
                       </div>
-                      <h3 class="text-xl font-bold mb-3 dark:text-white">Women Empowerment</h3>
-                      <p class="text-slate-600 mb-4 dark:text-slate-300">We run vocational training programs (e.g., sewing) for widows and assist them in launching small businesses for independence.</p>
+                      <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceWomenTitle">Women Empowerment</h3>
+                      <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceWomenDesc">We run vocational training programs (e.g., sewing) for widows and assist them in launching small businesses for independence.</p>
                   </div>
                   
                   <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-blue-500 dark:bg-slate-800">
                       <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-blue-900">
                           <i class="fas fa-people-carry text-blue-600 text-3xl dark:text-blue-400"></i>
                       </div>
-                      <h3 class="text-xl font-bold mb-3 dark:text-white">Community Development</h3>
-                      <p class="text-slate-600 mb-4 dark:text-slate-300">We support families in rebuilding their lives after crises and implement local programs to improve long-term community resilience.</p>
+                      <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceCommunityTitle">Community Development</h3>
+                      <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceCommunityDesc">We support families in rebuilding their lives after crises and implement local programs to improve long-term community resilience.</p>
                   </div>
                   
                   <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-fuchsia-500 dark:bg-slate-800">
                       <div class="bg-fuchsia-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-fuchsia-900">
                           <i class="fas fa-heartbeat text-fuchsia-600 text-3xl dark:text-fuchsia-400"></i>
                       </div>
-                      <h3 class="text-xl font-bold mb-3 dark:text-white">Health Support</h3>
-                      <p class="text-slate-600 mb-4 dark:text-slate-300">We provide assistance to patients with severe conditions, such as kidney disease, and help families access urgent medical treatment.</p>
+                      <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceHealthTitle">Health Support</h3>
+                      <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceHealthDesc">We provide assistance to patients with severe conditions, such as kidney disease, and help families access urgent medical treatment.</p>
                   </div>
                  <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-indigo-400 dark:bg-slate-800 flex flex-col items-center justify-center">
                       <div class="bg-indigo-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-indigo-900">
                           <i class="fas fa-hand-holding-heart text-indigo-500 text-3xl dark:text-indigo-400"></i>
                       </div>
-                      <h3 class="text-xl font-bold mb-3 dark:text-white">And much more...</h3>
-                      <p class="text-slate-600 mb-4 dark:text-slate-300">Our work is constantly expanding to meet the needs of the communities we serve.</p>
+                      <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceMoreTitle">And much more...</h3>
+                      <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceMoreDesc">Our work is constantly expanding to meet the needs of the communities we serve.</p>
                   </div>
               </div>
           </div>
@@ -627,19 +671,19 @@
               <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
                   <div>
                       <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="15">0</h3>
-                      <p class="text-indigo-200">Years of Experience</p>
+                      <p class="text-indigo-200" data-translate-key="statExperience">Years of Experience</p>
                   </div>
                   <div>
                       <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="250">0</h3>
-                      <p class="text-indigo-200">Successful Projects</p>
+                      <p class="text-indigo-200" data-translate-key="statProjects">Successful Projects</p>
                   </div>
                   <div>
                       <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="7500">0</h3>
-                      <p class="text-indigo-200">People Helped Annually</p>
+                      <p class="text-indigo-200" data-translate-key="statPeopleHelped">People Helped Annually</p>
                   </div>
                   <div>
                       <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="3000">0</h3>
-                      <p class="text-indigo-200">Grocery Packages Per Year</p>
+                      <p class="text-indigo-200" data-translate-key="statGrocery">Grocery Packages Per Year</p>
                   </div>
               </div>
           </div>
@@ -649,18 +693,18 @@
                   <section id="projects" class="py-16 bg-gradient-to-b from-violet-50 to-indigo-50 dark:from-slate-800 dark:to-slate-900">
           <div class="container mx-auto px-4">
               <div class="text-center mb-12">
-                  <span class="text-indigo-700 font-semibold text-lg bg-indigo-100 px-4 py-1 rounded-full dark:text-indigo-200 dark:bg-indigo-900">Our Work</span>
-                  <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mt-4 mb-4 dark:text-indigo-200">Highlighted Projects and Achievements</h2>
-                  <p class="text-indigo-800 dark:text-indigo-300 max-w-2xl mx-auto">An overview of major projects and technical achievements of the foundation in recent years.</p>
+                  <span class="text-indigo-700 font-semibold text-lg bg-indigo-100 px-4 py-1 rounded-full dark:text-indigo-200 dark:bg-indigo-900" data-translate-key="projectsTag">Our Work</span>
+                  <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mt-4 mb-4 dark:text-indigo-200" data-translate-key="projectsTitle">Highlighted Projects and Achievements</h2>
+                  <p class="text-indigo-800 dark:text-indigo-300 max-w-2xl mx-auto" data-translate-key="projectsDesc">An overview of major projects and technical achievements of the foundation in recent years.</p>
               </div>
               
               <div class="mb-8">
                   <div class="flex flex-wrap justify-center border-b border-slate-200 dark:border-slate-700">
-                      <button class="project-tab active px-6 py-3 font-medium" data-tab="all">All Projects</button>
-                      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400" data-tab="community">Community Support</button>
-                      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400" data-tab="education">Education Initiatives</button>
-                      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400" data-tab="healthcare">Healthcare Projects</button>
-                      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400" data-tab="environmental">Empowerment</button>
+                      <button class="project-tab active px-6 py-3 font-medium" data-tab="all" data-translate-key="projectTabAll">All Projects</button>
+                      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400" data-tab="community" data-translate-key="projectTabCommunity">Community Support</button>
+                      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400" data-tab="education" data-translate-key="projectTabEducation">Education Initiatives</button>
+                      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400" data-tab="healthcare" data-translate-key="projectTabHealthcare">Healthcare Projects</button>
+                      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400" data-tab="environmental" data-translate-key="projectTabEmpowerment">Empowerment</button>
                   </div>
               </div>
               
@@ -670,12 +714,12 @@
                           <img src="https://images.unsplash.com/photo-1583324113626-70df0f4deaab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1789&q=80" alt="Community Support Project" class="w-full h-full object-cover">
                       </div>
                       <div class="p-6">
-                          <span class="text-sm bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full dark:bg-indigo-900 dark:text-indigo-200">Community Support</span>
-                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white">Community Outreach Program</h3>
-                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300">Engaging with local communities to provide essential resources and support. This program focuses on improving living conditions and providing educational resources.</p>
+                          <span class="text-sm bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full dark:bg-indigo-900 dark:text-indigo-200" data-translate-key="project1Category">Community Support</span>
+                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="project1Title">Community Outreach Program</h3>
+                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="project1Desc">Engaging with local communities to provide essential resources and support. This program focuses on improving living conditions and providing educational resources.</p>
                           <div class="flex justify-between items-center">
                               <span class="text-sm text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i> 2021-2023</span>
-                              <a href="#" class="text-indigo-600 text-sm font-semibold hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">View Details</a>
+                              <a href="#" class="text-indigo-600 text-sm font-semibold hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300" data-translate-key="viewDetails">View Details</a>
                           </div>
                       </div>
                   </div>
@@ -685,12 +729,12 @@
                           <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Education Initiative" class="w-full h-full object-cover">
                       </div>
                       <div class="p-6">
-                          <span class="text-sm bg-violet-100 text-violet-800 px-2 py-1 rounded-full dark:bg-violet-900 dark:text-violet-200">Education</span>
-                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white">Educational Support Initiative</h3>
-                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300">Providing educational materials and resources to underprivileged schools. This initiative aims to enhance learning opportunities for children in need.</p>
+                          <span class="text-sm bg-violet-100 text-violet-800 px-2 py-1 rounded-full dark:bg-violet-900 dark:text-violet-200" data-translate-key="project2Category">Education</span>
+                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="project2Title">Educational Support Initiative</h3>
+                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="project2Desc">Providing educational materials and resources to underprivileged schools. This initiative aims to enhance learning opportunities for children in need.</p>
                           <div class="flex justify-between items-center">
                               <span class="text-sm text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i> 2020-2022</span>
-                              <a href="#" class="text-indigo-600 text-sm font-semibold hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">View Details</a>
+                              <a href="#" class="text-indigo-600 text-sm font-semibold hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300" data-translate-key="viewDetails2">View Details</a>
                           </div>
                       </div>
                   </div>
@@ -700,19 +744,19 @@
                           <img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Healthcare Project" class="w-full h-full object-cover">
                       </div>
                       <div class="p-6">
-                          <span class="text-sm bg-purple-100 text-purple-800 px-2 py-1 rounded-full dark:bg-purple-900 dark:text-purple-200">Healthcare</span>
-                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white">Healthcare Access Program</h3>
-                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300">Facilitating access to healthcare services for underserved populations. This project includes health screenings and educational workshops.</p>
+                          <span class="text-sm bg-purple-100 text-purple-800 px-2 py-1 rounded-full dark:bg-purple-900 dark:text-purple-200" data-translate-key="project3Category">Healthcare</span>
+                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="project3Title">Healthcare Access Program</h3>
+                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="project3Desc">Facilitating access to healthcare services for underserved populations. This project includes health screenings and educational workshops.</p>
                           <div class="flex justify-between items-center">
                               <span class="text-sm text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i> 2019-2021</span>
-                              <a href="#" class="text-indigo-600 text-sm font-semibold hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">View Details</a>
+                              <a href="#" class="text-indigo-600 text-sm font-semibold hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300" data-translate-key="viewDetails3">View Details</a>
                           </div>
                       </div>
                   </div>
               </div>
               
               <div class="text-center mt-12">
-                  <a href="#" class="btn-primary">
+                  <a href="#" class="btn-primary" data-translate-key="viewAllProjects">
                       View All Projects
                   </a>
               </div>
@@ -723,10 +767,10 @@
           <div class="container mx-auto px-4">
               <div class="flex flex-col md:flex-row justify-between items-center mb-10">
                   <div class="mb-6 md:mb-0">
-                      <span class="text-indigo-700 font-semibold text-lg bg-indigo-100 px-4 py-1 rounded-full dark:text-indigo-200 dark:bg-indigo-900">News and Events</span>
-                      <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mt-2 dark:text-indigo-200">Latest Updates from BNG Foundation</h2>
+                      <span class="text-indigo-700 font-semibold text-lg bg-indigo-100 px-4 py-1 rounded-full dark:text-indigo-200 dark:bg-indigo-900" data-translate-key="newsTag">News and Events</span>
+                      <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mt-2 dark:text-indigo-200" data-translate-key="newsTitle">Latest Updates from BNG Foundation</h2>
                   </div>
-                  <a href="#" class="btn-primary">
+                  <a href="#" class="btn-primary" data-translate-key="viewAllNews">
                       View All News
                   </a>
               </div>
@@ -737,12 +781,12 @@
                           <img src="./image/when-to-not-donate-rice-expert.jpg" alt="Charity Event" class="w-full h-full object-cover">
                       </div>
                       <div class="p-6">
-                          <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Events</span>
-                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white">Successful Charity Gala</h3>
-                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300">The charity gala raised significant funds for community projects, bringing together supporters and volunteers for a night of inspiration.</p>
+                          <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full" data-translate-key="news1Category">Events</span>
+                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="news1Title">Successful Charity Gala</h3>
+                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="news1Desc">The charity gala raised significant funds for community projects, bringing together supporters and volunteers for a night of inspiration.</p>
                           <div class="flex justify-between items-center">
                               <span class="text-xs text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i> 2023/05/12</span>
-                              <a href="#" class="text-indigo-600 text-xs font-semibold hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">Read More</a>
+                              <a href="#" class="text-indigo-600 text-xs font-semibold hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300" data-translate-key="readMore">Read More</a>
                           </div>
                       </div>
                   </div>
@@ -752,12 +796,12 @@
                           <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Charity Recognition" class="w-full h-full object-cover">
                       </div>
                       <div class="p-6">
-                          <span class="text-xs bg-violet-500 text-white px-2 py-1 rounded-full">Achievements</span>
-                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white">Foundation Recognized Among Top NGOs</h3>
-                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300">BNG Foundation has been recognized for its outstanding contributions to community development and support.</p>
+                          <span class="text-xs bg-violet-500 text-white px-2 py-1 rounded-full" data-translate-key="news2Category">Achievements</span>
+                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="news2Title">Foundation Recognized Among Top NGOs</h3>
+                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="news2Desc">BNG Foundation has been recognized for its outstanding contributions to community development and support.</p>
                           <div class="flex justify-between items-center">
                               <span class="text-xs text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i> 2023/04/28</span>
-                              <a href="#" class="text-indigo-600 text-xs font-semibold hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">Read More</a>
+                              <a href="#" class="text-indigo-600 text-xs font-semibold hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300" data-translate-key="readMore2">Read More</a>
                           </div>
                       </div>
                   </div>
@@ -767,12 +811,12 @@
                           <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Renewable Energy Investment" class="w-full h-full object-cover">
                       </div>
                       <div class="p-6">
-                          <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-full">Sustainability</span>
-                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white">Investment in Community Projects</h3>
-                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300">The foundation is investing in sustainable community projects to promote long-term self-reliance and environmental protection.</p>
+                          <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-full" data-translate-key="news3Category">Sustainability</span>
+                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="news3Title">Investment in Community Projects</h3>
+                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="news3Desc">The foundation is investing in sustainable community projects to promote long-term self-reliance and environmental protection.</p>
                           <div class="flex justify-between items-center">
                               <span class="text-xs text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i> 2023/04/15</span>
-                              <a href="#" class="text-indigo-600 text-xs font-semibold hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">Read More</a>
+                              <a href="#" class="text-indigo-600 text-xs font-semibold hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300" data-translate-key="readMore3">Read More</a>
                           </div>
                       </div>
                   </div>
@@ -783,9 +827,9 @@
       <section id="gallery" class="py-16 bg-gradient-to-b from-violet-50 to-indigo-50 dark:from-slate-800 dark:to-slate-900">
           <div class="container mx-auto px-4">
               <div class="text-center mb-12">
-                  <span class="text-indigo-700 font-semibold text-lg bg-indigo-100 px-4 py-1 rounded-full dark:text-indigo-200 dark:bg-indigo-900">Image Gallery</span>
-                  <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mt-4 mb-4 dark:text-indigo-200">Pictures from Our Activities and Projects</h2>
-                  <p class="text-indigo-800 dark:text-indigo-300 max-w-2xl mx-auto">Take a look at our projects, facilities, and achievements</p>
+                  <span class="text-indigo-700 font-semibold text-lg bg-indigo-100 px-4 py-1 rounded-full dark:text-indigo-200 dark:bg-indigo-900" data-translate-key="galleryTag">Image Gallery</span>
+                  <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mt-4 mb-4 dark:text-indigo-200" data-translate-key="galleryTitle">Pictures from Our Activities and Projects</h2>
+                  <p class="text-indigo-800 dark:text-indigo-300 max-w-2xl mx-auto" data-translate-key="galleryDesc">Take a look at our projects, facilities, and achievements</p>
               </div>
               
               <div class="gallery-grid">
@@ -813,7 +857,7 @@
               </div>
               
               <div class="text-center mt-12">
-                  <button id="view-more-gallery-btn" class="btn-primary">
+                  <button id="view-more-gallery-btn" class="btn-primary" data-translate-key="viewMore">
                       View More
                   </button>
               </div>
@@ -841,49 +885,49 @@
       <section id="contact" class="py-16 bg-gradient-to-r from-indigo-100 to-violet-100 relative dark:from-slate-800 dark:to-slate-900">
           <div class="container mx-auto px-4 relative z-10">
               <div class="max-w-5xl mx-auto text-center mb-12">
-                  <span class="text-indigo-700 font-semibold text-lg bg-indigo-100 px-4 py-1 rounded-full dark:text-indigo-200 dark:bg-indigo-900">Contact Us</span>
-                  <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mt-4 mb-4 dark:text-indigo-200">Get in Touch</h2>
-                  <p class="text-indigo-800 dark:text-indigo-300 max-w-2xl mx-auto">For inquiries, suggestions, and collaborations, you can reach out to us through the following ways.</p>
+                  <span class="text-indigo-700 font-semibold text-lg bg-indigo-100 px-4 py-1 rounded-full dark:text-indigo-200 dark:bg-indigo-900" data-translate-key="contactTag">Contact Us</span>
+                  <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mt-4 mb-4 dark:text-indigo-200" data-translate-key="contactTitle">Get in Touch</h2>
+                  <p class="text-indigo-800 dark:text-indigo-300 max-w-2xl mx-auto" data-translate-key="contactDesc">For inquiries, suggestions, and collaborations, you can reach out to us through the following ways.</p>
               </div>
               
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   <div class="bg-white rounded-2xl p-8 shadow-xl dark:bg-slate-800">
-                      <h3 class="text-2xl font-bold text-indigo-900 mb-6 dark:text-indigo-200">Contact Form</h3>
+                      <h3 class="text-2xl font-bold text-indigo-900 mb-6 dark:text-indigo-200" data-translate-key="contactFormTitle">Contact Form</h3>
                       <form id="contact-form">
                           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                               <div>
-                                  <label for="name" class="block text-slate-700 mb-2 dark:text-slate-300">Your Name</label>
+                                  <label for="name" class="block text-slate-700 mb-2 dark:text-slate-300" data-translate-key="formName">Your Name</label>
                                   <input type="text" id="name" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-slate-700 dark:border-slate-600 dark:text-white">
                               </div>
                               <div>
-                                  <label for="email" class="block text-slate-700 mb-2 dark:text-slate-300">Your Email</label>
+                                  <label for="email" class="block text-slate-700 mb-2 dark:text-slate-300" data-translate-key="formEmail">Your Email</label>
                                   <input type="email" id="email" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-slate-700 dark:border-slate-600 dark:text-white">
                               </div>
                           </div>
                           <div class="mb-6">
-                              <label for="subject" class="block text-slate-700 mb-2 dark:text-slate-300">Subject</label>
+                              <label for="subject" class="block text-slate-700 mb-2 dark:text-slate-300" data-translate-key="formSubject">Subject</label>
                               <input type="text" id="subject" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-slate-700 dark:border-slate-600 dark:text-white">
                           </div>
                           <div class="mb-6">
-                              <label for="message" class="block text-slate-700 mb-2 dark:text-slate-300">Your Message</label>
+                              <label for="message" class="block text-slate-700 mb-2 dark:text-slate-300" data-translate-key="formMessage">Your Message</label>
                               <textarea id="message" rows="5" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-slate-700 dark:border-slate-600 dark:text-white"></textarea>
                           </div>
-                          <div class="text-right">
-                              <button type="submit" class="btn-primary">Send Message</button>
+                          <div class="text-right" id="form-button-container">
+                              <button type="submit" class="btn-primary" data-translate-key="formSend">Send Message</button>
                           </div>
                       </form>
                   </div>
                   
                   <div>
                       <div class="bg-white rounded-2xl p-8 mb-8 shadow-xl dark:bg-slate-800">
-                          <h3 class="text-2xl font-bold text-indigo-900 mb-6 dark:text-indigo-200">Contact Information</h3>
+                          <h3 class="text-2xl font-bold text-indigo-900 mb-6 dark:text-indigo-200" data-translate-key="contactInfoTitle">Contact Information</h3>
                           <div class="space-y-6">
                               <div class="flex items-start">
                                   <div class="bg-indigo-100 p-3 rounded-full text-indigo-600 mr-4 dark:bg-indigo-900 dark:text-indigo-300">
                                       <i class="fas fa-map-marker-alt text-lg"></i>
                                   </div>
                                   <div>
-                                      <h4 class="font-bold text-slate-800 dark:text-white">Location</h4>
+                                      <h4 class="font-bold text-slate-800 dark:text-white" data-translate-key="infoLocation">Location</h4>
                                       <p class="text-slate-600 mt-1 dark:text-slate-300">Mazar-e-Sharif, Afghanistan</p>
                                   </div>
                               </div>
@@ -893,8 +937,8 @@
                                       <i class="fas fa-phone-alt text-lg"></i>
                                   </div>
                                   <div>
-                                      <h4 class="font-bold text-slate-800 dark:text-white">Contact Phone</h4>
-                                      <p class="text-slate-600 mt-1 dark:text-slate-300">+93 70 000 0000</p>
+                                      <h4 class="font-bold text-slate-800 dark:text-white" data-translate-key="infoPhone">Contact Phone</h4>
+                                      <p dir="ltr" class="text-slate-600 mt-1 dark:text-slate-300 direction: ltr; text-align: left;">(+93 70 000 0000)</p>
                                   </div>
                               </div>
                               
@@ -903,7 +947,7 @@
                                       <i class="fas fa-envelope text-lg"></i>
                                   </div>
                                   <div>
-                                      <h4 class="font-bold text-slate-800 dark:text-white">Email</h4>
+                                      <h4 class="font-bold text-slate-800 dark:text-white" data-translate-key="infoEmail">Email</h4>
                                       <p class="text-slate-600 mt-1 dark:text-slate-300">contact@bngfoundation.org</p>
                                   </div>
                               </div>
@@ -911,12 +955,12 @@
                       </div>
                       
                       <div class="h-80 rounded-2xl overflow-hidden shadow-xl">
-                          <iframe src="https://www.google.com/maps?q=Mazar-e-Sharif,Afghanistan&output=embed" 
-                                  width="100%" 
-                                  height="100%" 
-                                  style="border:0;" 
-                                  allowfullscreen="" 
-                                  loading="lazy" 
+                          <iframe src="https://www.google.com/maps?q=Mazar-e-Sharif,Afghanistan&output=embed"
+                                  width="100%"
+                                  height="100%"
+                                  style="border:0;"
+                                  allowfullscreen=""
+                                  loading="lazy"
                                   referrerpolicy="no-referrer-when-downgrade"></iframe>
                       </div>
                   </div>
@@ -933,9 +977,9 @@
                     <div class="bg-indigo-500 p-2 rounded-full mr-2">
                         <i class="fas fa-heart text-white"></i>
                     </div>
-                    BNG Foundation
+                    <span data-translate-key="footerTitle">BNG Foundation</span>
                 </div>
-                <p class="text-indigo-200 mb-4 text-sm">
+                <p class="text-indigo-200 mb-4 text-sm" data-translate-key="footerDesc">
                     A nonprofit, non-political, and non-governmental organization committed to improving lives across Afghanistan.
                 </p>
                 <div class="flex space-x-4">
@@ -955,35 +999,35 @@
             </div>
             
             <div>
-                <h3 class="text-lg font-bold mb-4 border-b border-indigo-700 pb-2">Quick Links</h3>
+                <h3 class="text-lg font-bold mb-4 border-b border-indigo-700 pb-2" data-translate-key="footerLinksTitle">Quick Links</h3>
                 <ul class="space-y-2">
-                    <li><a href="#home" class="text-indigo-200 hover:text-white transition text-sm">Home</a></li>
-                    <li><a href="#about" class="text-indigo-200 hover:text-white transition text-sm">About Us</a></li>
-                    <li><a href="#services" class="text-indigo-200 hover:text-white transition text-sm">What We Do</a></li>
-                    <li><a href="#projects" class="text-indigo-200 hover:text-white transition text-sm">Projects</a></li>
-                    <li><a href="#gallery" class="text-indigo-200 hover:text-white transition text-sm">Image Gallery</a></li>
-                    <li><a href="#contact" class="text-indigo-200 hover:text-white transition text-sm">Contact Us</a></li>
+                    <li><a href="#home" class="text-indigo-200 hover:text-white transition text-sm" data-translate-key="footerLinkHome">Home</a></li>
+                    <li><a href="#about" class="text-indigo-200 hover:text-white transition text-sm" data-translate-key="footerLinkAbout">About Us</a></li>
+                    <li><a href="#services" class="text-indigo-200 hover:text-white transition text-sm" data-translate-key="footerLinkWhatWeDo">What We Do</a></li>
+                    <li><a href="#projects" class="text-indigo-200 hover:text-white transition text-sm" data-translate-key="footerLinkProjects">Projects</a></li>
+                    <li><a href="#gallery" class="text-indigo-200 hover:text-white transition text-sm" data-translate-key="footerLinkGallery">Image Gallery</a></li>
+                    <li><a href="#contact" class="text-indigo-200 hover:text-white transition text-sm" data-translate-key="footerLinkContact">Contact Us</a></li>
                 </ul>
             </div>
             
             <div>
-                <h3 class="text-lg font-bold mb-4 border-b border-indigo-700 pb-2">Our Programs</h3>
+                <h3 class="text-lg font-bold mb-4 border-b border-indigo-700 pb-2" data-translate-key="footerProgramsTitle">Our Programs</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-indigo-200 hover:text-white transition text-sm">Education</a></li>
-                    <li><a href="#" class="text-indigo-200 hover:text-white transition text-sm">Humanitarian Aid</a></li>
-                    <li><a href="#" class="text-indigo-200 hover:text-white transition text-sm">Women Empowerment</a></li>
-                    <li><a href="#" class="text-indigo-200 hover:text-white transition text-sm">Community Development</a></li>
-                    <li><a href="#" class="text-indigo-200 hover:text-white transition text-sm">Health Support</a></li>
+                    <li><a href="#" class="text-indigo-200 hover:text-white transition text-sm" data-translate-key="footerProgramEducation">Education</a></li>
+                    <li><a href="#" class="text-indigo-200 hover:text-white transition text-sm" data-translate-key="footerProgramAid">Humanitarian Aid</a></li>
+                    <li><a href="#" class="text-indigo-200 hover:text-white transition text-sm" data-translate-key="footerProgramWomen">Women Empowerment</a></li>
+                    <li><a href="#" class="text-indigo-200 hover:text-white transition text-sm" data-translate-key="footerProgramCommunity">Community Development</a></li>
+                    <li><a href="#" class="text-indigo-200 hover:text-white transition text-sm" data-translate-key="footerProgramHealth">Health Support</a></li>
                 </ul>
             </div>
             
             <div>
-                <h3 class="text-lg font-bold mb-4 border-b border-indigo-700 pb-2">Newsletter</h3>
-                <p class="text-indigo-200 mb-4 text-sm">
+                <h3 class="text-lg font-bold mb-4 border-b border-indigo-700 pb-2" data-translate-key="footerNewsletterTitle">Newsletter</h3>
+                <p class="text-indigo-200 mb-4 text-sm" data-translate-key="footerNewsletterDesc">
                     Subscribe to our newsletter for the latest updates and news.
                 </p>
                 <form class="flex">
-                    <input type="email" placeholder="Your Email" class="w-full px-4 py-2 rounded-l-lg focus:outline-none text-slate-800">
+                    <input type="email" data-translate-key="footerNewsletterPlaceholder" placeholder="Your Email" class="w-full px-4 py-2 rounded-l-lg focus:outline-none text-slate-800">
                     <button type="submit" class="bg-indigo-600 px-4 py-2 rounded-r-lg hover:bg-indigo-500 transition">
                         <i class="fas fa-paper-plane text-white"></i>
                     </button>
@@ -992,7 +1036,7 @@
         </div>
         
         <div class="border-t border-indigo-700 pt-6 mt-6 text-center">
-            <p class="text-sm text-indigo-200">© 2025 BNG Foundation. All rights reserved.</p>
+            <p class="text-sm text-indigo-200" data-translate-key="footerCopyright">© 2025 BNG Foundation. All rights reserved.</p>
             <div class="mt-2 text-indigo-400 text-xs">
                 <a href="https://www.bngfoundation.org" class="hover:text-white">www.bngfoundation.org</a>
             </div>
@@ -1001,6 +1045,100 @@
 </footer>
 
 <script>
+    // Translations Object
+    const translations = {
+        en: {
+            navHome: 'Home', navAbout: 'About Us', navWhatWeDo: 'What We Do', navProjects: 'Projects', navNews: 'News', navGallery: 'Gallery', navContact: 'Contact Us',
+            navHomeMobile: 'Home', navAboutMobile: 'About Us', navWhatWeDoMobile: 'What We Do', navProjectsMobile: 'Projects', navNewsMobile: 'News', navGalleryMobile: 'Gallery', navContactMobile: 'Contact Us',
+            heroTitle: 'BNG Foundation', heroSubtitle: 'Every Life Matters', heroDescription: 'A nonprofit organization committed to improving lives across Afghanistan through education, humanitarian aid, and development programs.',
+            heroBtnLearnMore: 'Learn More About Us', heroBtnGetInvolved: 'Get Involved',
+            aboutTag: 'Who We Are', aboutTitle: 'About BNG Foundation', aboutDescription: 'BNG Foundation is a nonprofit, non-political, and non-governmental organization committed to improving lives across Afghanistan. For over 15 years, we have supported vulnerable individuals and communities through a wide range of educational, humanitarian, and development programs.',
+            founderMsgTitle: 'Founder’s Message', founderMsgContent: `"From the earliest days of BNG Foundation, our mission has been driven by a deep sense of responsibility toward those in need. Witnessing hardship and poverty up close inspired us to act—not as an institution, but as fellow humans extending a hand. This foundation began with small acts of support and has grown into a movement touching thousands of lives annually. I am proud of what we have accomplished together and remain hopeful for an even greater impact in the years to come."`,
+            founderMsgSign: '- General Director & Founder, BNG Foundation',
+            missionTitle: 'Our Mission', missionDesc: 'To empower communities through education, humanitarian aid, and development programs that promote dignity, self-reliance, and long-term well-being.',
+            visionTitle: 'Our Vision', visionDesc: 'A society where every individual, regardless of their background or hardship, has the opportunity to thrive with dignity and purpose.',
+            programsTag: 'Our Programs', programsTitle: 'What We Do', programsDesc: 'We provide comprehensive services in key areas to build a better future for communities in need.',
+            serviceEducationTitle: 'Education', serviceEducationDesc: 'We pay school and exam fees, help students prepare for university, and support long-term learning and capacity building.',
+            serviceAidTitle: 'Humanitarian Aid', serviceAidDesc: 'We provide grocery packages to over 3,000 people annually, distribute Iftar meals during Ramadan, and offer support cards for families in need.',
+            serviceWomenTitle: 'Women Empowerment', serviceWomenDesc: 'We run vocational training programs (e.g., sewing) for widows and assist them in launching small businesses for independence.',
+            serviceCommunityTitle: 'Community Development', serviceCommunityDesc: 'We support families in rebuilding their lives after crises and implement local programs to improve long-term community resilience.',
+            serviceHealthTitle: 'Health Support', serviceHealthDesc: 'We provide assistance to patients with severe conditions, such as kidney disease, and help families access urgent medical treatment.',
+            serviceMoreTitle: 'And much more...', serviceMoreDesc: 'Our work is constantly expanding to meet the needs of the communities we serve.',
+            statExperience: 'Years of Experience', statProjects: 'Successful Projects', statPeopleHelped: 'People Helped Annually', statGrocery: 'Grocery Packages Per Year',
+            projectsTag: 'Our Work', projectsTitle: 'Highlighted Projects and Achievements', projectsDesc: 'An overview of major projects and technical achievements of the foundation in recent years.',
+            projectTabAll: 'All Projects', projectTabCommunity: 'Community Support', projectTabEducation: 'Education Initiatives', projectTabHealthcare: 'Healthcare Projects', projectTabEmpowerment: 'Empowerment',
+            project1Category: 'Community Support', project1Title: 'Community Outreach Program', project1Desc: 'Engaging with local communities to provide essential resources and support. This program focuses on improving living conditions and providing educational resources.',
+            viewDetails: 'View Details',
+            project2Category: 'Education', project2Title: 'Educational Support Initiative', project2Desc: 'Providing educational materials and resources to underprivileged schools. This initiative aims to enhance learning opportunities for children in need.',
+            viewDetails2: 'View Details',
+            project3Category: 'Healthcare', project3Title: 'Healthcare Access Program', project3Desc: 'Facilitating access to healthcare services for underserved populations. This project includes health screenings and educational workshops.',
+            viewDetails3: 'View Details',
+            viewAllProjects: 'View All Projects',
+            newsTag: 'News and Events', newsTitle: 'Latest Updates from BNG Foundation', viewAllNews: 'View All News',
+            news1Category: 'Events', news1Title: 'Successful Charity Gala', news1Desc: 'The charity gala raised significant funds for community projects, bringing together supporters and volunteers for a night of inspiration.',
+            readMore: 'Read More',
+            news2Category: 'Achievements', news2Title: 'Foundation Recognized Among Top NGOs', news2Desc: 'BNG Foundation has been recognized for its outstanding contributions to community development and support.',
+            readMore2: 'Read More',
+            news3Category: 'Sustainability', news3Title: 'Investment in Community Projects', news3Desc: 'The foundation is investing in sustainable community projects to promote long-term self-reliance and environmental protection.',
+            readMore3: 'Read More',
+            galleryTag: 'Image Gallery', galleryTitle: 'Pictures from Our Activities and Projects', galleryDesc: 'Take a look at our projects, facilities, and achievements',
+            viewMore: 'View More', showLess: 'Show Less',
+            contactTag: 'Contact Us', contactTitle: 'Get in Touch', contactDesc: 'For inquiries, suggestions, and collaborations, you can reach out to us through the following ways.',
+            contactFormTitle: 'Contact Form', formName: 'Your Name', formEmail: 'Your Email', formSubject: 'Subject', formMessage: 'Your Message', formSend: 'Send Message',
+            contactInfoTitle: 'Contact Information', infoLocation: 'Location', infoPhone: 'Contact Phone', infoEmail: 'Email',
+            footerTitle: 'BNG Foundation', footerDesc: 'A nonprofit, non-political, and non-governmental organization committed to improving lives across Afghanistan.',
+            footerLinksTitle: 'Quick Links', footerLinkHome: 'Home', footerLinkAbout: 'About Us', footerLinkWhatWeDo: 'What We Do', footerLinkProjects: 'Projects', footerLinkGallery: 'Image Gallery', footerLinkContact: 'Contact Us',
+            footerProgramsTitle: 'Our Programs', footerProgramEducation: 'Education', footerProgramAid: 'Humanitarian Aid', footerProgramWomen: 'Women Empowerment', footerProgramCommunity: 'Community Development', footerProgramHealth: 'Health Support',
+            footerNewsletterTitle: 'Newsletter', footerNewsletterDesc: 'Subscribe to our newsletter for the latest updates and news.', footerNewsletterPlaceholder: 'Your Email',
+            footerCopyright: '© 2025 BNG Foundation. All rights reserved.'
+        },
+        fa: {
+            navHome: ' خانه ', navAbout: 'درباره ما', navWhatWeDo: 'فعالیت‌های ما', navProjects: 'پروژه‌ها', navNews: 'اخبار', navGallery: 'گالری', navContact: 'تماس با ما',
+            navHomeMobile: 'خانه', navAboutMobile: 'درباره ما', navWhatWeDoMobile: 'فعالیت‌های ما', navProjectsMobile: 'پروژه‌ها', navNewsMobile: 'اخبار', navGalleryMobile: 'گالری', navContactMobile: 'تماس با ما',
+            heroTitle: 'بنیاد گروه بشیر نوید', heroSubtitle: 'هر زندگی ارزشمند است', heroDescription: 'یک سازمان غیرانتفاعی، غیرسیاسی و غیردولتی که متعهد به بهبود زندگی در سراسر افغانستان از طریق برنامه‌های آموزشی، کمک‌های بشردوستانه و توسعه است.',
+            heroBtnLearnMore: 'بیشتر بدانید', heroBtnGetInvolved: 'مشارکت کنید',
+            aboutTag: 'ما که هستیم', aboutTitle: 'درباره بنیاد BNG', aboutDescription: 'بنیاد BNG یک سازمان غیرانتفاعی، غیرسیاسی و غیردولتی است که برای بهبود زندگی در سراسر افغانستان فعالیت می‌کند. برای بیش از ۱۵ سال، ما از افراد و جوامع آسیب‌پذیر از طریق طیف گسترده‌ای از برنامه‌های آموزشی، بشردوستانه و توسعه‌ای حمایت کرده‌ایم.',
+            founderMsgTitle: 'پیام بنیان‌گذار', founderMsgContent: `"از اولین روزهای تأسیس بنیاد BNG، مأموریت ما ناشی از احساس مسئولیت عمیق نسبت به نیازمندان بوده است. مشاهده سختی و فقر از نزدیک، ما را بر آن داشت تا نه به عنوان یک نهاد، بلکه به عنوان انسان‌هایی که دستی را برای کمک دراز می‌کنند، اقدام کنیم. این بنیاد با اقدامات کوچک حمایتی آغاز شد و اکنون به یک جنبش تبدیل شده که سالانه زندگی هزاران نفر را تحت تأثیر قرار می‌دهد. من به آنچه با هم به دست آورده‌ایم افتخار می‌کنم و به تأثیرگذاری بیشتر در سال‌های آینده امیدوارم."`,
+            founderMsgSign: '- مدیر کل و بنیان‌گذار بنیاد BNG',
+            missionTitle: 'مأموریت ما', missionDesc: 'توانمندسازی جوامع از طریق برنامه‌های آموزشی، کمک‌های بشردوستانه و توسعه‌ای که کرامت، خوداتکایی و رفاه بلندمدت را ترویج می‌دهند.',
+            visionTitle: 'چشم‌انداز ما', visionDesc: 'جامعه‌ای که در آن هر فرد، فارغ از پیشینه یا سختی‌ها، فرصت شکوفایی با کرامت و هدف را داشته باشد.',
+            programsTag: 'برنامه‌های ما', programsTitle: 'فعالیت‌های ما', programsDesc: 'ما خدمات جامعی را در حوزه‌های کلیدی برای ساختن آینده‌ای بهتر برای جوامع نیازمند ارائه می‌دهیم.',
+            serviceEducationTitle: 'آموزش', serviceEducationDesc: 'ما هزینه‌های مکتب و امتحانات را پرداخت می‌کنیم، به دانش‌آموزان برای آمادگی در دانشگاه کمک می‌کنیم و از یادگیری بلندمدت و ظرفیت‌سازی حمایت می‌کنیم.',
+            serviceAidTitle: 'کمک‌های بشردوستانه', serviceAidDesc: 'ما سالانه بسته‌های مواد غذایی به بیش از ۳۰۰۰ نفر ارائه می‌دهیم، در ماه رمضان افطاری توزیع می‌کنیم و کارت‌های حمایتی برای خانواده‌های نیازمند فراهم می‌کنیم.',
+            serviceWomenTitle: 'توانمندسازی زنان', serviceWomenDesc: 'ما برنامه‌های آموزش حرفه‌ای (مانند خیاطی) برای بیوه‌ها برگزار می‌کنیم و به آن‌ها در راه‌اندازی کسب‌وکارهای کوچک برای استقلال کمک می‌کنیم.',
+            serviceCommunityTitle: 'توسعه اجتماعی', serviceCommunityDesc: 'ما از خانواده‌ها برای بازسازی زندگی‌شان پس از بحران‌ها حمایت می‌کنیم و برنامه‌های محلی برای بهبود پایداری بلندمدت جامعه اجرا می‌کنیم.',
+            serviceHealthTitle: 'حمایت صحی', serviceHealthDesc: 'ما به بیماران با شرایط حاد مانند بیماری‌های کلیوی کمک می‌کنیم و به خانواده‌ها برای دسترسی به درمان‌های فوری پزشکی یاری می‌رسانیم.',
+            serviceMoreTitle: 'و خیلی بیشتر...', serviceMoreDesc: 'فعالیت‌های ما به طور مداوم برای پاسخگویی به نیازهای جوامعی که به آنها خدمت می‌کنیم، در حال گسترش است.',
+            statExperience: 'سال تجربه', statProjects: 'پروژه موفق', statPeopleHelped: 'کمک‌رسانی سالانه', statGrocery: 'بسته غذایی در سال',
+            projectsTag: 'کارهای ما', projectsTitle: 'پروژه‌ها و دستاوردهای برجسته', projectsDesc: 'مروری بر پروژه‌های بزرگ و دستاوردهای فنی بنیاد در سال‌های اخیر.',
+            projectTabAll: 'همه پروژه‌ها', projectTabCommunity: 'حمایت اجتماعی', projectTabEducation: 'طرح‌های آموزشی', projectTabHealthcare: 'پروژه‌های صحی', projectTabEmpowerment: 'توانمندسازی',
+            project1Category: 'حمایت اجتماعی', project1Title: 'برنامه توسعه اجتماعی', project1Desc: 'همکاری با جوامع محلی برای فراهم آوردن منابع و حمایت‌های ضروری. این برنامه بر بهبود شرایط زندگی و ارائه منابع آموزشی تمرکز دارد.',
+            viewDetails: 'مشاهده جزئیات',
+            project2Category: 'آموزش', project2Title: 'طرح حمایت آموزشی', project2Desc: 'فراهم کردن مواد و منابع آموزشی برای مکاتب محروم. این طرح با هدف افزایش فرصت‌های یادگیری برای کودکان نیازمند اجرا می‌شود.',
+            viewDetails2: 'مشاهده جزئیات',
+            project3Category: 'صحت', project3Title: 'برنامه دسترسی به خدمات صحی', project3Desc: 'تسهیل دسترسی به خدمات صحی برای جمعیت‌های محروم. این پروژه شامل غربالگری‌های صحی و کارگاه‌های آموزشی است.',
+            viewDetails3: 'مشاهده جزئیات',
+            viewAllProjects: 'مشاهده همه پروژه‌ها',
+            newsTag: 'اخبار و رویدادها', newsTitle: 'آخرین به‌روزرسانی‌های بنیاد BNG', viewAllNews: 'مشاهده همه اخبار',
+            news1Category: 'رویدادها', news1Title: 'جشن خیریه موفق', news1Desc: 'جشن خیریه مبالغ قابل توجهی را برای پروژه‌های اجتماعی جمع‌آوری کرد و حامیان و داوطلبان را برای یک شب الهام‌بخش گرد هم آورد.',
+            readMore: 'بیشتر بخوانید',
+            news2Category: 'دستاوردها', news2Title: 'تقدیر از بنیاد به عنوان یکی از برترین سازمان‌ها', news2Desc: 'بنیاد BNG به دلیل مشارکت‌های برجسته‌اش در توسعه و حمایت از جامعه مورد تقدیر قرار گرفته است.',
+            readMore2: 'بیشتر بخوانید',
+            news3Category: 'پایداری', news3Title: 'سرمایه‌گذاری در پروژه‌های اجتماعی', news3Desc: 'این بنیاد در پروژه‌های پایدار اجتماعی برای ترویج خوداتکایی بلندمدت و حفاظت از محیط زیست سرمایه‌گذاری می‌کند.',
+            readMore3: 'بیشتر بخوانید',
+            galleryTag: 'گالری تصاویر', galleryTitle: 'تصاویری از فعالیت‌ها و پروژه‌های ما', galleryDesc: 'نگاهی به پروژه‌ها، امکانات و دستاوردهای ما بیندازید.',
+            viewMore: 'مشاهده بیشتر', showLess: 'نمایش کمتر',
+            contactTag: 'تماس با ما', contactTitle: 'در تماس باشید', contactDesc: 'برای سوالات، پیشنهادات و همکاری، می‌توانید از راه‌های زیر با ما در ارتباط باشید.',
+            contactFormTitle: 'فرم تماس', formName: 'نام شما', formEmail: 'ایمیل شما', formSubject: 'موضوع', formMessage: 'پیام شما', formSend: 'ارسال پیام',
+            contactInfoTitle: 'اطلاعات تماس', infoLocation: 'موقعیت', infoPhone: 'تلفن تماس', infoEmail: 'ایمیل',
+            footerTitle: 'بنیاد BNG', footerDesc: 'یک سازمان غیرانتفاعی، غیرسیاسی و غیردولتی که متعهد به بهبود زندگی در سراسر افغانستان است.',
+            footerLinksTitle: 'لینک‌های سریع', footerLinkHome: 'خانه', footerLinkAbout: 'درباره ما', footerLinkWhatWeDo: 'فعالیت‌های ما', footerLinkProjects: 'پروژه‌ها', footerLinkGallery: 'گالری تصاویر', footerLinkContact: 'تماس با ما',
+            footerProgramsTitle: 'برنامه‌های ما', footerProgramEducation: 'آموزش', footerProgramAid: 'کمک‌های بشردوستانه', footerProgramWomen: 'توانمندسازی زنان', footerProgramCommunity: 'توسعه اجتماعی', footerProgramHealth: 'حمایت صحی',
+            footerNewsletterTitle: 'خبرنامه', footerNewsletterDesc: 'برای دریافت آخرین به‌روزرسانی‌ها و اخبار، در خبرنامه ما مشترک شوید.', footerNewsletterPlaceholder: 'ایمیل شما',
+            footerCopyright: '© 2025 بنیاد BNG. تمام حقوق محفوظ است.'
+        }
+    };
+
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -1009,7 +1147,6 @@
         mobileMenu.classList.toggle('hidden');
     });
     
-    // Close mobile menu when clicking on links
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -1042,13 +1179,64 @@
     darkModeToggle.addEventListener('change', toggleDarkMode);
     darkModeToggleMobile.addEventListener('change', toggleDarkMode);
     
-    // Set initial dark mode based on user preference
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         setDarkMode(true);
     } else {
         setDarkMode(false);
     }
     
+    // Language Toggle
+    const languageToggle = document.getElementById('languageToggle');
+    const languageToggleMobile = document.getElementById('languageToggleMobile');
+
+    function setLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
+        
+        // RTL specific style adjustments
+        const founderSignature = document.getElementById('founder-signature');
+        const formButtonContainer = document.getElementById('form-button-container');
+        if (lang === 'fa') {
+            founderSignature.classList.remove('text-right');
+            founderSignature.classList.add('text-left');
+            formButtonContainer.classList.remove('text-right');
+            formButtonContainer.classList.add('text-left');
+        } else {
+            founderSignature.classList.remove('text-left');
+            founderSignature.classList.add('text-right');
+            formButtonContainer.classList.remove('text-left');
+            formButtonContainer.classList.add('text-right');
+        }
+
+        document.querySelectorAll('[data-translate-key]').forEach(element => {
+            const key = element.getAttribute('data-translate-key');
+            if (translations[lang][key]) {
+                if(element.placeholder) {
+                     element.placeholder = translations[lang][key];
+                } else {
+                     element.innerText = translations[lang][key];
+                }
+            }
+        });
+        localStorage.setItem('language', lang);
+        const isPersian = lang === 'fa';
+        languageToggle.checked = isPersian;
+        languageToggleMobile.checked = isPersian;
+    }
+
+    function toggleLanguage() {
+        const currentLang = localStorage.getItem('language') || 'en';
+        const newLang = currentLang === 'en' ? 'fa' : 'en';
+        setLanguage(newLang);
+    }
+    
+    languageToggle.addEventListener('change', toggleLanguage);
+    languageToggleMobile.addEventListener('change', toggleLanguage);
+    
+    // Set initial language
+    const savedLang = localStorage.getItem('language') || 'en';
+    setLanguage(savedLang);
+
     // Animated counters
     const counters = document.querySelectorAll('.stats-counter');
     const speed = 200;
@@ -1069,7 +1257,6 @@
         updateCount();
     };
     
-    // Start counters when they come into view
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1098,22 +1285,17 @@
         });
     });
     
-        
     // Gallery modal functionality
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
-    const closeModal = document.querySelector('.close-modal');
+    const closeModalBtn = document.querySelector('.close-modal');
     const galleryItems = document.querySelectorAll('.gallery-item');
     const prevButton = document.querySelector('.prev-button');
     const nextButton = document.querySelector('.next-button');
     const currentIndexSpan = document.getElementById('currentIndex');
     const totalImagesSpan = document.getElementById('totalImages');
     
-    // Store all image sources
-    const imageSources = Array.from(galleryItems).map(item => 
-        item.querySelector('img').src
-    );
-    
+    const imageSources = Array.from(galleryItems).map(item => item.querySelector('img').src);
     let currentImageIndex = 0;
     totalImagesSpan.textContent = imageSources.length;
     
@@ -1127,37 +1309,23 @@
     
     function navigate(direction) {
         currentImageIndex += direction;
-        
-        if (currentImageIndex < 0) {
-            currentImageIndex = imageSources.length - 1;
-        } else if (currentImageIndex >= imageSources.length) {
-            currentImageIndex = 0;
-        }
-        
+        if (currentImageIndex < 0) currentImageIndex = imageSources.length - 1;
+        else if (currentImageIndex >= imageSources.length) currentImageIndex = 0;
         modalImg.src = imageSources[currentImageIndex];
         currentIndexSpan.textContent = currentImageIndex + 1;
     }
     
     galleryItems.forEach((item, index) => {
-        item.addEventListener('click', () => {
-            openModal(index);
-        });
+        item.addEventListener('click', () => openModal(index));
     });
     
-    closeModal.addEventListener('click', () => {
+    closeModalBtn.addEventListener('click', () => {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     });
     
-    prevButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        navigate(-1);
-    });
-    
-    nextButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        navigate(1);
-    });
+    prevButton.addEventListener('click', (e) => { e.stopPropagation(); navigate(-1); });
+    nextButton.addEventListener('click', (e) => { e.stopPropagation(); navigate(1); });
     
     window.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -1166,23 +1334,16 @@
         }
     });
     
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (modal.style.display === 'block') {
-            if (e.key === 'Escape') {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            } else if (e.key === 'ArrowLeft') {
-                navigate(-1);
-            } else if (e.key === 'ArrowRight') {
-                navigate(1);
-            }
+            if (e.key === 'Escape') { modal.style.display = 'none'; document.body.style.overflow = 'auto'; }
+            else if (e.key === 'ArrowLeft') navigate(-1);
+            else if (e.key === 'ArrowRight') navigate(1);
         }
     });
     
     // Contact form submission
     const contactForm = document.getElementById('contact-form');
-    
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         alert('Thank you for your message! It has been sent successfully.');
@@ -1191,12 +1352,9 @@
     
     // Project tabs functionality
     const projectTabs = document.querySelectorAll('.project-tab');
-    
     projectTabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            // Remove active class from all tabs
             projectTabs.forEach(t => t.classList.remove('active'));
-            // Add active class to clicked tab
             tab.classList.add('active');
         });
     });
@@ -1207,20 +1365,15 @@
 
     viewMoreBtn.addEventListener('click', () => {
         const isHidden = extraGalleryItems[0].classList.contains('hidden');
-        
         extraGalleryItems.forEach(item => {
             item.classList.toggle('hidden');
-            // برای انیمیشن плавный
-            if (isHidden) {
-                item.classList.add('animate-fadeIn');
-            } else {
-                item.classList.remove('animate-fadeIn');
-            }
+            if (isHidden) item.classList.add('animate-fadeIn');
+            else item.classList.remove('animate-fadeIn');
         });
         
-        viewMoreBtn.textContent = isHidden ? 'Show Less' : 'View More';
+        const currentLang = localStorage.getItem('language') || 'en';
+        viewMoreBtn.textContent = isHidden ? translations[currentLang].showLess : translations[currentLang].viewMore;
     });
-
 </script>
 </body>
 </html>
