@@ -1,880 +1,1388 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شرکت ملی نفت و گاز - پیشرو در صنعت انرژی</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Vazirmatn', 'sans-serif']
-                    },
-                    colors: {
-                        primary: '#0c4a6e',
-                        secondary: '#0891b2',
-                        accent: '#ea580c',
-                        dark: '#0f172a',
-                        light: '#f1f5f9'
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        .hero-section {
-            background: linear-gradient(rgba(12, 74, 110, 0.85), rgba(8, 145, 178, 0.9)), 
-                        url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .floating-animation {
-            animation: float 6s ease-in-out infinite;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bashir Nawid Group Foundation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .stats-counter {
-            transition: all 0.5s ease-out;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background-color: #e0e0e0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
+  <!-- <script src="./tailwind.min.js"></script> -->
+  <script>
+      tailwind.config = {
+          darkMode: 'class',
+          theme: {
+              extend: {
+                  fontFamily: {
+                      sans: ['Vazirmatn', 'sans-serif']
+                  },
+                  colors: {
+                      primary: { // VS Code Blue Palette
+                          50: '#e6f2ff',
+                          100: '#cce5ff',
+                          200: '#99caff',
+                          300: '#66b0ff',
+                          400: '#3395ff',
+                          500: '#007acc',
+                          600: '#006ab8',
+                          700: '#0059a3',
+                          800: '#00478a',
+                          900: '#003670',
+                      },
+                      secondary: { // Violet Palette
+                          50: '#f5f3ff',
+                          100: '#ede9fe',
+                          200: '#ddd6fe',
+                          300: '#c4b5fd',
+                          400: '#a78bfa',
+                          500: '#8b5cf6',
+                          600: '#7c3aed',
+                          700: '#6d28d9',
+                          800: '#5b21b9',
+                          900: '#4c1d95',
+                      },
+                      dark: { // Slate Palette for Dark Mode
+                          50: '#f8fafc',
+                          100: '#f1f5f9',
+                          200: '#e2e8f0',
+                          300: '#cbd5e1',
+                          400: '#94a3b8',
+                          500: '#64748b',
+                          600: '#475569',
+                          700: '#334155',
+                          800: '#1e293b',
+                          900: '#0f172a',
+                      }
+                  },
+                  animation: {
+                      float: 'float 6s ease-in-out infinite',
+                      pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                      bounce: 'bounce 1s infinite',
+                      fadeIn: 'fadeIn 0.5s ease-out',
+                      glitchIn: 'glitchIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      zoomIn: 'zoomIn 0.5s ease-out'
+                  },
+                  keyframes: {
+                      float: {
+                          '0%, 100%': { transform: 'translateY(0)' },
+                          '50%': { transform: 'translateY(-20px)' },
+                      },
+                      pulse: {
+                          '0%, 100%': { opacity: '1' },
+                          '50%': { opacity: '0.5' },
+                      },
+                      bounce: {
+                          '0%, 100%': {
+                              transform: 'translateY(-25%)',
+                              animationTimingFunction: 'cubic-bezier(0.8,0,1,1)'
+                          },
+                          '50%': {
+                              transform: 'none',
+                              animationTimingFunction: 'cubic-bezier(0,0,0.2,1)'
+                          },
+                      },
+                      fadeIn: {
+                          '0%': { opacity: '0' },
+                          '100%': { opacity: '1' },
+                      },
+                      glitchIn: {
+                          '0%': {
+                              transform: 'scale(0.8) translate(-10px, 10px)',
+                              opacity: '0',
+                              clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)'
+                          },
+                          '20%': {
+                              transform: 'scale(1) translate(10px, -10px)',
+                              clipPath: 'polygon(0 15%, 100% 15%, 100% 85%, 0 85%)'
+                          },
+                          '40%': {
+                              transform: 'translate(-8px, 8px)',
+                              clipPath: 'polygon(0 30%, 100% 30%, 100% 70%, 0 70%)'
+                          },
+                          '60%': {
+                              transform: 'translate(8px, -8px) skewX(7deg)',
+                              opacity: '0.8'
+                          },
+                          '80%': {
+                              transform: 'translate(0, 0) scale(1.05)',
+                              opacity: '1',
+                              clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)'
+                          },
+                          '100%': {
+                              transform: 'scale(1)',
+                              opacity: '1'
+                          }
+                      },
+                      zoomIn: {
+                          '0%': { transform: 'scale(0.8)', opacity: '0' },
+                          '100%': { transform: 'scale(1)', opacity: '1' },
+                      }
+                  }
+              }
+          }
+      }
+  </script>
+  <style>
+      body {
+          font-family: 'Vazirmatn', sans-serif;
+          transition: background-color 0.3s, color 0.3s;
+      }
+      
+      html[dir="rtl"] body {
+          text-align: right;
+      }
 
-        .progress-value {
-            height: 100%;
-            background-color: #0ea5e9;
-            transition: width 1s ease-in-out;
-        }
-        
-        .timeline-item::before {
-            content: '';
+      .hero-section {
+          background: linear-gradient(rgba(0, 106, 184, 0.4), rgba(0, 71, 138, 0.4)),
+                      url('./image/WhatsApp Image 2025-09-10 at 5.25.10 AM (1).jpeg');
+          background-size: cover;
+          background-position: center;
+          position: relative;
+      }
+      
+      .dark .hero-section {
+          background: linear-gradient(rgba(0, 54, 112, 0.85), rgba(0, 30, 60, 0.9)),
+                      url('./image/WhatsApp Image 2025-09-10 at 5.25.10 AM (1).jpeg');
+          background-size: cover;
+          background-position: center;
+      }
+      
+      .floating {
+          animation: float 6s ease-in-out infinite;
+      }
+
+      .gallery-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          gap: 1.5rem;
+      }
+      
+      .gallery-item {
+          overflow: hidden;
+          border-radius: 1rem;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          height: 250px;
+          cursor: pointer;
+          position: relative;
+      }
+      
+      .gallery-item:hover {
+          transform: translateY(-12px) scale(1.05);
+          box-shadow: 0 20px 40px rgba(0, 122, 204, 0.25);
+      }
+      
+      .gallery-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s ease;
+      }
+      
+      .gallery-item:hover img {
+          transform: scale(1.15);
+      }
+      
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.9);
+          overflow: hidden;
+          animation: fadeIn 0.4s ease-out;
+      }
+      
+      .modal-content {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      
+      .modal-image-container {
+          position: relative;
+          max-width: 90%;
+          max-height: 90%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          animation: glitchIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      
+      .modal-image {
+          max-width: 100%;
+          max-height: 90vh;
+          object-fit: contain;
+          border-radius: 4px;
+      }
+      
+      .close-modal {
+          position: absolute;
+          top: 30px;
+          right: 30px;
+          color: white;
+          font-size: 40px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          z-index: 1001;
+          background: rgba(0,0,0,0.5);
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          line-height: 1;
+      }
+      html[dir="rtl"] .close-modal {
+          right: auto;
+          left: 30px;
+      }
+      
+      .close-modal:hover {
+          color: #3395ff; /* primary-400 */
+          background: rgba(0,0,0,0.8);
+          transform: rotate(90deg);
+      }
+      
+      .nav-button {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          color: white;
+          font-size: 40px;
+          cursor: pointer;
+          z-index: 1001;
+          background: rgba(0,0,0,0.5);
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all 0.3s ease;
+      }
+      
+      .nav-button:hover {
+          background: rgba(0,0,0,0.8);
+          transform: translateY(-50%) scale(1.1);
+      }
+      
+      .prev-button { left: 30px; }
+      html[dir="rtl"] .prev-button { left: auto; right: 30px; }
+      
+      .next-button { right: 30px; }
+      html[dir="rtl"] .next-button { right: auto; left: 30px; }
+      
+      .image-counter {
+          position: absolute;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          color: white;
+          background: rgba(0,0,0,0.5);
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 16px;
+          z-index: 1001;
+      }
+      
+      .service-card {
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          border-top: 4px solid;
+          overflow: hidden;
+          position: relative;
+      }
+      
+      .service-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 25px 50px rgba(0, 122, 204, 0.15);
+      }
+      
+      .wave-divider {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          overflow: hidden;
+          line-height: 0;
+          transform: rotate(180deg);
+      }
+      
+      .wave-divider svg {
+          position: relative;
+          display: block;
+          width: calc(100% + 1.3px);
+          height: 100px;
+      }
+      
+      .wave-divider .shape-fill {
+          fill: #e6f2ff; /* primary-50 */
+      }
+      
+      .dark .wave-divider .shape-fill {
+          fill: #0f172a; /* slate-900 */
+      }
+      
+      .btn-primary {
+          background: linear-gradient(135deg, #007acc 0%, #0059a3 100%); /* primary-500 to primary-700 */
+          color: white;
+          font-weight: 700;
+          padding: 12px 28px;
+          border-radius: 9999px;
+          transition: all 0.4s ease;
+          box-shadow: 0 10px 20px rgba(0, 122, 204, 0.25);
+      }
+      
+      .btn-primary:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 30px rgba(0, 122, 204, 0.35);
+      }
+      
+      .dark .btn-primary {
+          box-shadow: 0 10px 20px rgba(0, 122, 204, 0.4);
+      }
+      
+      .pulse {
+          animation: pulse 2s infinite;
+      }
+      
+      .timeline-item::before {
+          content: '';
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          background-color: #007acc; /* primary-500 */
+          border-radius: 50%;
+          right: -10px;
+          top: 0;
+      }
+      html[dir="rtl"] .timeline-item::before {
+        right: auto;
+        left: -10px;
+      }
+      
+      .dark .timeline-item::before {
+          background-color: #3395ff; /* primary-400 */
+      }
+      
+      .project-tab {
+          transition: all 0.3s ease;
+      }
+      
+      .project-tab.active {
+          color: #007acc; /* primary-500 */
+          border-bottom: 3px solid #007acc; /* primary-500 */
+      }
+      
+      .dark .project-tab.active {
+          color: #3395ff; /* primary-400 */
+          border-bottom-color: #3395ff; /* primary-400 */
+      }
+      
+      .card-hover {
+          transition: all 0.4s ease;
+      }
+      
+      .card-hover:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+      }
+      
+      .toggle-switch {
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: 34px;
+      }
+      
+      .toggle-switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+      
+      .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #007acc; /* primary-500 */
+          transition: .4s;
+          border-radius: 34px;
+      }
+      
+      .slider:before {
+          position: absolute;
+          content: "";
+          height: 26px;
+          width: 26px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          transition: .4s;
+          border-radius: 50%;
+      }
+      
+      input:checked + .slider {
+          background-color: #003670; /* primary-900 */
+      }
+      
+      input:checked + .slider:before {
+          transform: translateX(26px);
+      }
+
+      /* Language Toggle Specific Styles */
+        .lang-toggle-label {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #0ea5e9;
-            border-radius: 50%;
-            right: -10px;
-            top: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
+        .lang-toggle-en {
+            left: 8px;
+            opacity: 1;
         }
-        
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            height: 250px;
+        .lang-toggle-fa {
+            right: 8px;
+            opacity: 0.5;
         }
-        
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .contact-card {
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .contact-card:hover {
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            transform: translateY(-5px);
-        }
-        
-        .map-container {
-            height: 300px;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .service-card {
-            transition: all 0.3s ease;
-            border-top: 4px solid;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .project-tab.active {
-            color: #0ea5e9;
-            border-bottom: 3px solid #0ea5e9;
-        }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+        input:checked ~ .lang-toggle-en { opacity: 0.5; }
+        input:checked ~ .lang-toggle-fa { opacity: 1; }
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-primary text-white py-2 px-4 text-center">
-        <div class="container mx-auto flex justify-center items-center">
-            <span class="bg-accent px-3 py-1 rounded-full text-xs font-bold ml-2">اخبار فوری</span>
-            <marquee behavior="scroll" direction="rtl" class="text-sm">
-                افتتاح فاز جدید پالایشگاه جنوب با حضور وزیر نفت | افزایش 30% در تولید میدان گازی پارس جنوبی | شرکت ملی نفت و گاز در رتبه بندی جهانی 100 شرکت برتر انرژی قرار گرفت
-            </marquee>
+      /* Custom styles for design improvement */
+      .text-shadow { text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); }
+      .text-shadow-md { text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); }
+
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200">
+
+  <header class="bg-white shadow-lg sticky top-0 z-50 dark:bg-slate-800">
+      <nav class="container mx-auto px-4 lg:px-6 py-3 flex justify-between items-center">
+          <div class="flex items-center">
+              <div class="text-2xl font-bold text-primary-800 flex items-center dark:text-primary-200">
+                  <div class=" px-2 rounded-full mr-2 dark:from-primary-900 dark:to-violet-900">
+                      <img src="./image/WhatsApp Image 2025-07-23 at 10.19.47 PM.jpeg" alt="BNG Foundation Logo 2" class="max-h-12 max-w-12 object-contain">
+                  </div>
+                  <a href="#" class="bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent dark:from-primary-400 dark:to-primary-500"></a>
+              </div>
+          </div>
+          <div class="hidden lg:flex space-x-8 items-center">
+              <a href="#home" class="text-slate-700 hover:text-primary-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-primary-400" data-translate-key="navHome">Home</a>
+              <a href="#about" class="text-slate-700 hover:text-primary-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-primary-400" data-translate-key="navAbout">About Us</a>
+              <a href="#services" class="text-slate-700 hover:text-primary-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-primary-400" data-translate-key="navWhatWeDo">What We Do</a>
+              <a href="#projects" class="text-slate-700 hover:text-primary-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-primary-400" data-translate-key="navProjects">Projects</a>
+              <a href="#news" class="text-slate-700 hover:text-primary-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-primary-400" data-translate-key="navNews">News</a>
+              <a href="#gallery" class="text-slate-700 hover:text-primary-600 transition duration-300 font-medium dark:text-slate-300 dark:hover:text-primary-400" data-translate-key="navGallery">Gallery</a>
+              <a href="#contact" class="btn-primary" data-translate-key="navContact">Contact Us</a>
+              
+                <label class="toggle-switch ml-4">
+                    <input type="checkbox" id="languageToggle">
+                    <span class="slider"></span>
+                    <span class="lang-toggle-label lang-toggle-en">EN</span>
+                    <span class="lang-toggle-label lang-toggle-fa">FA</span>
+                </label>
+
+              <label class="toggle-switch ml-2">
+                  <input type="checkbox" id="darkModeToggle">
+                  <span class="slider"></span>
+              </label>
+          </div>
+          <div class="lg:hidden flex items-center">
+              <label class="toggle-switch mr-4">
+                  <input type="checkbox" id="languageToggleMobile">
+                  <span class="slider"></span>
+                  <span class="lang-toggle-label lang-toggle-en">EN</span>
+                  <span class="lang-toggle-label lang-toggle-fa">FA</span>
+              </label>
+              <label class="toggle-switch mr-4">
+                  <input type="checkbox" id="darkModeToggleMobile">
+                  <span class="slider"></span>
+              </label>
+              <button id="mobile-menu-button" class="text-slate-700 focus:outline-none dark:text-slate-300">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+              </button>
+          </div>
+      </nav>
+
+      <div id="mobile-menu" class="hidden lg:hidden bg-white absolute w-full z-50 shadow-xl dark:bg-slate-800">
+          <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+              <a href="#home" class="text-slate-700 hover:text-primary-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-primary-400 dark:border-slate-700" data-translate-key="navHomeMobile">Home</a>
+              <a href="#about" class="text-slate-700 hover:text-primary-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-primary-400 dark:border-slate-700" data-translate-key="navAboutMobile">About Us</a>
+              <a href="#services" class="text-slate-700 hover:text-primary-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-primary-400 dark:border-slate-700" data-translate-key="navWhatWeDoMobile">What We Do</a>
+              <a href="#projects" class="text-slate-700 hover:text-primary-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-primary-400 dark:border-slate-700" data-translate-key="navProjectsMobile">Projects</a>
+              <a href="#news" class="text-slate-700 hover:text-primary-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-primary-400 dark:border-slate-700" data-translate-key="navNewsMobile">News</a>
+              <a href="#gallery" class="text-slate-700 hover:text-primary-600 transition duration-300 py-2 border-b border-slate-100 dark:text-slate-300 dark:hover:text-primary-400 dark:border-slate-700" data-translate-key="navGalleryMobile">Gallery</a>
+              <a href="#contact" class="btn-primary text-center" data-translate-key="navContactMobile">Contact Us</a>
+          </div>
+      </div>
+  </header>
+
+  <main>
+      <section id="home" class="hero-section h-screen flex items-center justify-center text-white relative overflow-hidden">
+          <div class="container mx-auto px-4 text-center relative z-10">
+              <div class="bg-black/25 backdrop-blur-lg rounded-2xl p-8 md:p-12 inline-block border border-white/20">
+                  <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-shadow-md" data-translate-key="heroTitle">BNG Foundation</h1>
+                  <p class="text-xl md:text-2xl mb-2 font-light max-w-3xl mx-auto text-primary-100 text-shadow" data-translate-key="heroSubtitle">Every Life Matters</p>
+                  <p class="text-lg md:text-xl mb-8 font-light max-w-3xl mx-auto text-primary-200 text-shadow" data-translate-key="heroDescription">A nonprofit organization committed to improving lives across Afghanistan through education, humanitarian aid, and development programs.</p>
+                  <div class="flex flex-col sm:flex-row justify-center gap-4">
+                      <a href="#about" class="btn-primary" data-translate-key="heroBtnLearnMore">Learn More About Us</a>
+                      <a href="#contact" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-white hover:text-primary-900 transition duration-300 transform hover:scale-105" data-translate-key="heroBtnGetInvolved">Get Involved</a>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="absolute bottom-20 right-1/4 floating">
+              <i class="fas fa-heart text-primary-300 text-4xl opacity-70"></i>
+          </div>
+          <div class="absolute top-1/3 left-1/4 floating" style="animation-delay: 1s;">
+              <i class="fas fa-hands-helping text-secondary-300 text-4xl opacity-70"></i>
+          </div>
+          <div class="absolute top-1/2 left-1/3 floating" style="animation-delay: 2s;">
+              <i class="fas fa-users text-white text-4xl opacity-70"></i>
+          </div>
+          
+          <a href="#about" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+              <div class="pulse w-12 h-12 rounded-full bg-primary-700 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                  </svg>
+              </div>
+          </a>
+          
+          <div class="wave-divider">
+              <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                  <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                  <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                  <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+              </svg>
+          </div>
+      </section>
+
+      <section id="about" class="py-16 bg-gradient-to-b from-primary-50 to-slate-50 dark:from-slate-800 dark:to-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-primary-700 font-semibold text-lg bg-primary-100 px-4 py-1 rounded-full dark:text-primary-200 dark:bg-primary-900/50" data-translate-key="aboutTag">Who We Are</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mt-4 mb-4 dark:text-primary-200" data-translate-key="aboutTitle">About BNG Foundation</h2>
+                <p class="text-primary-800 dark:text-primary-300 max-w-3xl mx-auto" data-translate-key="aboutDescription">BNG Foundation is a nonprofit, non-political, and non-governmental organization committed to improving lives across Afghanistan. For over 15 years, we have supported vulnerable individuals and communities through a wide range of educational, humanitarian, and development programs.</p>
+            </div>
+
+            <div class="grid grid-cols-3 md:grid-cols-3 gap-8 mb-16 max-w-4xl mx-auto">
+                
+                <div class="flex justify-center items-center bg-white p-4 rounded-2xl shadow-lg dark:bg-slate-800 card-hover">
+                    <img src="./image/WhatsApp Image 2025-07-23 at 10.19.47 PM.jpeg" alt="BNG Foundation Logo 2" class="max-h-24 object-contain">
+                </div>
+                <div class="flex justify-center items-center bg-white p-4 rounded-2xl shadow-lg dark:bg-slate-800 card-hover">
+                    <img src="./image/WhatsApp Image 2025-07-23 at 10.19.48 PM (1).jpeg" alt="BNG Foundation Logo 3" class="max-h-24 object-contain">
+                </div>
+                <div class="flex justify-center items-center bg-white p-4 rounded-2xl shadow-lg dark:bg-slate-800 card-hover">
+                    <img src="./image/WhatsApp Image 2025-07-23 at 10.19.48 PM.jpeg" alt="BNG Foundation Logo 4" class="max-h-24 object-contain">
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-12 mb-16 card-hover">
+                <h3 class="text-2xl font-bold text-center text-primary-900 mb-6 dark:text-primary-200" data-translate-key="founderMsgTitle">Founder’s Message</h3>
+                <p class="text-slate-700 dark:text-slate-300 text-center italic mb-6" data-translate-key="founderMsgContent">"From the earliest days of BNG Foundation, our mission has been driven by a deep sense of responsibility toward those in need. Witnessing hardship and poverty up close inspired us to act—not as an institution, but as fellow humans extending a hand. This foundation began with small acts of support and has grown into a movement touching thousands of lives annually. I am proud of what we have accomplished together and remain hopeful for an even greater impact in the years to come."</p>
+                <p class="text-right font-semibold text-primary-800 dark:text-primary-300" data-translate-key="founderMsgSign" id="founder-signature">- General Director & Founder, BNG Foundation</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 card-hover">
+                    <h3 class="text-2xl font-bold text-primary-800 dark:text-primary-300 mb-4 text-center" data-translate-key="missionTitle">Our Mission</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-center" data-translate-key="missionDesc">To empower communities through education, humanitarian aid, and development programs that promote dignity, self-reliance, and long-term well-being.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 card-hover">
+                    <h3 class="text-2xl font-bold text-primary-800 dark:text-primary-300 mb-4 text-center" data-translate-key="visionTitle">Our Vision</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-center" data-translate-key="visionDesc">A society where every individual, regardless of their background or hardship, has the opportunity to thrive with dignity and purpose.</p>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <section id="services" class="py-16 bg-gradient-to-b from-white to-primary-50 dark:from-slate-900 dark:to-slate-800">
+          <div class="container mx-auto px-4 text-center">
+              <div class="max-w-2xl mx-auto mb-12">
+                  <span class="text-primary-700 font-semibold text-lg bg-primary-100 px-4 py-1 rounded-full dark:text-primary-200 dark:bg-primary-900/50" data-translate-key="programsTag">Our Programs</span>
+                  <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mt-4 mb-4 dark:text-primary-200" data-translate-key="programsTitle">What We Do</h2>
+                  <p class="text-primary-800 dark:text-primary-300" data-translate-key="programsDesc">We provide comprehensive services in key areas to build a better future for communities in need.</p>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-primary-500 dark:bg-slate-800">
+                      <div class="bg-primary-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-primary-900/50">
+                          <i class="fas fa-book-reader text-primary-600 text-3xl dark:text-primary-400"></i>
+                      </div>
+                      <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceEducationTitle">Education</h3>
+                      <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceEducationDesc">We pay school and exam fees, help students prepare for university, and support long-term learning and capacity building.</p>
+                  </div>
+                  
+                  <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-violet-500 dark:bg-slate-800">
+                      <div class="bg-violet-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-violet-900">
+                          <i class="fas fa-hands-helping text-violet-600 text-3xl dark:text-violet-400"></i>
+                      </div>
+                      <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceAidTitle">Humanitarian Aid</h3>
+                      <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceAidDesc">We provide grocery packages to over 3,000 people annually, distribute Iftar meals during Ramadan, and offer support cards for families in need.</p>
+                  </div>
+                  
+                  <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-purple-500 dark:bg-slate-800">
+                      <div class="bg-purple-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-purple-900">
+                          <i class="fas fa-female text-purple-600 text-3xl dark:text-purple-400"></i>
+                      </div>
+                      <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceWomenTitle">Women Empowerment</h3>
+                      <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceWomenDesc">We run vocational training programs (e.g., sewing) for widows and assist them in launching small businesses for independence.</p>
+                  </div>
+                  
+                  <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-blue-500 dark:bg-slate-800">
+                      <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-blue-900">
+                          <i class="fas fa-people-carry text-blue-600 text-3xl dark:text-blue-400"></i>
+                      </div>
+                      <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceCommunityTitle">Community Development</h3>
+                      <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceCommunityDesc">We support families in rebuilding their lives after crises and implement local programs to improve long-term community resilience.</p>
+                  </div>
+                  
+                  <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-fuchsia-500 dark:bg-slate-800">
+                      <div class="bg-fuchsia-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-fuchsia-900">
+                          <i class="fas fa-heartbeat text-fuchsia-600 text-3xl dark:text-fuchsia-400"></i>
+                      </div>
+                      <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceHealthTitle">Health Support</h3>
+                      <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceHealthDesc">We provide assistance to patients with severe conditions, such as kidney disease, and help families access urgent medical treatment.</p>
+                  </div>
+                 <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-primary-400 dark:bg-slate-800 flex flex-col items-center justify-center">
+                      <div class="bg-primary-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-primary-900/50">
+                          <i class="fas fa-hand-holding-heart text-primary-500 text-3xl dark:text-primary-400"></i>
+                      </div>
+                      <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceMoreTitle">And much more...</h3>
+                      <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceMoreDesc">Our work is constantly expanding to meet the needs of the communities we serve.</p>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <section class="py-16 bg-gradient-to-r from-primary-700 to-primary-800 text-white dark:from-primary-900 dark:to-slate-900">
+          <div class="container mx-auto px-4">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
+                  <div>
+                      <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="15">0</h3>
+                      <p class="text-primary-200" data-translate-key="statExperience">Years of Experience</p>
+                  </div>
+                  <div>
+                      <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="250">0</h3>
+                      <p class="text-primary-200" data-translate-key="statProjects">Successful Projects</p>
+                  </div>
+                  <div>
+                      <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="7500">0</h3>
+                      <p class="text-primary-200" data-translate-key="statPeopleHelped">People Helped Annually</p>
+                  </div>
+                  <div>
+                      <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="3000">0</h3>
+                      <p class="text-primary-200" data-translate-key="statGrocery">Grocery Packages Per Year</p>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      
+                  <section id="projects" class="py-16 bg-gradient-to-b from-slate-50 to-primary-50 dark:from-slate-800 dark:to-slate-900">
+          <div class="container mx-auto px-4">
+              <div class="text-center mb-12">
+                  <span class="text-primary-700 font-semibold text-lg bg-primary-100 px-4 py-1 rounded-full dark:text-primary-200 dark:bg-primary-900/50" data-translate-key="projectsTag">Our Work</span>
+                  <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mt-4 mb-4 dark:text-primary-200" data-translate-key="projectsTitle">Highlighted Projects and Achievements</h2>
+                  <p class="text-primary-800 dark:text-primary-300 max-w-2xl mx-auto" data-translate-key="projectsDesc">An overview of major projects and technical achievements of the foundation in recent years.</p>
+              </div>
+              
+              <div class="mb-8">
+                  <div class="flex flex-wrap justify-center border-b border-slate-200 dark:border-slate-700">
+                      <button class="project-tab active px-6 py-3 font-medium" data-tab="all" data-translate-key="projectTabAll">All Projects</button>
+                      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-primary-600 dark:hover:text-primary-400" data-tab="community" data-translate-key="projectTabCommunity">Community Support</button>
+                      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-primary-600 dark:hover:text-primary-400" data-tab="education" data-translate-key="projectTabEducation">Education Initiatives</button>
+                      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-primary-600 dark:hover:text-primary-400" data-tab="healthcare" data-translate-key="projectTabHealthcare">Healthcare Projects</button>
+                      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-primary-600 dark:hover:text-primary-400" data-tab="environmental" data-translate-key="projectTabEmpowerment">Empowerment</button>
+                  </div>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg dark:bg-slate-800">
+                      <div class="h-48 overflow-hidden">
+                          <img src="https://images.unsplash.com/photo-1583324113626-70df0f4deaab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1789&q=80" alt="Community Support Project" class="w-full h-full object-cover">
+                      </div>
+                      <div class="p-6">
+                          <span class="text-sm bg-primary-100 text-primary-800 px-2 py-1 rounded-full dark:bg-primary-900/50 dark:text-primary-200" data-translate-key="project1Category">Community Support</span>
+                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="project1Title">Community Outreach Program</h3>
+                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="project1Desc">Engaging with local communities to provide essential resources and support. This program focuses on improving living conditions and providing educational resources.</p>
+                          <div class="flex justify-between items-center">
+                              <span class="text-sm text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i> 2021-2023</span>
+                              <a href="#" class="text-primary-600 text-sm font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300" data-translate-key="viewDetails">View Details</a>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg dark:bg-slate-800">
+                      <div class="h-48 overflow-hidden">
+                          <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Education Initiative" class="w-full h-full object-cover">
+                      </div>
+                      <div class="p-6">
+                          <span class="text-sm bg-violet-100 text-violet-800 px-2 py-1 rounded-full dark:bg-violet-900 dark:text-violet-200" data-translate-key="project2Category">Education</span>
+                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="project2Title">Educational Support Initiative</h3>
+                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="project2Desc">Providing educational materials and resources to underprivileged schools. This initiative aims to enhance learning opportunities for children in need.</p>
+                          <div class="flex justify-between items-center">
+                              <span class="text-sm text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i> 2020-2022</span>
+                              <a href="#" class="text-primary-600 text-sm font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300" data-translate-key="viewDetails2">View Details</a>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg dark:bg-slate-800">
+                      <div class="h-48 overflow-hidden">
+                          <img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Healthcare Project" class="w-full h-full object-cover">
+                      </div>
+                      <div class="p-6">
+                          <span class="text-sm bg-purple-100 text-purple-800 px-2 py-1 rounded-full dark:bg-purple-900 dark:text-purple-200" data-translate-key="project3Category">Healthcare</span>
+                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="project3Title">Healthcare Access Program</h3>
+                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="project3Desc">Facilitating access to healthcare services for underserved populations. This project includes health screenings and educational workshops.</p>
+                          <div class="flex justify-between items-center">
+                              <span class="text-sm text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i> 2019-2021</span>
+                              <a href="#" class="text-primary-600 text-sm font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300" data-translate-key="viewDetails3">View Details</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="text-center mt-12">
+                  <a href="#" class="btn-primary" data-translate-key="viewAllProjects">
+                      View All Projects
+                  </a>
+              </div>
+          </div>
+      </section>
+
+      <section id="news" class="py-16 bg-gradient-to-b from-primary-50 to-slate-50 dark:from-slate-800 dark:to-slate-900">
+          <div class="container mx-auto px-4">
+              <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+                  <div class="mb-6 md:mb-0">
+                      <span class="text-primary-700 font-semibold text-lg bg-primary-100 px-4 py-1 rounded-full dark:text-primary-200 dark:bg-primary-900/50" data-translate-key="newsTag">News and Events</span>
+                      <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mt-2 dark:text-primary-200" data-translate-key="newsTitle">Latest Updates from BNG Foundation</h2>
+                  </div>
+                  <a href="#" class="btn-primary" data-translate-key="viewAllNews">
+                      View All News
+                  </a>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg dark:bg-slate-800">
+                      <div class="h-48 overflow-hidden">
+                          <img src="./image/when-to-not-donate-rice-expert.jpg" alt="Charity Event" class="w-full h-full object-cover">
+                      </div>
+                      <div class="p-6">
+                          <span class="text-xs bg-primary-600 text-white px-2 py-1 rounded-full" data-translate-key="news1Category">Events</span>
+                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="news1Title">Successful Charity Gala</h3>
+                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="news1Desc">The charity gala raised significant funds for community projects, bringing together supporters and volunteers for a night of inspiration.</p>
+                          <div class="flex justify-between items-center">
+                              <span class="text-xs text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i> 2023/05/12</span>
+                              <a href="#" class="text-primary-600 text-xs font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300" data-translate-key="readMore">Read More</a>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg dark:bg-slate-800">
+                      <div class="h-48 overflow-hidden">
+                          <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Charity Recognition" class="w-full h-full object-cover">
+                      </div>
+                      <div class="p-6">
+                          <span class="text-xs bg-violet-500 text-white px-2 py-1 rounded-full" data-translate-key="news2Category">Achievements</span>
+                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="news2Title">Foundation Recognized Among Top NGOs</h3>
+                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="news2Desc">BNG Foundation has been recognized for its outstanding contributions to community development and support.</p>
+                          <div class="flex justify-between items-center">
+                              <span class="text-xs text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i> 2023/04/28</span>
+                              <a href="#" class="text-primary-600 text-xs font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300" data-translate-key="readMore2">Read More</a>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg dark:bg-slate-800">
+                      <div class="h-48 overflow-hidden">
+                          <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Renewable Energy Investment" class="w-full h-full object-cover">
+                      </div>
+                      <div class="p-6">
+                          <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-full" data-translate-key="news3Category">Sustainability</span>
+                          <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="news3Title">Investment in Community Projects</h3>
+                          <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="news3Desc">The foundation is investing in sustainable community projects to promote long-term self-reliance and environmental protection.</p>
+                          <div class="flex justify-between items-center">
+                              <span class="text-xs text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i> 2023/04/15</span>
+                              <a href="#" class="text-primary-600 text-xs font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300" data-translate-key="readMore3">Read More</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <section id="gallery" class="py-16 bg-gradient-to-b from-slate-50 to-primary-50 dark:from-slate-800 dark:to-slate-900">
+          <div class="container mx-auto px-4">
+              <div class="text-center mb-12">
+                  <span class="text-primary-700 font-semibold text-lg bg-primary-100 px-4 py-1 rounded-full dark:text-primary-200 dark:bg-primary-900/50" data-translate-key="galleryTag">Image Gallery</span>
+                  <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mt-4 mb-4 dark:text-primary-200" data-translate-key="galleryTitle">Pictures from Our Activities and Projects</h2>
+                  <p class="text-primary-800 dark:text-primary-300 max-w-2xl mx-auto" data-translate-key="galleryDesc">Take a look at our projects, facilities, and achievements</p>
+              </div>
+              
+              <div class="gallery-grid">
+                  <div class="gallery-item"><img src="./image/1.JPG" alt="Gallery Image 1"></div>
+                  <div class="gallery-item"><img src="./image/2.jpg" alt="Gallery Image 2"></div>
+                  <div class="gallery-item"><img src="./image/3.jpg" alt="Gallery Image 3"></div>
+                  <div class="gallery-item"><img src="./image/4.jpg" alt="Gallery Image 4"></div>
+                  <div class="gallery-item"><img src="./image/5.jpg" alt="Gallery Image 5"></div>
+                  <div class="gallery-item"><img src="./image/6.jpg" alt="Gallery Image 6"></div>
+                  <div class="gallery-item"><img src="./image/7.jpg" alt="Gallery Image 7"></div>
+                  <div class="gallery-item"><img src="./image/8.jpg" alt="Gallery Image 8"></div>
+                  <div class="gallery-item"><img src="./image/9.jpg" alt="Gallery Image 9"></div>
+                  <div class="gallery-item"><img src="./image/10.jpg" alt="Gallery Image 10"></div>
+                  <div class="gallery-item"><img src="./image/11.jpg" alt="Gallery Image 11"></div>
+                  <div class="gallery-item"><img src="./image/12.jpg" alt="Gallery Image 12"></div>
+                  <div class="gallery-item"><img src="./image/13.jpg" alt="Gallery Image 13"></div>
+                  <div class="gallery-item"><img src="./image/14.jpg" alt="Gallery Image 14"></div>
+                  <div class="gallery-item"><img src="./image/15.jpg" alt="Gallery Image 15"></div>
+                  <div class="gallery-item gallery-item-extra hidden"><img src="./image/16.jpg" alt="Gallery Image 16"></div>
+                  <div class="gallery-item gallery-item-extra hidden"><img src="./image/17.jpg" alt="Gallery Image 17"></div>
+                  <div class="gallery-item gallery-item-extra hidden"><img src="./image/18.jpg" alt="Gallery Image 18"></div>
+                  <div class="gallery-item gallery-item-extra hidden"><img src="./image/19.jpg" alt="Gallery Image 19"></div>
+                  <div class="gallery-item gallery-item-extra hidden"><img src="./image/20.jpg" alt="Gallery Image 20"></div>
+                  <div class="gallery-item gallery-item-extra hidden"><img src="./image/21.jpg" alt="Gallery Image 21"></div>
+              </div>
+              
+              <div class="text-center mt-12">
+                  <button id="view-more-gallery-btn" class="btn-primary" data-translate-key="viewMore">
+                      View More
+                  </button>
+              </div>
+          </div>
+      </section>
+
+      <div id="imageModal" class="modal">
+          <span class="close-modal">×</span>
+          <div class="nav-button prev-button">
+              <i class="fas fa-chevron-left"></i>
+          </div>
+          <div class="nav-button next-button">
+              <i class="fas fa-chevron-right"></i>
+          </div>
+          <div class="modal-content">
+              <div class="modal-image-container">
+                  <img id="modalImage" class="modal-image" src="" alt="">
+              </div>
+          </div>
+          <div class="image-counter">
+              <span id="currentIndex">1</span> / <span id="totalImages">21</span>
+          </div>
+      </div>
+
+      <section id="contact" class="py-16 bg-gradient-to-r from-primary-100 to-slate-100 relative dark:from-slate-800 dark:to-slate-900">
+          <div class="container mx-auto px-4 relative z-10">
+              <div class="max-w-5xl mx-auto text-center mb-12">
+                  <span class="text-primary-700 font-semibold text-lg bg-primary-100 px-4 py-1 rounded-full dark:text-primary-200 dark:bg-primary-900/50" data-translate-key="contactTag">Contact Us</span>
+                  <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mt-4 mb-4 dark:text-primary-200" data-translate-key="contactTitle">Get in Touch</h2>
+                  <p class="text-primary-800 dark:text-primary-300 max-w-2xl mx-auto" data-translate-key="contactDesc">For inquiries, suggestions, and collaborations, you can reach out to us through the following ways.</p>
+              </div>
+              
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div class="bg-white rounded-2xl p-8 shadow-xl dark:bg-slate-800">
+                      <h3 class="text-2xl font-bold text-primary-900 mb-6 dark:text-primary-200" data-translate-key="contactFormTitle">Contact Form</h3>
+                      <form id="contact-form">
+                          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                              <div>
+                                  <label for="name" class="block text-slate-700 mb-2 dark:text-slate-300" data-translate-key="formName">Your Name</label>
+                                  <input type="text" id="name" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-slate-700 dark:border-slate-600 dark:text-white">
+                              </div>
+                              <div>
+                                  <label for="email" class="block text-slate-700 mb-2 dark:text-slate-300" data-translate-key="formEmail">Your Email</label>
+                                  <input type="email" id="email" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-slate-700 dark:border-slate-600 dark:text-white">
+                              </div>
+                          </div>
+                          <div class="mb-6">
+                              <label for="subject" class="block text-slate-700 mb-2 dark:text-slate-300" data-translate-key="formSubject">Subject</label>
+                              <input type="text" id="subject" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-slate-700 dark:border-slate-600 dark:text-white">
+                          </div>
+                          <div class="mb-6">
+                              <label for="message" class="block text-slate-700 mb-2 dark:text-slate-300" data-translate-key="formMessage">Your Message</label>
+                              <textarea id="message" rows="5" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-slate-700 dark:border-slate-600 dark:text-white"></textarea>
+                          </div>
+                          <div class="text-right" id="form-button-container">
+                              <button type="submit" class="btn-primary" data-translate-key="formSend">Send Message</button>
+                          </div>
+                      </form>
+                  </div>
+                  
+                  <div>
+                      <div class="bg-white rounded-2xl p-8 mb-8 shadow-xl dark:bg-slate-800">
+                          <h3 class="text-2xl font-bold text-primary-900 mb-6 dark:text-primary-200" data-translate-key="contactInfoTitle">Contact Information</h3>
+                          <div class="space-y-6">
+                              <div class="flex items-start">
+                                  <div class="bg-primary-100 p-3 rounded-full text-primary-600 mr-4 dark:bg-primary-900/50 dark:text-primary-300">
+                                      <i class="fas fa-map-marker-alt text-lg"></i>
+                                  </div>
+                                  <div>
+                                      <h4 class="font-bold text-slate-800 dark:text-white" data-translate-key="infoLocation">Location</h4>
+                                      <p class="text-slate-600 mt-1 dark:text-slate-300">Mazar-e-Sharif, Afghanistan</p>
+                                  </div>
+                              </div>
+                              
+                              <div class="flex items-start">
+                                  <div class="bg-primary-100 p-3 rounded-full text-primary-600 mr-4 dark:bg-primary-900/50 dark:text-primary-300">
+                                      <i class="fas fa-phone-alt text-lg"></i>
+                                  </div>
+                                  <div>
+                                      <h4 class="font-bold text-slate-800 dark:text-white" data-translate-key="infoPhone">Contact Phone</h4>
+                                      <p dir="ltr" class="text-slate-600 mt-1 dark:text-slate-300 direction: ltr; text-align: left;">(+93 70 000 0000)</p>
+                                  </div>
+                              </div>
+                              
+                              <div class="flex items-start">
+                                  <div class="bg-primary-100 p-3 rounded-full text-primary-600 mr-4 dark:bg-primary-900/50 dark:text-primary-300">
+                                      <i class="fas fa-envelope text-lg"></i>
+                                  </div>
+                                  <div>
+                                      <h4 class="font-bold text-slate-800 dark:text-white" data-translate-key="infoEmail">Email</h4>
+                                      <p class="text-slate-600 mt-1 dark:text-slate-300">contact@bngfoundation.org</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="h-80 rounded-2xl overflow-hidden shadow-xl">
+                          <iframe src="https://www.google.com/maps?q=Mazar-e-Sharif,Afghanistan&output=embed"
+                                  width="100%"
+                                  height="100%"
+                                  style="border:0;"
+                                  allowfullscreen=""
+                                  loading="lazy"
+                                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+  </main>
+
+<footer class="bg-gradient-to-r from-slate-900 to-primary-900 text-white pt-12 pb-8">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+            <div>
+                <div class="text-xl font-bold text-white mb-4 flex items-center">
+                    <div class="bg-primary-500 p-2 rounded-full mr-2">
+                        <i class="fas fa-heart text-white"></i>
+                    </div>
+                    <span data-translate-key="footerTitle">BNG Foundation</span>
+                </div>
+                <p class="text-primary-200 mb-4 text-sm" data-translate-key="footerDesc">
+                    A nonprofit, non-political, and non-governmental organization committed to improving lives across Afghanistan.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="https://fb.com/bngfoundation" class="text-primary-200 hover:text-white transition">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-primary-200 hover:text-white transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-primary-200 hover:text-white transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-primary-200 hover:text-white transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-bold mb-4 border-b border-primary-700 pb-2" data-translate-key="footerLinksTitle">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="text-primary-200 hover:text-white transition text-sm" data-translate-key="footerLinkHome">Home</a></li>
+                    <li><a href="#about" class="text-primary-200 hover:text-white transition text-sm" data-translate-key="footerLinkAbout">About Us</a></li>
+                    <li><a href="#services" class="text-primary-200 hover:text-white transition text-sm" data-translate-key="footerLinkWhatWeDo">What We Do</a></li>
+                    <li><a href="#projects" class="text-primary-200 hover:text-white transition text-sm" data-translate-key="footerLinkProjects">Projects</a></li>
+                    <li><a href="#gallery" class="text-primary-200 hover:text-white transition text-sm" data-translate-key="footerLinkGallery">Image Gallery</a></li>
+                    <li><a href="#contact" class="text-primary-200 hover:text-white transition text-sm" data-translate-key="footerLinkContact">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-bold mb-4 border-b border-primary-700 pb-2" data-translate-key="footerProgramsTitle">Our Programs</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-primary-200 hover:text-white transition text-sm" data-translate-key="footerProgramEducation">Education</a></li>
+                    <li><a href="#" class="text-primary-200 hover:text-white transition text-sm" data-translate-key="footerProgramAid">Humanitarian Aid</a></li>
+                    <li><a href="#" class="text-primary-200 hover:text-white transition text-sm" data-translate-key="footerProgramWomen">Women Empowerment</a></li>
+                    <li><a href="#" class="text-primary-200 hover:text-white transition text-sm" data-translate-key="footerProgramCommunity">Community Development</a></li>
+                    <li><a href="#" class="text-primary-200 hover:text-white transition text-sm" data-translate-key="footerProgramHealth">Health Support</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-bold mb-4 border-b border-primary-700 pb-2" data-translate-key="footerNewsletterTitle">Newsletter</h3>
+                <p class="text-primary-200 mb-4 text-sm" data-translate-key="footerNewsletterDesc">
+                    Subscribe to our newsletter for the latest updates and news.
+                </p>
+                <form class="flex">
+                    <input type="email" data-translate-key="footerNewsletterPlaceholder" placeholder="Your Email" class="w-full px-4 py-2 rounded-l-lg focus:outline-none text-slate-800">
+                    <button type="submit" class="bg-primary-600 px-4 py-2 rounded-r-lg hover:bg-primary-500 transition">
+                        <i class="fas fa-paper-plane text-white"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="border-t border-primary-700 pt-6 mt-6 text-center">
+            <p class="text-sm text-primary-200" data-translate-key="footerCopyright">© 2025 BNG Foundation. All rights reserved.</p>
+            <div class="mt-2 text-primary-400 text-xs">
+                <a href="https://www.bngfoundation.org" class="hover:text-white">www.bngfoundation.org</a>
+            </div>
         </div>
     </div>
+</footer>
 
-    <header class="bg-white shadow-lg sticky top-0 z-50">
-        <nav class="container mx-auto px-4 lg:px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <div class="text-2xl font-bold text-primary flex items-center">
-                    <div class="bg-primary p-2 rounded-full mr-2">
-                        <i class="fas fa-oil-well text-white text-xl"></i>
-                    </div>
-                    <a href="#">شرکت نفت و گاز</a>
-                </div>
-            </div>
-            <div class="hidden lg:flex space-x-8 items-center">
-                <a href="#home" class="text-gray-700 hover:text-primary transition duration-300 font-medium">صفحه اصلی</a>
-                <a href="#services" class="text-gray-700 hover:text-primary transition duration-300 font-medium">خدمات</a>
-                <a href="#projects" class="text-gray-700 hover:text-primary transition duration-300 font-medium">پروژه‌ها</a>
-                <a href="#news" class="text-gray-700 hover:text-primary transition duration-300 font-medium">اخبار</a>
-                <a href="#gallery" class="text-gray-700 hover:text-primary transition duration-300 font-medium">گالری</a>
-                <a href="#about" class="text-gray-700 hover:text-primary transition duration-300 font-medium">درباره ما</a>
-                <a href="#contact" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition duration-300 font-medium">تماس با ما</a>
-            </div>
-            <div class="lg:hidden">
-                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                </button>
-            </div>
-        </nav>
+<script>
+    // Translations Object
+    const translations = {
+        en: {
+            navHome: 'Home', navAbout: 'About Us', navWhatWeDo: 'What We Do', navProjects: 'Projects', navNews: 'News', navGallery: 'Gallery', navContact: 'Contact Us',
+            navHomeMobile: 'Home', navAboutMobile: 'About Us', navWhatWeDoMobile: 'What We Do', navProjectsMobile: 'Projects', navNewsMobile: 'News', navGalleryMobile: 'Gallery', navContactMobile: 'Contact Us',
+            heroTitle: 'BNG Foundation', heroSubtitle: 'Every Life Matters', heroDescription: 'A nonprofit organization committed to improving lives across Afghanistan through education, humanitarian aid, and development programs.',
+            heroBtnLearnMore: 'Learn More About Us', heroBtnGetInvolved: 'Get Involved',
+            aboutTag: 'Who We Are', aboutTitle: 'About BNG Foundation', aboutDescription: 'BNG Foundation is a nonprofit, non-political, and non-governmental organization committed to improving lives across Afghanistan. For over 15 years, we have supported vulnerable individuals and communities through a wide range of educational, humanitarian, and development programs.',
+            founderMsgTitle: 'Founder’s Message', founderMsgContent: `"From the earliest days of BNG Foundation, our mission has been driven by a deep sense of responsibility toward those in need. Witnessing hardship and poverty up close inspired us to act—not as an institution, but as fellow humans extending a hand. This foundation began with small acts of support and has grown into a movement touching thousands of lives annually. I am proud of what we have accomplished together and remain hopeful for an even greater impact in the years to come."`,
+            founderMsgSign: '- General Director & Founder, BNG Foundation',
+            missionTitle: 'Our Mission', missionDesc: 'To empower communities through education, humanitarian aid, and development programs that promote dignity, self-reliance, and long-term well-being.',
+            visionTitle: 'Our Vision', visionDesc: 'A society where every individual, regardless of their background or hardship, has the opportunity to thrive with dignity and purpose.',
+            programsTag: 'Our Programs', programsTitle: 'What We Do', programsDesc: 'We provide comprehensive services in key areas to build a better future for communities in need.',
+            serviceEducationTitle: 'Education', serviceEducationDesc: 'We pay school and exam fees, help students prepare for university, and support long-term learning and capacity building.',
+            serviceAidTitle: 'Humanitarian Aid', serviceAidDesc: 'We provide grocery packages to over 3,000 people annually, distribute Iftar meals during Ramadan, and offer support cards for families in need.',
+            serviceWomenTitle: 'Women Empowerment', serviceWomenDesc: 'We run vocational training programs (e.g., sewing) for widows and assist them in launching small businesses for independence.',
+            serviceCommunityTitle: 'Community Development', serviceCommunityDesc: 'We support families in rebuilding their lives after crises and implement local programs to improve long-term community resilience.',
+            serviceHealthTitle: 'Health Support', serviceHealthDesc: 'We provide assistance to patients with severe conditions, such as kidney disease, and help families access urgent medical treatment.',
+            serviceMoreTitle: 'And much more...', serviceMoreDesc: 'Our work is constantly expanding to meet the needs of the communities we serve.',
+            statExperience: 'Years of Experience', statProjects: 'Successful Projects', statPeopleHelped: 'People Helped Annually', statGrocery: 'Grocery Packages Per Year',
+            projectsTag: 'Our Work', projectsTitle: 'Highlighted Projects and Achievements', projectsDesc: 'An overview of major projects and technical achievements of the foundation in recent years.',
+            projectTabAll: 'All Projects', projectTabCommunity: 'Community Support', projectTabEducation: 'Education Initiatives', projectTabHealthcare: 'Healthcare Projects', projectTabEmpowerment: 'Empowerment',
+            project1Category: 'Community Support', project1Title: 'Community Outreach Program', project1Desc: 'Engaging with local communities to provide essential resources and support. This program focuses on improving living conditions and providing educational resources.',
+            viewDetails: 'View Details',
+            project2Category: 'Education', project2Title: 'Educational Support Initiative', project2Desc: 'Providing educational materials and resources to underprivileged schools. This initiative aims to enhance learning opportunities for children in need.',
+            viewDetails2: 'View Details',
+            project3Category: 'Healthcare', project3Title: 'Healthcare Access Program', project3Desc: 'Facilitating access to healthcare services for underserved populations. This project includes health screenings and educational workshops.',
+            viewDetails3: 'View Details',
+            viewAllProjects: 'View All Projects',
+            newsTag: 'News and Events', newsTitle: 'Latest Updates from BNG Foundation', viewAllNews: 'View All News',
+            news1Category: 'Events', news1Title: 'Successful Charity Gala', news1Desc: 'The charity gala raised significant funds for community projects, bringing together supporters and volunteers for a night of inspiration.',
+            readMore: 'Read More',
+            news2Category: 'Achievements', news2Title: 'Foundation Recognized Among Top NGOs', news2Desc: 'BNG Foundation has been recognized for its outstanding contributions to community development and support.',
+            readMore2: 'Read More',
+            news3Category: 'Sustainability', news3Title: 'Investment in Community Projects', news3Desc: 'The foundation is investing in sustainable community projects to promote long-term self-reliance and environmental protection.',
+            readMore3: 'Read More',
+            galleryTag: 'Image Gallery', galleryTitle: 'Pictures from Our Activities and Projects', galleryDesc: 'Take a look at our projects, facilities, and achievements',
+            viewMore: 'View More', showLess: 'Show Less',
+            contactTag: 'Contact Us', contactTitle: 'Get in Touch', contactDesc: 'For inquiries, suggestions, and collaborations, you can reach out to us through the following ways.',
+            contactFormTitle: 'Contact Form', formName: 'Your Name', formEmail: 'Your Email', formSubject: 'Subject', formMessage: 'Your Message', formSend: 'Send Message',
+            contactInfoTitle: 'Contact Information', infoLocation: 'Location', infoPhone: 'Contact Phone', infoEmail: 'Email',
+            footerTitle: 'BNG Foundation', footerDesc: 'A nonprofit, non-political, and non-governmental organization committed to improving lives across Afghanistan.',
+            footerLinksTitle: 'Quick Links', footerLinkHome: 'Home', footerLinkAbout: 'About Us', footerLinkWhatWeDo: 'What We Do', footerLinkProjects: 'Projects', footerLinkGallery: 'Image Gallery', footerLinkContact: 'Contact Us',
+            footerProgramsTitle: 'Our Programs', footerProgramEducation: 'Education', footerProgramAid: 'Humanitarian Aid', footerProgramWomen: 'Women Empowerment', footerProgramCommunity: 'Community Development', footerProgramHealth: 'Health Support',
+            footerNewsletterTitle: 'Newsletter', footerNewsletterDesc: 'Subscribe to our newsletter for the latest updates and news.', footerNewsletterPlaceholder: 'Your Email',
+            footerCopyright: '© 2025 BNG Foundation. All rights reserved.'
+        },
+        fa: {
+            navHome: ' خانه ', navAbout: 'درباره ما', navWhatWeDo: 'فعالیت‌های ما', navProjects: 'پروژه‌ها', navNews: 'اخبار', navGallery: 'گالری', navContact: 'تماس با ما',
+            navHomeMobile: 'خانه', navAboutMobile: 'درباره ما', navWhatWeDoMobile: 'فعالیت‌های ما', navProjectsMobile: 'پروژه‌ها', navNewsMobile: 'اخبار', navGalleryMobile: 'گالری', navContactMobile: 'تماس با ما',
+            heroTitle: 'بنیاد خیریه بشیر نوید', heroSubtitle: 'هر زندگی ارزشمند است', heroDescription: 'یک سازمان غیرانتفاعی، غیرسیاسی و غیردولتی که متعهد به بهبود زندگی در سراسر افغانستان از طریق برنامه‌های آموزشی، کمک‌های بشردوستانه و توسعه است.',
+            heroBtnLearnMore: 'بیشتر بدانید', heroBtnGetInvolved: 'مشارکت کنید',
+            aboutTag: 'ما که هستیم', aboutTitle: 'درباره بنیاد BNG', aboutDescription: 'بنیاد BNG یک سازمان غیرانتفاعی، غیرسیاسی و غیردولتی است که برای بهبود زندگی در سراسر افغانستان فعالیت می‌کند. برای بیش از ۱۵ سال، ما از افراد و جوامع آسیب‌پذیر از طریق طیف گسترده‌ای از برنامه‌های آموزشی، بشردوستانه و توسعه‌ای حمایت کرده‌ایم.',
+            founderMsgTitle: 'پیام بنیان‌گذار', founderMsgContent: `"از اولین روزهای تأسیس بنیاد BNG، مأموریت ما ناشی از احساس مسئولیت عمیق نسبت به نیازمندان بوده است. مشاهده سختی و فقر از نزدیک، ما را بر آن داشت تا نه به عنوان یک نهاد، بلکه به عنوان انسان‌هایی که دستی را برای کمک دراز می‌کنند، اقدام کنیم. این بنیاد با اقدامات کوچک حمایتی آغاز شد و اکنون به یک جنبش تبدیل شده که سالانه زندگی هزاران نفر را تحت تأثیر قرار می‌دهد. من به آنچه با هم به دست آورده‌ایم افتخار می‌کنم و به تأثیرگذاری بیشتر در سال‌های آینده امیدوارم."`,
+            founderMsgSign: '- مدیر کل و بنیان‌گذار بنیاد BNG',
+            missionTitle: 'مأموریت ما', missionDesc: 'توانمندسازی جوامع از طریق برنامه‌های آموزشی، کمک‌های بشردوستانه و توسعه‌ای که کرامت، خوداتکایی و رفاه بلندمدت را ترویج می‌دهند.',
+            visionTitle: 'چشم‌انداز ما', visionDesc: 'جامعه‌ای که در آن هر فرد، فارغ از پیشینه یا سختی‌ها، فرصت شکوفایی با کرامت و هدف را داشته باشد.',
+            programsTag: 'برنامه‌های ما', programsTitle: 'فعالیت‌های ما', programsDesc: 'ما خدمات جامعی را در حوزه‌های کلیدی برای ساختن آینده‌ای بهتر برای جوامع نیازمند ارائه می‌دهیم.',
+            serviceEducationTitle: 'آموزش', serviceEducationDesc: 'ما هزینه‌های مکتب و امتحانات را پرداخت می‌کنیم، به دانش‌آموزان برای آمادگی در دانشگاه کمک می‌کنیم و از یادگیری بلندمدت و ظرفیت‌سازی حمایت می‌کنیم.',
+            serviceAidTitle: 'کمک‌های بشردوستانه', serviceAidDesc: 'ما سالانه بسته‌های مواد غذایی به بیش از ۳۰۰۰ نفر ارائه می‌دهیم، در ماه رمضان افطاری توزیع می‌کنیم و کارت‌های حمایتی برای خانواده‌های نیازمند فراهم می‌کنیم.',
+            serviceWomenTitle: 'توانمندسازی زنان', serviceWomenDesc: 'ما برنامه‌های آموزش حرفه‌ای (مانند خیاطی) برای بیوه‌ها برگزار می‌کنیم و به آن‌ها در راه‌اندازی کسب‌وکارهای کوچک برای استقلال کمک می‌کنیم.',
+            serviceCommunityTitle: 'توسعه اجتماعی', serviceCommunityDesc: 'ما از خانواده‌ها برای بازسازی زندگی‌شان پس از بحران‌ها حمایت می‌کنیم و برنامه‌های محلی برای بهبود پایداری بلندمدت جامعه اجرا می‌کنیم.',
+            serviceHealthTitle: 'حمایت صحی', serviceHealthDesc: 'ما به بیماران با شرایط حاد مانند بیماری‌های کلیوی کمک می‌کنیم و به خانواده‌ها برای دسترسی به درمان‌های فوری پزشکی یاری می‌رسانیم.',
+            serviceMoreTitle: 'و خیلی بیشتر...', serviceMoreDesc: 'فعالیت‌های ما به طور مداوم برای پاسخگویی به نیازهای جوامعی که به آنها خدمت می‌کنیم، در حال گسترش است.',
+            statExperience: 'سال تجربه', statProjects: 'پروژه موفق', statPeopleHelped: 'کمک‌رسانی سالانه', statGrocery: 'بسته غذایی در سال',
+            projectsTag: 'کارهای ما', projectsTitle: 'پروژه‌ها و دستاوردهای برجسته', projectsDesc: 'مروری بر پروژه‌های بزرگ و دستاوردهای فنی بنیاد در سال‌های اخیر.',
+            projectTabAll: 'همه پروژه‌ها', projectTabCommunity: 'حمایت اجتماعی', projectTabEducation: 'طرح‌های آموزشی', projectTabHealthcare: 'پروژه‌های صحی', projectTabEmpowerment: 'توانمندسازی',
+            project1Category: 'حمایت اجتماعی', project1Title: 'برنامه توسعه اجتماعی', project1Desc: 'همکاری با جوامع محلی برای فراهم آوردن منابع و حمایت‌های ضروری. این برنامه بر بهبود شرایط زندگی و ارائه منابع آموزشی تمرکز دارد.',
+            viewDetails: 'مشاهده جزئیات',
+            project2Category: 'آموزش', project2Title: 'طرح حمایت آموزشی', project2Desc: 'فراهم کردن مواد و منابع آموزشی برای مکاتب محروم. این طرح با هدف افزایش فرصت‌های یادگیری برای کودکان نیازمند اجرا می‌شود.',
+            viewDetails2: 'مشاهده جزئیات',
+            project3Category: 'صحت', project3Title: 'برنامه دسترسی به خدمات صحی', project3Desc: 'تسهیل دسترسی به خدمات صحی برای جمعیت‌های محروم. این پروژه شامل غربالگری‌های صحی و کارگاه‌های آموزشی است.',
+            viewDetails3: 'مشاهده جزئیات',
+            viewAllProjects: 'مشاهده همه پروژه‌ها',
+            newsTag: 'اخبار و رویدادها', newsTitle: 'آخرین به‌روزرسانی‌های بنیاد BNG', viewAllNews: 'مشاهده همه اخبار',
+            news1Category: 'رویدادها', news1Title: 'جشن خیریه موفق', news1Desc: 'جشن خیریه مبالغ قابل توجهی را برای پروژه‌های اجتماعی جمع‌آوری کرد و حامیان و داوطلبان را برای یک شب الهام‌بخش گرد هم آورد.',
+            readMore: 'بیشتر بخوانید',
+            news2Category: 'دستاوردها', news2Title: 'تقدیر از بنیاد به عنوان یکی از برترین سازمان‌ها', news2Desc: 'بنیاد BNG به دلیل مشارکت‌های برجسته‌اش در توسعه و حمایت از جامعه مورد تقدیر قرار گرفته است.',
+            readMore2: 'بیشتر بخوانید',
+            news3Category: 'پایداری', news3Title: 'سرمایه‌گذاری در پروژه‌های اجتماعی', news3Desc: 'این بنیاد در پروژه‌های پایدار اجتماعی برای ترویج خوداتکایی بلندمدت و حفاظت از محیط زیست سرمایه‌گذاری می‌کند.',
+            readMore3: 'بیشتر بخوانید',
+            galleryTag: 'گالری تصاویر', galleryTitle: 'تصاویری از فعالیت‌ها و پروژه‌های ما', galleryDesc: 'نگاهی به پروژه‌ها، امکانات و دستاوردهای ما بیندازید.',
+            viewMore: 'مشاهده بیشتر', showLess: 'نمایش کمتر',
+            contactTag: 'تماس با ما', contactTitle: 'در تماس باشید', contactDesc: 'برای سوالات، پیشنهادات و همکاری، می‌توانید از راه‌های زیر با ما در ارتباط باشید.',
+            contactFormTitle: 'فرم تماس', formName: 'نام شما', formEmail: 'ایمیل شما', formSubject: 'موضوع', formMessage: 'پیام شما', formSend: 'ارسال پیام',
+            contactInfoTitle: 'اطلاعات تماس', infoLocation: 'موقعیت', infoPhone: 'تلفن تماس', infoEmail: 'ایمیل',
+            footerTitle: 'بنیاد BNG', footerDesc: 'یک سازمان غیرانتفاعی، غیرسیاسی و غیردولتی که متعهد به بهبود زندگی در سراسر افغانستان است.',
+            footerLinksTitle: 'لینک‌های سریع', footerLinkHome: 'خانه', footerLinkAbout: 'درباره ما', footerLinkWhatWeDo: 'فعالیت‌های ما', footerLinkProjects: 'پروژه‌ها', footerLinkGallery: 'گالری تصاویر', footerLinkContact: 'تماس با ما',
+            footerProgramsTitle: 'برنامه‌های ما', footerProgramEducation: 'آموزش', footerProgramAid: 'کمک‌های بشردوستانه', footerProgramWomen: 'توانمندسازی زنان', footerProgramCommunity: 'توسعه اجتماعی', footerProgramHealth: 'حمایت صحی',
+            footerNewsletterTitle: 'خبرنامه', footerNewsletterDesc: 'برای دریافت آخرین به‌روزرسانی‌ها و اخبار، در خبرنامه ما مشترک شوید.', footerNewsletterPlaceholder: 'ایمیل شما',
+            footerCopyright: '© 2025 بنیاد BNG. تمام حقوق محفوظ است.'
+        }
+    };
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white absolute w-full z-50 shadow-xl">
-            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
-                <a href="#home" class="text-gray-700 hover:text-primary transition duration-300 py-2 border-b border-gray-100">صفحه اصلی</a>
-                <a href="#services" class="text-gray-700 hover:text-primary transition duration-300 py-2 border-b border-gray-100">خدمات</a>
-                <a href="#projects" class="text-gray-700 hover:text-primary transition duration-300 py-2 border-b border-gray-100">پروژه‌ها</a>
-                <a href="#news" class="text-gray-700 hover:text-primary transition duration-300 py-2 border-b border-gray-100">اخبار</a>
-                <a href="#gallery" class="text-gray-700 hover:text-primary transition duration-300 py-2 border-b border-gray-100">گالری</a>
-                <a href="#about" class="text-gray-700 hover:text-primary transition duration-300 py-2 border-b border-gray-100">درباره ما</a>
-                <a href="#contact" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition duration-300 text-center">تماس با ما</a>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero-section h-screen flex items-center justify-center text-white relative overflow-hidden">
-            <div class="container mx-auto px-4 text-center relative z-10">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">پیشرو در صنعت انرژی و نفت و گاز</h1>
-                <p class="text-xl md:text-2xl mb-8 font-light max-w-3xl mx-auto">تعهد به نوآوری، کیفیت و توسعه پایدار برای تأمین انرژی آینده با استانداردهای جهانی</p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#services" class="bg-accent text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-orange-700 transition duration-300 shadow-lg hover:shadow-xl">کاوش در خدمات ما</a>
-                    <a href="#contact" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-white hover:text-primary transition duration-300">درخواست همکاری</a>
-                </div>
-            </div>
-            
-            <!-- Floating animated elements -->
-            <div class="absolute bottom-20 right-1/4 floating-animation">
-                <i class="fas fa-oil-well text-blue-300 text-4xl opacity-50"></i>
-            </div>
-            <div class="absolute top-1/3 left-1/4 floating-animation" style="animation-delay: 1s;">
-                <i class="fas fa-gas-pump text-orange-300 text-4xl opacity-50"></i>
-            </div>
-            <div class="absolute top-1/2 left-1/3 floating-animation" style="animation-delay: 2s;">
-                <i class="fas fa-industry text-white text-4xl opacity-50"></i>
-            </div>
-            
-            <!-- Scroll down indicator -->
-            <a href="#services" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
-            </a>
-        </section>
-
-        <!-- Clients Logo Section -->
-        <section class="py-12 bg-gray-50">
-            <div class="container mx-auto px-4">
-                <h3 class="text-center text-gray-500 text-sm font-semibold mb-8">همکاری با برترین شرکت‌های انرژی جهان</h3>
-                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/TotalEnergies_logo.svg/800px-TotalEnergies_logo.svg.png" alt="Total" class="h-8 md:h-10 object-contain">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Shell_logo.svg/800px-Shell_logo.svg.png" alt="Shell" class="h-8 md:h-10 object-contain">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/BP_Logo.svg/800px-BP_Logo.svg.png" alt="BP" class="h-8 md:h-10 object-contain">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/ExxonMobil_logo.svg/800px-ExxonMobil_logo.svg.png" alt="ExxonMobil" class="h-8 md:h-10 object-contain">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sinopec_Logo.svg/800px-Sinopec_Logo.svg.png" alt="Sinopec" class="h-8 md:h-10 object-contain">
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="py-16 bg-white">
-            <div class="container mx-auto px-4 text-center">
-                <div class="max-w-2xl mx-auto mb-12">
-                    <span class="text-primary font-semibold text-lg">خدمات تخصصی</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">راهکارهای جامع صنعت نفت و گاز</h2>
-                    <p class="text-gray-600">ما با بهره‌گیری از فناوری‌های روز و تیم متخصص، خدمات جامعی در تمامی حوزه‌های صنعت نفت و گاز ارائه می‌دهیم.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="service-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500">
-                        <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-search text-blue-600 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">اکتشاف و تولید</h3>
-                        <p class="text-gray-600 mb-4 text-sm">بهره‌برداری از پیشرفته‌ترین فناوری‌ها برای شناسایی و استخراج منابع هیدروکربنی با بالاترین بازدهی.</p>
-                        <a href="#" class="text-primary font-semibold hover:text-secondary transition flex items-center justify-center text-sm">
-                            اطلاعات بیشتر <i class="fas fa-arrow-left mr-2 text-xs"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="service-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
-                        <div class="bg-orange-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-industry text-orange-600 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">پالایش و پتروشیمی</h3>
-                        <p class="text-gray-600 mb-4 text-sm">تبدیل نفت خام به فرآورده‌های با ارزش افزوده بالا و محصولات پتروشیمیایی با کیفیت جهانی.</p>
-                        <a href="#" class="text-primary font-semibold hover:text-secondary transition flex items-center justify-center text-sm">
-                            اطلاعات بیشتر <i class="fas fa-arrow-left mr-2 text-xs"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="service-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500">
-                        <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-truck text-green-600 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">توزیع و لجستیک</h3>
-                        <p class="text-gray-600 mb-4 text-sm">شبکه گسترده حمل و نقل و توزیع ایمن فرآورده‌ها در سراسر کشور و منطقه با استانداردهای بین‌المللی.</p>
-                        <a href="#" class="text-primary font-semibold hover:text-secondary transition flex items-center justify-center text-sm">
-                            اطلاعات بیشتر <i class="fas fa-arrow-left mr-2 text-xs"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="service-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-purple-500">
-                        <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-solar-panel text-purple-600 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">انرژی‌های نوین</h3>
-                        <p class="text-gray-600 mb-4 text-sm">سرمایه‌گذاری و تحقیق در زمینه انرژی‌های پاک و تجدیدپذیر برای آینده‌ای پایدار و دوستدار محیط زیست.</p>
-                        <a href="#" class="text-primary font-semibold hover:text-secondary transition flex items-center justify-center text-sm">
-                            اطلاعات بیشتر <i class="fas fa-arrow-left mr-2 text-xs"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="service-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500">
-                        <div class="bg-red-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-flask text-red-600 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">تحقیق و توسعه</h3>
-                        <p class="text-gray-600 mb-4 text-sm">مراکز تحقیقاتی پیشرفته برای توسعه فناوری‌های نوین در صنعت نفت، گاز و پتروشیمی.</p>
-                        <a href="#" class="text-primary font-semibold hover:text-secondary transition flex items-center justify-center text-sm">
-                            اطلاعات بیشتر <i class="fas fa-arrow-left mr-2 text-xs"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="service-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-500">
-                        <div class="bg-yellow-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-shield-alt text-yellow-600 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">مشاوره و HSE</h3>
-                        <p class="text-gray-600 mb-4 text-sm">مشاوره تخصصی و پیاده‌سازی سیستم‌های ایمنی، بهداشت و محیط زیست مطابق با استانداردهای جهانی.</p>
-                        <a href="#" class="text-primary font-semibold hover:text-secondary transition flex items-center justify-center text-sm">
-                            اطلاعات بیشتر <i class="fas fa-arrow-left mr-2 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="py-16 bg-primary text-white">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
-                    <div>
-                        <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="50">0</h3>
-                        <p class="text-blue-200">سال تجربه</p>
-                    </div>
-                    <div>
-                        <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="250">0</h3>
-                        <p class="text-blue-200">پروژه موفق</p>
-                    </div>
-                    <div>
-                        <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="7500">0</h3>
-                        <p class="text-blue-200">نیروی متخصص</p>
-                    </div>
-                    <div>
-                        <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="2.5">0</h3>
-                        <p class="text-blue-200">میلیون بشکه تولید روزانه</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-16 bg-gray-50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <span class="text-primary font-semibold text-lg">پروژه‌های ما</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">پروژه‌های برجسته و دستاوردها</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">مروری بر پروژه‌های کلان و دستاوردهای فنی شرکت نفت و گاز در سال‌های اخیر</p>
-                </div>
-                
-                <!-- Projects Tabs -->
-                <div class="mb-8">
-                    <div class="flex flex-wrap justify-center border-b border-gray-200">
-                        <button class="project-tab active px-4 py-3 font-medium" data-tab="all">همه پروژه‌ها</button>
-                        <button class="project-tab px-4 py-3 font-medium text-gray-500 hover:text-primary" data-tab="upstream">بالادستی</button>
-                        <button class="project-tab px-4 py-3 font-medium text-gray-500 hover:text-primary" data-tab="downstream">پایین‌دستی</button>
-                        <button class="project-tab px-4 py-3 font-medium text-gray-500 hover:text-primary" data-tab="petrochemical">پتروشیمی</button>
-                    </div>
-                </div>
-                
-                <!-- Projects Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-container">
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1583324113626-70df0f4deaab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1789&q=80" alt="پروژه اکتشاف نفت" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <span class="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded-full">بالادستی</span>
-                            <h3 class="text-xl font-bold mt-3 mb-2">پروژه اکتشاف نفت در خلیج فارس</h3>
-                            <p class="text-gray-600 text-sm mb-4">اکتشاف منابع جدید نفتی در منطقه جنوبی خلیج فارس با فناوری‌های نوین</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-500"><i class="far fa-calendar-alt ml-1"></i> ۱۴۰۱-۱۴۰۳</span>
-                                <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">جزئیات بیشتر</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1565373679100-7a0154e8d4f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="پالایشگاه جدید" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <span class="text-sm bg-orange-100 text-orange-800 px-2 py-1 rounded-full">پایین‌دستی</span>
-                            <h3 class="text-xl font-bold mt-3 mb-2">احداث پالایشگاه جدید در منطقه ویژه</h3>
-                            <p class="text-gray-600 text-sm mb-4">احداث پالایشگاه مدرن با ظرفیت ۲۰۰ هزار بشکه در روز</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-500"><i class="far fa-calendar-alt ml-1"></i> ۱۴۰۰-۱۴۰۲</span>
-                                <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">جزئیات بیشتر</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="پتروشیمی" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <span class="text-sm bg-purple-100 text-purple-800 px-2 py-1 rounded-full">پتروشیمی</span>
-                            <h3 class="text-xl font-bold mt-3 mb-2">مجتمع پتروشیمی پارس جنوبی</h3>
-                            <p class="text-gray-600 text-sm mb-4">توسعه مجتمع پتروشیمی با ظرفیت تولید ۵ میلیون تن محصولات پتروشیمی</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-500"><i class="far fa-calendar-alt ml-1"></i> ۱۳۹۸-۱۴۰۲</span>
-                                <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">جزئیات بیشتر</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-12">
-                    <a href="#" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-secondary transition duration-300 shadow-lg hover:shadow-xl">
-                        مشاهده همه پروژه‌ها
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- News Section -->
-        <section id="news" class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-col md:flex-row justify-between items-center mb-10">
-                    <div class="mb-6 md:mb-0">
-                        <span class="text-primary font-semibold text-lg">اخبار و رویدادها</span>
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2">آخرین اخبار شرکت</h2>
-                    </div>
-                    <a href="#" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition duration-300 font-medium">
-                        مشاهده همه اخبار
-                    </a>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1581578021230-91c8c5ba2d3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="افتتاح پالایشگاه" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <span class="text-xs bg-primary text-white px-2 py-1 rounded-full">پروژه‌ها</span>
-                            <h3 class="text-xl font-bold mt-3 mb-2">افتتاح فاز جدید پالایشگاه جنوب</h3>
-                            <p class="text-gray-600 text-sm mb-4">فاز جدید پالایشگاه جنوب با حضور وزیر نفت و مسئولان کشوری به بهره‌برداری رسید.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs text-gray-500"><i class="far fa-calendar-alt ml-1"></i> ۱۴۰۲/۰۵/۱۲</span>
-                                <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">ادامه خبر</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="رتبه بندی جهانی" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-full">افتخارات</span>
-                            <h3 class="text-xl font-bold mt-3 mb-2">شرکت نفت و گاز در میان ۱۰۰ شرکت برتر انرژی جهان</h3>
-                            <p class="text-gray-600 text-sm mb-4">بر اساس رتبه‌بندی جهانی، شرکت ملی نفت و گاز در میان ۱۰۰ شرکت برتر انرژی جهان قرار گرفت.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs text-gray-500"><i class="far fa-calendar-alt ml-1"></i> ۱۴۰۲/۰۴/۲۸</span>
-                                <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">ادامه خبر</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="انرژی تجدیدپذیر" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <span class="text-xs bg-green-500 text-white px-2 py-1 rounded-full">انرژی نو</span>
-                            <h3 class="text-xl font-bold mt-3 mb-2">سرمایه‌گذاری ۵۰۰ میلیون دلاری در انرژی‌های تجدیدپذیر</h3>
-                            <p class="text-gray-600 text-sm mb-4">شرکت نفت و گاز برای توسعه انرژی‌های پاک، ۵۰۰ میلیون دلار سرمایه‌گذاری می‌کند.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs text-gray-500"><i class="far fa-calendar-alt ml-1"></i> ۱۴۰۲/۰۴/۱۵</span>
-                                <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">ادامه خبر</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-16 bg-gray-50">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                    <div class="lg:pr-8">
-                        <span class="text-primary font-semibold text-lg">درباره ما</span>
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 my-3">چشم‌انداز ما برای آینده انرژی</h2>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            شرکت نفت و گاز با بیش از نیم قرن تجربه، به عنوان یکی از ستون‌های اصلی صنعت انرژی کشور شناخته می‌شود. ما با تکیه بر دانش فنی، نیروی انسانی متخصص و مدیریت نوین، همواره در تلاش برای بهینه‌سازی فرآیندهای تولید، افزایش کیفیت محصولات و حرکت به سوی توسعه پایدار بوده‌ایم.
-                        </p>
-                        <p class="text-gray-600 leading-relaxed mb-6">
-                            ماموریت ما تأمین امن و پایدار انرژی برای نسل امروز و فردا، با رعایت بالاترین استانداردهای زیست‌محیطی و مسئولیت‌های اجتماعی است.
-                        </p>
-                        
-                        <div class="grid grid-cols-2 gap-6 mt-8">
-                            <div>
-                                <h3 class="text-lg font-bold text-primary flex items-center">
-                                    <i class="fas fa-bullseye text-primary mr-2"></i>
-                                    چشم‌انداز
-                                </h3>
-                                <p class="text-gray-600 mt-2 text-sm">
-                                    تبدیل شدن به یکی از ۵۰ شرکت برتر انرژی جهان تا سال ۱۴۱۰
-                                </p>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-primary flex items-center">
-                                    <i class="fas fa-hand-holding-heart text-primary mr-2"></i>
-                                    ارزش‌ها
-                                </h3>
-                                <p class="text-gray-600 mt-2 text-sm">
-                                    نوآوری، مسئولیت‌پذیری، ایمنی، توسعه پایدار
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-8">
-                            <a href="#" class="inline-flex items-center text-primary font-semibold hover:text-secondary transition">
-                                <span>مشاهده گواهی‌نامه‌ها و جوایز</span>
-                                <i class="fas fa-arrow-left mr-2 text-sm"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1542382156942-0268f1181249?q=80&w=1964&auto=format&fit=crop" 
-                             alt="تیم مهندسی شرکت نفت و گاز" 
-                             class="rounded-xl shadow-xl w-full">
-                             
-                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg w-10/12">
-                            <h3 class="font-bold text-lg text-primary mb-2">تیم مدیریت ارشد</h3>
-                            <p class="text-gray-600 text-sm">
-                                تیم متخصص و با تجربه ما با بیش از ۳۰ سال سابقه در صنعت نفت و گاز
-                            </p>
-                            <div class="flex mt-3">
-                                <img src="https://randomuser.me/api/portraits/men/41.jpg" class="w-10 h-10 rounded-full border-2 border-white -mr-2" alt="مدیر عامل">
-                                <img src="https://randomuser.me/api/portraits/women/32.jpg" class="w-10 h-10 rounded-full border-2 border-white -mr-2" alt="مدیر فنی">
-                                <img src="https://randomuser.me/api/portraits/men/22.jpg" class="w-10 h-10 rounded-full border-2 border-white -mr-2" alt="مدیر مالی">
-                                <div class="w-10 h-10 rounded-full bg-blue-100 text-primary border-2 border-white -mr-2 flex items-center justify-center">
-                                    +5
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="gallery" class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <span class="text-primary font-semibold text-lg">گالری تصاویر</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">تصاویری از فعالیت‌ها و پروژه‌های ما</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">نگاهی به پروژه‌ها، تأسیسات و دستاوردهای ما بیندازید</p>
-                </div>
-                
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1627843563915-a89255a052da?q=80&w=1974&auto=format&fit=crop" alt="پالایشگاه نفت در شب">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1611299442131-73477f0a4344?q=80&w=1965&auto=format&fit=crop" alt="مهندسان در حال کار">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1583324132930-5b5a7f92035d?q=80&w=2070&auto=format&fit=crop" alt="دکل حفاری نفت">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=2070&auto=format&fit=crop" alt="تاسیسات صنعتی">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=2070&auto=format&fit=crop" alt="نمودارهای تحلیل انرژی">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1621254033333-535334a36b33?q=80&w=2070&auto=format&fit=crop" alt="خطوط لوله انتقال گاز">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1619522340313-05e836b8c963?q=80&w=2070&auto=format&fit=crop" alt="مخازن ذخیره سازی">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1605711221431-15055b3d0a0c?q=80&w=2070&auto=format&fit=crop" alt="کشتی نفتکش">
-                    </div>
-                </div>
-                
-                <div class="text-center mt-12">
-                    <button class="bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-secondary transition duration-300 shadow-lg hover:shadow-xl">
-                        مشاهده گالری کامل
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-16 bg-gray-100 relative">
-            <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-cyan-50 z-0"></div>
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="max-w-5xl mx-auto text-center mb-12">
-                    <span class="text-primary font-semibold text-lg">ارتباط با ما</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">با ما در تماس باشید</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">برای سوالات، پیشنهادات و همکاری، می‌توانید از طریق راه‌های زیر با ما تماس بگیرید.</p>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="contact-card p-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-6">فرم تماس با ما</h3>
-                        <form id="contact-form">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                <div>
-                                    <label for="name" class="block text-gray-700 mb-2">نام شما</label>
-                                    <input type="text" id="name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-gray-700 mb-2">ایمیل شما</label>
-                                    <input type="email" id="email" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                                </div>
-                            </div>
-                            <div class="mb-6">
-                                <label for="subject" class="block text-gray-700 mb-2">موضوع</label>
-                                <input type="text" id="subject" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                            </div>
-                            <div class="mb-6">
-                                <label for="message" class="block text-gray-700 mb-2">پیام شما</label>
-                                <textarea id="message" rows="5" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                            </div>
-                            <div class="text-right">
-                                <button type="submit" class="bg-primary text-white font-bold py-3 px-10 rounded-full hover:bg-secondary transition duration-300">ارسال پیام</button>
-                            </div>
-                        </form>
-                    </div>
-                    
-                    <div>
-                        <div class="contact-card p-8 mb-8">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-6">اطلاعات تماس</h3>
-                            <div class="space-y-6">
-                                <div class="flex items-start">
-                                    <div class="bg-blue-100 p-3 rounded-full text-primary mr-4">
-                                        <i class="fas fa-map-marker-alt text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-gray-800">آدرس دفتر مرکزی</h4>
-                                        <p class="text-gray-600 mt-1">تهران، خیابان ولیعصر، پلاک ۱۰۰۰، برج انرژی</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <div class="bg-blue-100 p-3 rounded-full text-primary mr-4">
-                                        <i class="fas fa-phone-alt text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-gray-800">تلفن تماس</h4>
-                                        <p class="text-gray-600 mt-1">۰۲۱-۲۲۳۳۴۴۵۵</p>
-                                        <p class="text-gray-600">۰۲۱-۲۲۳۳۴۴۶۶</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <div class="bg-blue-100 p-3 rounded-full text-primary mr-4">
-                                        <i class="fas fa-envelope text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-gray-800">پست الکترونیک</h4>
-                                        <p class="text-gray-600 mt-1">info@oil-gas.com</p>
-                                        <p class="text-gray-600">support@oil-gas.com</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <div class="bg-blue-100 p-3 rounded-full text-primary mr-4">
-                                        <i class="fas fa-clock text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-gray-800">ساعات کاری</h4>
-                                        <p class="text-gray-600 mt-1">شنبه تا چهارشنبه: ۸ صبح تا ۵ بعدازظهر</p>
-                                        <p class="text-gray-600">پنجشنبه: ۸ صبح تا ۱۲ ظهر</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="map-container">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.910875621768!2d51.38827731527219!3d35.71591798018804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0100ecf5c3f1%3A0x3dd971d8e1d04949!2sMilad%20Tower!5e0!3m2!1sen!2s!4v1659787896826!5m2!1sen!2s" 
-                                    width="100%" 
-                                    height="100%" 
-                                    style="border:0;" 
-                                    allowfullscreen="" 
-                                    loading="lazy" 
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white pt-12 pb-8">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-                <div>
-                    <div class="text-xl font-bold text-white mb-4 flex items-center">
-                        <div class="bg-primary p-2 rounded-full mr-2">
-                            <i class="fas fa-oil-well text-white"></i>
-                        </div>
-                        شرکت نفت و گاز
-                    </div>
-                    <p class="text-gray-400 mb-4 text-sm">
-                        پیشرو در صنعت انرژی با بیش از ۵۰ سال سابقه درخشان در اکتشاف، تولید و توزیع محصولات نفتی و گازی
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-telegram text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-linkedin text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-twitter text-xl"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2">لینک‌های سریع</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-400 hover:text-white transition text-sm">صفحه اصلی</a></li>
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition text-sm">درباره ما</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition text-sm">خدمات ما</a></li>
-                        <li><a href="#projects" class="text-gray-400 hover:text-white transition text-sm">پروژه‌ها</a></li>
-                        <li><a href="#news" class="text-gray-400 hover:text-white transition text-sm">اخبار و رویدادها</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition text-sm">تماس با ما</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2">خدمات ما</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">اکتشاف و تولید</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">پالایش و پتروشیمی</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">توزیع و لجستیک</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">انرژی‌های نوین</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">تحقیق و توسعه</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2">خبرنامه</h3>
-                    <p class="text-gray-400 mb-4 text-sm">
-                        برای دریافت آخرین اخبار و به‌روزرسانی‌ها در خبرنامه ما عضو شوید
-                    </p>
-                    <form class="flex">
-                        <input type="email" placeholder="ایمیل شما" class="w-full px-4 py-2 rounded-l-lg focus:outline-none text-gray-800">
-                        <button type="submit" class="bg-primary px-4 py-2 rounded-r-lg hover:bg-secondary transition">
-                            <i class="fas fa-paper-plane text-white"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-700 pt-6 mt-6 text-center">
-                <p class="text-sm">&copy; ۱۴۰۲ شرکت ملی نفت و گاز. تمام حقوق محفوظ است.</p>
-                <div class="mt-2 text-gray-500 text-xs">
-                    طراحی و توسعه توسط تیم فناوری اطلاعات شرکت نفت و گاز
-                </div>
-            </div>
-        </div>
-    </footer>
-
- 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+    
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
         });
+    });
+    
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+    
+    function setDarkMode(isDark) {
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+            localStorage.theme = 'dark';
+            darkModeToggle.checked = true;
+            darkModeToggleMobile.checked = true;
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.theme = 'light';
+            darkModeToggle.checked = false;
+            darkModeToggleMobile.checked = false;
+        }
+    }
+
+    function toggleDarkMode() {
+        setDarkMode(!document.documentElement.classList.contains('dark'));
+    }
+    
+    darkModeToggle.addEventListener('change', toggleDarkMode);
+    darkModeToggleMobile.addEventListener('change', toggleDarkMode);
+    
+    // Default to light mode unless 'dark' is in localStorage
+    if (localStorage.theme === 'dark') {
+        setDarkMode(true);
+    } else {
+        setDarkMode(false);
+    }
+    
+    // Language Toggle
+    const languageToggle = document.getElementById('languageToggle');
+    const languageToggleMobile = document.getElementById('languageToggleMobile');
+
+    function setLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
         
-        // Close mobile menu when clicking on links
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+        // RTL specific style adjustments
+        const founderSignature = document.getElementById('founder-signature');
+        const formButtonContainer = document.getElementById('form-button-container');
+        if (lang === 'fa') {
+            founderSignature.classList.remove('text-right');
+            founderSignature.classList.add('text-left');
+            formButtonContainer.classList.remove('text-right');
+            formButtonContainer.classList.add('text-left');
+        } else {
+            founderSignature.classList.remove('text-left');
+            founderSignature.classList.add('text-right');
+            formButtonContainer.classList.remove('text-left');
+            formButtonContainer.classList.add('text-right');
+        }
+
+        document.querySelectorAll('[data-translate-key]').forEach(element => {
+            const key = element.getAttribute('data-translate-key');
+            if (translations[lang][key]) {
+                if(element.placeholder) {
+                        element.placeholder = translations[lang][key];
+                } else {
+                        element.innerText = translations[lang][key];
+                }
+            }
         });
-        
-        // Animated counters
-        const counters = document.querySelectorAll('.stats-counter');
-        const speed = 200;
-        
-        const startCounter = (counter) => {
+        localStorage.setItem('language', lang);
+        const isPersian = lang === 'fa';
+        languageToggle.checked = isPersian;
+        languageToggleMobile.checked = isPersian;
+    }
+
+    function toggleLanguage() {
+        const currentLang = localStorage.getItem('language') || 'en';
+        const newLang = currentLang === 'en' ? 'fa' : 'en';
+        setLanguage(newLang);
+    }
+    
+    languageToggle.addEventListener('change', toggleLanguage);
+    languageToggleMobile.addEventListener('change', toggleLanguage);
+    
+    // Set initial language
+    const savedLang = localStorage.getItem('language') || 'en';
+    setLanguage(savedLang);
+
+    // Animated counters
+    const counters = document.querySelectorAll('.stats-counter');
+    const speed = 200;
+    
+    const startCounter = (counter) => {
+        const updateCount = () => {
             const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText.replace(',', '');
-            
+            const count = +counter.innerText.replace(/,/g, '');
             const inc = target / speed;
             
             if (count < target) {
                 counter.innerText = Math.ceil(count + inc).toLocaleString();
-                setTimeout(() => startCounter(counter), 12);
+                setTimeout(updateCount, 12);
             } else {
                 counter.innerText = target.toLocaleString();
             }
         };
-        
-        // Start counters when they come into view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    startCounter(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        counters.forEach(counter => {
-            observer.observe(counter);
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Gallery modal functionality
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
-        const closeModal = document.querySelector('.close-modal');
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const imgSrc = item.getAttribute('data-src');
-                modalImg.src = imgSrc;
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
+        updateCount();
+    };
+    
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startCounter(entry.target);
+                observer.unobserve(entry.target);
             }
         });
-        
-        // Contact form submission
-        const contactForm = document.getElementById('contact-form');
-        
-        contactForm.addEventListener('submit', (e) => {
+    }, { threshold: 0.5 });
+    
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            alert('پیام شما با موفقیت ارسال شد. با تشکر از ارتباط شما!');
-            contactForm.reset();
+            
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Gallery modal functionality
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const closeModalBtn = document.querySelector('.close-modal');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const prevButton = document.querySelector('.prev-button');
+    const nextButton = document.querySelector('.next-button');
+    const currentIndexSpan = document.getElementById('currentIndex');
+    const totalImagesSpan = document.getElementById('totalImages');
+    
+    const imageSources = Array.from(galleryItems).map(item => item.querySelector('img').src);
+    let currentImageIndex = 0;
+    totalImagesSpan.textContent = imageSources.length;
+    
+    function openModal(index) {
+        currentImageIndex = index;
+        modalImg.src = imageSources[index];
+        currentIndexSpan.textContent = index + 1;
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function navigate(direction) {
+        currentImageIndex += direction;
+        if (currentImageIndex < 0) currentImageIndex = imageSources.length - 1;
+        else if (currentImageIndex >= imageSources.length) currentImageIndex = 0;
+        modalImg.src = imageSources[currentImageIndex];
+        currentIndexSpan.textContent = currentImageIndex + 1;
+    }
+    
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => openModal(index));
+    });
+    
+    closeModalBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+    
+    prevButton.addEventListener('click', (e) => { e.stopPropagation(); navigate(-1); });
+    nextButton.addEventListener('click', (e) => { e.stopPropagation(); navigate(1); });
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (modal.style.display === 'block') {
+            if (e.key === 'Escape') { modal.style.display = 'none'; document.body.style.overflow = 'auto'; }
+            else if (e.key === 'ArrowLeft') navigate(-1);
+            else if (e.key === 'ArrowRight') navigate(1);
+        }
+    });
+    
+    // Contact form submission
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your message! It has been sent successfully.');
+        contactForm.reset();
+    });
+    
+    // Project tabs functionality
+    const projectTabs = document.querySelectorAll('.project-tab');
+    projectTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            projectTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+        });
+    });
+
+    // View More Gallery Button Functionality
+    const viewMoreBtn = document.getElementById('view-more-gallery-btn');
+    const extraGalleryItems = document.querySelectorAll('.gallery-item-extra');
+
+    viewMoreBtn.addEventListener('click', () => {
+        const isHidden = extraGalleryItems[0].classList.contains('hidden');
+        extraGalleryItems.forEach(item => {
+            item.classList.toggle('hidden');
+            if (isHidden) item.classList.add('animate-fadeIn');
+            else item.classList.remove('animate-fadeIn');
         });
         
-        // Floating animations for decorative elements
-        const floatingElements = document.querySelectorAll('.floating');
-        
-        floatingElements.forEach((element, index) => {
-            element.style.animationDelay = `${index * 1}s`;
-        });
-    </script>
-</body>
-</html>
+        const currentLang = localStorage.getItem('language') || 'en';
+        viewMoreBtn.textContent = isHidden ? translations[currentLang].showLess : translations[currentLang].viewMore;
+    });
+</script>
 </body>
 </html>
