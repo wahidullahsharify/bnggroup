@@ -138,18 +138,16 @@
         }
 
         .hero-section {
-            background: linear-gradient(rgba(0, 106, 184, 0.4), rgba(0, 71, 138, 0.4)),
-                url('./image/WhatsApp Image 2025-09-10 at 5.25.10 AM (1).jpeg');
+            /* The hero section background image will be set dynamically via JavaScript. */
             background-size: cover;
             background-position: center;
             position: relative;
+            transition: background-image 1s ease-in-out;
         }
 
         .dark .hero-section {
-            background: linear-gradient(rgba(0, 54, 112, 0.85), rgba(0, 30, 60, 0.9)),
-                url('./image/WhatsApp Image 2025-09-10 at 5.25.10 AM (1).jpeg');
-            background-size: cover;
-            background-position: center;
+            /* Maintain same behaviour in dark mode; background image will be set dynamically. */
+            transition: background-image 1s ease-in-out;
         }
 
         .floating {
@@ -510,6 +508,857 @@
         .text-shadow-md {
             text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         }
+        :root {
+            --primary-blue: #0a1f3a;
+            --secondary-blue: #1a365d;
+            --accent-blue: #2d5aa0;
+            --light-blue: #4a7bc8;
+            --text-light: #f8fafc;
+            --text-gray: #cbd5e0;
+            --light-bg: #f7fafc;
+            --medium-gray: #e2e8f0;
+            --dark-gray: #2d3748;
+            --accent-gold: #d4af37;
+            --impact-bg: #1a237e;
+            --impact-accent: #ffd54f;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        html[dir="rtl"] body {
+            text-align: right;
+        }
+
+        .hero-section {
+            /* The hero section background image will be set dynamically via JavaScript. A default fallback is provided via inline JS. */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .dark .hero-section {
+            /* In dark mode, the background will also be managed by JavaScript. Avoid setting a static image here. */
+            transition: background-image 1s ease-in-out;
+        }
+
+        /*
+         * Hero slideshow: cycle through a set of background images using pure CSS.  Each cycle lasts 30 seconds, showing
+         * each image for approximately 10 seconds. Separate keyframes are defined for light and dark modes so that the
+         * overlay colours differ appropriately. The overlay colours mirror the values used in the JavaScript version
+         * (light: rgba(0,106,184,0.35); dark: rgba(0,30,60,0.75)).
+         */
+        .hero-section {
+            animation: heroSlideshow 30s infinite;
+        }
+
+        @keyframes heroSlideshow {
+            /* First image */
+            0%, 33% {
+                background-image: linear-gradient(rgba(0, 106, 184, 0.35), rgba(0, 106, 184, 0.35)), url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1920&q=80');
+            }
+            /* Second image */
+            33.01%, 66% {
+                background-image: linear-gradient(rgba(0, 106, 184, 0.35), rgba(0, 106, 184, 0.35)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1920&q=80');
+            }
+            /* Third image */
+            66.01%, 100% {
+                background-image: linear-gradient(rgba(0, 106, 184, 0.35), rgba(0, 106, 184, 0.35)), url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80');
+            }
+        }
+
+        .dark .hero-section {
+            animation: heroSlideshowDark 30s infinite;
+        }
+
+        @keyframes heroSlideshowDark {
+            0%, 33% {
+                background-image: linear-gradient(rgba(0, 30, 60, 0.75), rgba(0, 30, 60, 0.75)), url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1920&q=80');
+            }
+            33.01%, 66% {
+                background-image: linear-gradient(rgba(0, 30, 60, 0.75), rgba(0, 30, 60, 0.75)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1920&q=80');
+            }
+            66.01%, 100% {
+                background-image: linear-gradient(rgba(0, 30, 60, 0.75), rgba(0, 30, 60, 0.75)), url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80');
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 250px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 122, 204, 0.25);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-image-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: glitchIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1;
+        }
+
+        html[dir="rtl"] .close-modal {
+            right: auto;
+            left: 30px;
+        }
+
+        .close-modal:hover {
+            color: #3395ff;
+            /* primary-400 */
+            background: rgba(0, 0, 0, 0.8);
+            transform: rotate(90deg);
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.5);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-button {
+            left: 30px;
+        }
+
+        html[dir="rtl"] .prev-button {
+            left: auto;
+            right: 30px;
+        }
+
+        .next-button {
+            right: 30px;
+        }
+
+        html[dir="rtl"] .next-button {
+            right: auto;
+            left: 30px;
+        }
+
+        .image-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 16px;
+            z-index: 1001;
+        }
+
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-top: 4px solid;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 122, 204, 0.15);
+        }
+
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 100px;
+        }
+
+        .wave-divider .shape-fill {
+            fill: #e6f2ff;
+            /* primary-50 */
+        }
+
+        .dark .wave-divider .shape-fill {
+            fill: #0f172a;
+            /* slate-900 */
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #007acc 0%, #0059a3 100%);
+            /* primary-500 to primary-700 */
+            color: white;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 9999px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 20px rgba(0, 122, 204, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 122, 204, 0.35);
+        }
+
+        .dark .btn-primary {
+            box-shadow: 0 10px 20px rgba(0, 122, 204, 0.4);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #007acc;
+            /* primary-500 */
+            border-radius: 50%;
+            right: -10px;
+            top: 0;
+        }
+
+        html[dir="rtl"] .timeline-item::before {
+            right: auto;
+            left: -10px;
+        }
+
+        .dark .timeline-item::before {
+            background-color: #3395ff;
+            /* primary-400 */
+        }
+
+        .project-tab {
+            transition: all 0.3s ease;
+        }
+
+        .project-tab.active {
+            color: #007acc;
+            /* primary-500 */
+            border-bottom: 3px solid #007acc;
+            /* primary-500 */
+        }
+
+        .dark .project-tab.active {
+            color: #3395ff;
+            /* primary-400 */
+            border-bottom-color: #3395ff;
+            /* primary-400 */
+        }
+
+        .card-hover {
+            transition: all 0.4s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #007acc;
+            /* primary-500 */
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #003670;
+            /* primary-900 */
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Language Toggle Specific Styles */
+        .lang-toggle-label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lang-toggle-en {
+            left: 8px;
+            opacity: 1;
+        }
+
+        .lang-toggle-fa {
+            right: 8px;
+            opacity: 0.5;
+        }
+
+        input:checked~.lang-toggle-en {
+            opacity: 0.5;
+        }
+
+        input:checked~.lang-toggle-fa {
+            opacity: 1;
+        }
+
+        /* Custom styles for design improvement */
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .text-shadow-md {
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* New styles for enhanced cards from first file */
+        .enhanced-card {
+            /* Program card styling to match design from the second file */
+            background: var(--text-light);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border-top: 5px solid var(--accent-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Remove decorative gradient bar on hover from enhanced cards to align with secondary design */
+        /* .enhanced-card::before and its hover animation intentionally omitted */
+
+        .enhanced-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .enhanced-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            color: var(--accent-blue);
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-blue);
+        }
+
+        /* Disable icon flip on hover to match program card design */
+        .enhanced-card:hover .enhanced-icon {
+            background: var(--accent-blue);
+            color: var(--text-light);
+        }
+
+        /* Vision & Mission Section Styles */
+        .vision-mission {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--accent-blue) 100%);
+            position: relative;
+            overflow: hidden;
+            color: var(--text-light);
+        }
+
+        .vision-mission::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23ffffff" opacity="0.03"><path d="M50,0 L100,50 L50,100 L0,50 Z"/></svg>');
+            background-size: 200px;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-100px, -100px) rotate(360deg);
+            }
+        }
+
+        .vm-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .vm-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .vm-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .vm-card:hover::before {
+            left: 100%;
+        }
+
+        .vm-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .vm-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-gold), #ffed4e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+            color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .vm-card:hover .vm-icon {
+            transform: rotateY(180deg) scale(1.1);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .vm-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            position: relative;
+            display: inline-block;
+        }
+
+        .vm-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), transparent);
+            border-radius: 2px;
+        }
+
+        .vm-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            opacity: 0.9;
+            text-align: center;
+        }
+
+        .vm-highlight {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* Impact Section Styles */
+        .impact-section {
+            background: linear-gradient(135deg, var(--impact-bg) 0%, #283593 100%);
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23ffffff" opacity="0.03"><polygon points="50,0 100,50 50,100 0,50"/></svg>');
+            background-size: 120px;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--impact-accent);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-shadow: 0 5px 15px rgba(255, 213, 79, 0.3);
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Stats Glass Section Styles */
+        .stats-glass-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-glass-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* subtle swirling background similar to vision & mission section */
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23ffffff" opacity="0.03"><path d="M50,0 L100,50 L50,100 L0,50 Z"/></svg>');
+            background-size: 200px;
+            animation: float 30s infinite linear;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-card h3 {
+            color: var(--accent-gold);
+            text-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+        }
+
+        .stat-card p {
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+
+        /* Project Glass Card Styles */
+        .project-card-glass {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.4s ease, background 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card-glass:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .project-card-glass img {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .project-card-glass h3, .project-card-glass p {
+            color: var(--text-light);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Projects Section swirling background */
+        .projects-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projects-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23ffffff" opacity="0.03"><path d="M50,0 L100,50 L50,100 L0,50 Z"/></svg>');
+            background-size: 200px;
+            animation: float 30s infinite linear;
+            z-index: 0;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 576px) {
+            .impact-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .vm-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+
+            .vm-card {
+                padding: 3rem 2rem;
+            }
+
+            .vm-card h2 {
+                font-size: 2.2rem;
+            }
+
+            .vm-card p {
+                font-size: 1.1rem;
+            }
+
+            .impact-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .vm-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .vm-card h2 {
+                font-size: 1.6rem;
+            }
+
+            .vm-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+
+            .stat-item h3 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stat-item {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .stat-item h3 {
+                font-size: 1.8rem;
+            }
+
+            .stat-item p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* WhatsApp Floating Icon Styles */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        html[dir="rtl"] .whatsapp-float {
+            right: auto;
+            left: 40px;
+        }
+
+        
     </style>
 </head>
 
@@ -548,12 +1397,11 @@
                     data-translate-key="navGallery">Gallery</a>
                 <a href="#contact" class="btn-primary" data-translate-key="navContact">Contact Us</a>
 
-                <label class="toggle-switch ml-4">
-                    <input type="checkbox" id="languageToggle">
-                    <span class="slider"></span>
-                    <span class="lang-toggle-label lang-toggle-en">EN</span>
-                    <span class="lang-toggle-label lang-toggle-fa">FA</span>
-                </label>
+                <!-- Language selector dropdown -->
+                <select id="languageToggle" class="ml-4 bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 rounded-md py-1 px-2">
+                    <option value="en">English</option>
+                    <option value="fa">فارسی</option>
+                </select>
 
                 <label class="toggle-switch ml-2">
                     <input type="checkbox" id="darkModeToggle">
@@ -561,12 +1409,11 @@
                 </label>
             </div>
             <div class="lg:hidden flex items-center">
-                <label class="toggle-switch mr-4">
-                    <input type="checkbox" id="languageToggleMobile">
-                    <span class="slider"></span>
-                    <span class="lang-toggle-label lang-toggle-en">EN</span>
-                    <span class="lang-toggle-label lang-toggle-fa">FA</span>
-                </label>
+                <!-- Language selector dropdown (mobile) -->
+                <select id="languageToggleMobile" class="mr-4 bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 rounded-md py-1 px-2">
+                    <option value="en">English</option>
+                    <option value="fa">فارسی</option>
+                </select>
                 <label class="toggle-switch mr-4">
                     <input type="checkbox" id="darkModeToggleMobile">
                     <span class="slider"></span>
@@ -712,343 +1559,504 @@
                         </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 card-hover">
-                        <h3 class="text-2xl font-bold text-primary-800 dark:text-primary-300 mb-4 text-center"
-                            data-translate-key="missionTitle">Our Mission</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-center" data-translate-key="missionDesc">To
-                            empower communities through education, humanitarian aid, and development programs that
-                            promote dignity, self-reliance, and long-term well-being.</p>
-                    </div>
-                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 card-hover">
-                        <h3 class="text-2xl font-bold text-primary-800 dark:text-primary-300 mb-4 text-center"
-                            data-translate-key="visionTitle">Our Vision</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-center" data-translate-key="visionDesc">A
-                            society where every individual, regardless of their background or hardship, has the
-                            opportunity to thrive with dignity and purpose.</p>
+                <!-- Vision & Mission Section (updated to match design from second file) -->
+                <div class="vision-mission rounded-2xl p-8 md:p-12 mb-16">
+                    <div class="vm-container grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        <!-- Mission Card -->
+                        <div class="vm-card">
+                            <div class="vm-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h2 data-translate-key="missionTitle">Our Mission</h2>
+                            <p data-translate-key="missionDesc">To empower communities through education, humanitarian aid, and development programs that promote dignity, self‑reliance, and long‑term well‑being.</p>
+                        </div>
+                        <!-- Vision Card -->
+                        <div class="vm-card">
+                            <div class="vm-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h2 data-translate-key="visionTitle">Our Vision</h2>
+                            <p data-translate-key="visionDesc">A society where every individual, regardless of their background or hardship, has the opportunity to thrive with dignity and purpose.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="services"
-            class="py-16 bg-gradient-to-b from-white to-primary-50 dark:from-slate-900 dark:to-slate-800">
-            <div class="container mx-auto px-4 text-center">
-                <div class="max-w-2xl mx-auto mb-12">
-                    <span
-                        class="text-primary-700 font-semibold text-lg bg-primary-100 px-4 py-1 rounded-full dark:text-primary-200 dark:bg-primary-900/50"
-                        data-translate-key="programsTag">Our Programs</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mt-4 mb-4 dark:text-primary-200"
-                        data-translate-key="programsTitle">What We Do</h2>
-                    <p class="text-primary-800 dark:text-primary-300" data-translate-key="programsDesc">We provide
-                        comprehensive services in key areas to build a better future for communities in need.</p>
+        class="py-16 bg-gradient-to-b from-white to-primary-50 dark:from-slate-950 dark:to-slate-900">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-2xl mx-auto mb-12">
+                <span
+                    class="text-primary-700 font-semibold text-lg bg-primary-100 px-4 py-1 rounded-full 
+                    dark:text-primary-200 dark:bg-primary-800/60 backdrop-blur-md">
+                    Our Programs
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mt-4 mb-4 dark:text-primary-100">
+                    What We Do
+                </h2>
+                <p class="text-primary-800 dark:text-slate-300">
+                    We provide comprehensive services in key areas to build a better future for communities in need.
+                </p>
+            </div>
+    
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card -->
+                <div class="enhanced-card bg-white/30 dark:bg-slate-800/40 backdrop-blur-lg border border-white/10 dark:border-slate-700/50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition">
+                    <div class="enhanced-icon text-primary-600 dark:text-primary-400 text-4xl mb-4">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 dark:text-white">Education</h3>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        We pay school and exam fees, help students prepare for university, and support long-term learning and capacity building.
+                    </p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-primary-500 dark:bg-slate-800">
-                        <div
-                            class="bg-primary-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-primary-900/50">
-                            <i class="fas fa-book-reader text-primary-600 text-3xl dark:text-primary-400"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceEducationTitle">
-                            Education</h3>
-                        <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceEducationDesc">We
-                            pay school and exam fees, help students prepare for university, and support long-term
-                            learning and capacity building.</p>
+    
+                <div class="enhanced-card bg-white/30 dark:bg-slate-800/40 backdrop-blur-lg border border-white/10 dark:border-slate-700/50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition">
+                    <div class="enhanced-icon text-primary-600 dark:text-primary-400 text-4xl mb-4">
+                        <i class="fas fa-hands-helping"></i>
                     </div>
-
-                    <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-violet-500 dark:bg-slate-800">
-                        <div
-                            class="bg-violet-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-violet-900">
-                            <i class="fas fa-hands-helping text-violet-600 text-3xl dark:text-violet-400"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceAidTitle">
-                            Humanitarian Aid</h3>
-                        <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceAidDesc">We
-                            provide grocery packages to over 3,000 people annually, distribute Iftar meals during
-                            Ramadan, and offer support cards for families in need.</p>
+                    <h3 class="text-xl font-bold mb-3 dark:text-white">Humanitarian Aid</h3>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        We provide grocery packages to over 3,000 people annually, distribute Iftar meals during Ramadan, and offer support cards for families in need.
+                    </p>
+                </div>
+    
+                <div class="enhanced-card bg-white/30 dark:bg-slate-800/40 backdrop-blur-lg border border-white/10 dark:border-slate-700/50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition">
+                    <div class="enhanced-icon text-primary-600 dark:text-primary-400 text-4xl mb-4">
+                        <i class="fas fa-female"></i>
                     </div>
-
-                    <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-purple-500 dark:bg-slate-800">
-                        <div
-                            class="bg-purple-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-purple-900">
-                            <i class="fas fa-female text-purple-600 text-3xl dark:text-purple-400"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceWomenTitle">Women
-                            Empowerment</h3>
-                        <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceWomenDesc">We run
-                            vocational training programs (e.g., sewing) for widows and assist them in launching small
-                            businesses for independence.</p>
+                    <h3 class="text-xl font-bold mb-3 dark:text-white">Women Empowerment</h3>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        We run vocational training programs (e.g., sewing) for widows and assist them in launching small businesses for independence.
+                    </p>
+                </div>
+    
+                <div class="enhanced-card bg-white/30 dark:bg-slate-800/40 backdrop-blur-lg border border-white/10 dark:border-slate-700/50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition">
+                    <div class="enhanced-icon text-primary-600 dark:text-primary-400 text-4xl mb-4">
+                        <i class="fas fa-people-carry"></i>
                     </div>
-
-                    <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-blue-500 dark:bg-slate-800">
-                        <div
-                            class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-blue-900">
-                            <i class="fas fa-people-carry text-blue-600 text-3xl dark:text-blue-400"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceCommunityTitle">
-                            Community Development</h3>
-                        <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceCommunityDesc">We
-                            support families in rebuilding their lives after crises and implement local programs to
-                            improve long-term community resilience.</p>
+                    <h3 class="text-xl font-bold mb-3 dark:text-white">Community Development</h3>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        We support families in rebuilding their lives after crises and implement local programs to improve long-term community resilience.
+                    </p>
+                </div>
+    
+                <div class="enhanced-card bg-white/30 dark:bg-slate-800/40 backdrop-blur-lg border border-white/10 dark:border-slate-700/50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition">
+                    <div class="enhanced-icon text-primary-600 dark:text-primary-400 text-4xl mb-4">
+                        <i class="fas fa-heartbeat"></i>
                     </div>
-
-                    <div class="service-card bg-white p-8 rounded-2xl shadow-lg border-fuchsia-500 dark:bg-slate-800">
-                        <div
-                            class="bg-fuchsia-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-fuchsia-900">
-                            <i class="fas fa-heartbeat text-fuchsia-600 text-3xl dark:text-fuchsia-400"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceHealthTitle">
-                            Health Support</h3>
-                        <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceHealthDesc">We
-                            provide assistance to patients with severe conditions, such as kidney disease, and help
-                            families access urgent medical treatment.</p>
+                    <h3 class="text-xl font-bold mb-3 dark:text-white">Health Support</h3>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        We provide assistance to patients with severe conditions, such as kidney disease, and help families access urgent medical treatment.
+                    </p>
+                </div>
+    
+                <div class="enhanced-card bg-white/30 dark:bg-slate-800/40 backdrop-blur-lg border border-white/10 dark:border-slate-700/50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition">
+                    <div class="enhanced-icon text-primary-600 dark:text-primary-400 text-4xl mb-4">
+                        <i class="fas fa-hand-holding-heart"></i>
                     </div>
-                    <div
-                        class="service-card bg-white p-8 rounded-2xl shadow-lg border-primary-400 dark:bg-slate-800 flex flex-col items-center justify-center">
-                        <div
-                            class="bg-primary-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 dark:bg-primary-900/50">
-                            <i class="fas fa-hand-holding-heart text-primary-500 text-3xl dark:text-primary-400"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 dark:text-white" data-translate-key="serviceMoreTitle">And
-                            much more...</h3>
-                        <p class="text-slate-600 mb-4 dark:text-slate-300" data-translate-key="serviceMoreDesc">Our work
-                            is constantly expanding to meet the needs of the communities we serve.</p>
-                    </div>
+                    <h3 class="text-xl font-bold mb-3 dark:text-white">And much more...</h3>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        Our work is constantly expanding to meet the needs of the communities we serve.
+                    </p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+    
 
-        <section
-            class="py-16 bg-gradient-to-r from-primary-700 to-primary-800 text-white dark:from-primary-900 dark:to-slate-900">
+        <!-- Statistics section converted to glass cards with swirling background -->
+        <section class="py-16 stats-glass-section">
             <div class="container mx-auto px-4">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
-                    <div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 text-center">
+                    <div class="stat-card">
                         <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="15">0</h3>
-                        <p class="text-primary-200" data-translate-key="statExperience">Years of Experience</p>
+                        <p class="text-base font-medium" data-translate-key="statExperience">Years of Experience</p>
                     </div>
-                    <div>
+                    <div class="stat-card">
                         <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="250">0</h3>
-                        <p class="text-primary-200" data-translate-key="statProjects">Successful Projects</p>
+                        <p class="text-base font-medium" data-translate-key="statProjects">Successful Projects</p>
                     </div>
-                    <div>
+                    <div class="stat-card">
                         <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="7500">0</h3>
-                        <p class="text-primary-200" data-translate-key="statPeopleHelped">People Helped Annually</p>
+                        <p class="text-base font-medium" data-translate-key="statPeopleHelped">People Helped Annually</p>
                     </div>
-                    <div>
+                    <div class="stat-card">
                         <h3 class="text-4xl md:text-5xl font-extrabold mb-2 stats-counter" data-target="3000">0</h3>
-                        <p class="text-primary-200" data-translate-key="statGrocery">Grocery Packages Per Year</p>
+                        <p class="text-base font-medium" data-translate-key="statGrocery">Grocery Packages Per Year</p>
                     </div>
                 </div>
             </div>
         </section>
 
 
-        <section id="projects"
-            class="py-16 bg-gradient-to-b from-slate-50 to-primary-50 dark:from-slate-800 dark:to-slate-900">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <span
-                        class="text-primary-700 font-semibold text-lg bg-primary-100 px-4 py-1 rounded-full dark:text-primary-200 dark:bg-primary-900/50"
-                        data-translate-key="projectsTag">Our Work</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mt-4 mb-4 dark:text-primary-200"
-                        data-translate-key="projectsTitle">Highlighted Projects and Achievements</h2>
-                    <p class="text-primary-800 dark:text-primary-300 max-w-2xl mx-auto"
-                        data-translate-key="projectsDesc">An overview of major projects and technical achievements of
-                        the foundation in recent years.</p>
-                </div>
+       <!-- =========================
+=        PROJECTS           =
+==========================-->
+<section id="projects"
+class="py-16 bg-gradient-to-b from-slate-50 to-primary-50 dark:from-slate-900 dark:to-slate-950 projects-section">
+<div class="container mx-auto px-4">
+  <!-- Header -->
+  <div class="text-center mb-12">
+    <span
+      class="text-primary-700 font-semibold text-lg bg-primary-100 px-4 py-1 rounded-full dark:text-primary-200 dark:bg-primary-800/50 backdrop-blur-md"
+      data-translate-key="projectsTag">Our Work</span>
+    <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mt-4 mb-4 dark:text-primary-100"
+      data-translate-key="projectsTitle">Highlighted Projects and Achievements</h2>
+    <p class="text-primary-800 dark:text-slate-300 max-w-2xl mx-auto"
+      data-translate-key="projectsDesc">An overview of major projects and technical achievements of the foundation in
+      recent years.</p>
+  </div>
 
-                <div class="mb-8">
-                    <div class="flex flex-wrap justify-center border-b border-slate-200 dark:border-slate-700">
-                        <button class="project-tab active px-6 py-3 font-medium" data-tab="all"
-                            data-translate-key="projectTabAll">All Projects</button>
-                        <button
-                            class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-primary-600 dark:hover:text-primary-400"
-                            data-tab="community" data-translate-key="projectTabCommunity">Community Support</button>
-                        <button
-                            class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-primary-600 dark:hover:text-primary-400"
-                            data-tab="education" data-translate-key="projectTabEducation">Education Initiatives</button>
-                        <button
-                            class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-primary-600 dark:hover:text-primary-400"
-                            data-tab="healthcare" data-translate-key="projectTabHealthcare">Healthcare Projects</button>
-                        <button
-                            class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-primary-600 dark:hover:text-primary-400"
-                            data-tab="environmental" data-translate-key="projectTabEmpowerment">Empowerment</button>
-                    </div>
-                </div>
+  <!-- Tabs -->
+  <div class="mb-8">
+    <div class="flex flex-wrap justify-center border-b border-slate-200 dark:border-slate-700 gap-1">
+      <button class="project-tab px-6 py-3 font-medium rounded-t-xl transition"
+        data-tab="all" data-translate-key="projectTabAll">
+        All Projects
+      </button>
+      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-primary-600 dark:text-slate-400 dark:hover:text-primary-400 rounded-t-xl transition"
+        data-tab="community" data-translate-key="projectTabCommunity">
+        Community Support
+      </button>
+      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-primary-600 dark:text-slate-400 dark:hover:text-primary-400 rounded-t-xl transition"
+        data-tab="education" data-translate-key="projectTabEducation">
+        Education Initiatives
+      </button>
+      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-primary-600 dark:text-slate-400 dark:hover:text-primary-400 rounded-t-xl transition"
+        data-tab="healthcare" data-translate-key="projectTabHealthcare">
+        Healthcare Projects
+      </button>
+      <button class="project-tab px-6 py-3 font-medium text-slate-500 hover:text-primary-600 dark:text-slate-400 dark:hover:text-primary-400 rounded-t-xl transition"
+        data-tab="empowerment" data-translate-key="projectTabEmpowerment">
+        Empowerment
+      </button>
+    </div>
+  </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg dark:bg-slate-800">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1583324113626-70df0f4deaab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1789&q=80"
-                                alt="Community Support Project" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <span
-                                class="text-sm bg-primary-100 text-primary-800 px-2 py-1 rounded-full dark:bg-primary-900/50 dark:text-primary-200"
-                                data-translate-key="project1Category">Community Support</span>
-                            <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="project1Title">
-                                Community Outreach Program</h3>
-                            <p class="text-slate-600 text-sm mb-4 dark:text-slate-300"
-                                data-translate-key="project1Desc">Engaging with local communities to provide essential
-                                resources and support. This program focuses on improving living conditions and providing
-                                educational resources.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-slate-500 dark:text-slate-400"><i
-                                        class="far fa-calendar-alt ml-1"></i> 2021-2023</span>
-                                <a href="#"
-                                    class="text-primary-600 text-sm font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
-                                    data-translate-key="viewDetails">View Details</a>
-                            </div>
-                        </div>
-                    </div>
+  <!-- Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-                    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg dark:bg-slate-800">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                                alt="Education Initiative" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <span
-                                class="text-sm bg-violet-100 text-violet-800 px-2 py-1 rounded-full dark:bg-violet-900 dark:text-violet-200"
-                                data-translate-key="project2Category">Education</span>
-                            <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="project2Title">
-                                Educational Support Initiative</h3>
-                            <p class="text-slate-600 text-sm mb-4 dark:text-slate-300"
-                                data-translate-key="project2Desc">Providing educational materials and resources to
-                                underprivileged schools. This initiative aims to enhance learning opportunities for
-                                children in need.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-slate-500 dark:text-slate-400"><i
-                                        class="far fa-calendar-alt ml-1"></i> 2020-2022</span>
-                                <a href="#"
-                                    class="text-primary-600 text-sm font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
-                                    data-translate-key="viewDetails2">View Details</a>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Community Support Project Card -->
+    <div class="project-card-glass group" data-category="community">
+      <div class="h-48 overflow-hidden rounded-t-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1789&q=80"
+          alt="Community Support Project"
+          class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+      </div>
+      <div class="p-6">
+        <span
+          class="text-sm bg-primary-100 text-black px-2 py-1 rounded-full dark:bg-primary-800/50 dark:text-primary-200"
+          data-translate-key="project1Category">Community Support</span>
+  
+        <h3 class="text-xl font-bold mt-3 mb-2 text-black dark:text-white"
+          data-translate-key="project1Title">Community Outreach Program</h3>
+  
+        <p class="text-base text-black mb-4 dark:text-slate-300"
+          data-translate-key="project1Desc">
+          Engaging with local communities to provide essential resources and
+          support. This program focuses on improving living conditions and providing educational resources.
+        </p>
+  
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-black dark:text-slate-400">
+            <i class="far fa-calendar-alt ml-1"></i> 2021-2023
+          </span>
+          <a href="#"
+            class="text-primary-600 text-sm font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
+            data-translate-key="viewDetails">View Details</a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Education Initiative Project Card -->
+    <div class="project-card-glass group" data-category="education">
+      <div class="h-48 overflow-hidden rounded-t-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=2070&q=80"
+          alt="Education Initiative"
+          class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+      </div>
+      <div class="p-6">
+        <span
+          class="text-sm bg-violet-100 text-black px-2 py-1 rounded-full dark:bg-violet-900 dark:text-violet-200"
+          data-translate-key="project2Category">Education</span>
+  
+        <h3 class="text-xl font-bold mt-3 mb-2 text-black dark:text-white"
+          data-translate-key="project2Title">Educational Support Initiative</h3>
+  
+        <p class="text-base text-black mb-4 dark:text-slate-300"
+          data-translate-key="project2Desc">
+          Providing educational materials and resources to underprivileged schools.
+          This initiative aims to enhance learning opportunities for children in need.
+        </p>
+  
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-black dark:text-slate-400">
+            <i class="far fa-calendar-alt ml-1"></i> 2020-2022
+          </span>
+          <a href="#"
+            class="text-primary-600 text-sm font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
+            data-translate-key="viewDetails2">View Details</a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Healthcare Project Card -->
+    <div class="project-card-glass group" data-category="healthcare">
+      <div class="h-48 overflow-hidden rounded-t-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&w=2070&q=80"
+          alt="Healthcare Project"
+          class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+      </div>
+      <div class="p-6">
+        <span
+          class="text-sm bg-purple-100 text-black px-2 py-1 rounded-full dark:bg-purple-900 dark:text-purple-200"
+          data-translate-key="project3Category">Healthcare</span>
+  
+        <h3 class="text-xl font-bold mt-3 mb-2 text-black dark:text-white"
+          data-translate-key="project3Title">Healthcare Access Program</h3>
+  
+        <p class="text-base text-black mb-4 dark:text-slate-300"
+          data-translate-key="project3Desc">
+          Facilitating access to healthcare services for underserved populations.
+          This project includes health screenings and educational workshops.
+        </p>
+  
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-black dark:text-slate-400">
+            <i class="far fa-calendar-alt ml-1"></i> 2019-2021
+          </span>
+          <a href="#"
+            class="text-primary-600 text-sm font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
+            data-translate-key="viewDetails3">View Details</a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Empowerment Project Card -->
+    <div class="project-card-glass group" data-category="empowerment">
+      <div class="h-48 overflow-hidden rounded-t-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1920&q=80"
+          alt="Women Empowerment Project"
+          class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+      </div>
+      <div class="p-6">
+        <span
+          class="text-sm bg-rose-100 text-black px-2 py-1 rounded-full dark:bg-rose-900 dark:text-rose-200"
+          data-translate-key="project4Category">Empowerment</span>
+  
+        <h3 class="text-xl font-bold mt-3 mb-2 text-black dark:text-white"
+          data-translate-key="project4Title">Women Empowerment Program</h3>
+  
+        <p class="text-base text-black mb-4 dark:text-slate-300"
+          data-translate-key="project4Desc">
+          Vocational training and business support for women to become
+          self-sufficient and empowered.
+        </p>
+  
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-black dark:text-slate-400">
+            <i class="far fa-calendar-alt ml-1"></i> 2022-2024
+          </span>
+          <a href="#"
+            class="text-primary-600 text-sm font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
+            data-translate-key="viewDetails4">View Details</a>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
 
-                    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg dark:bg-slate-800">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                                alt="Healthcare Project" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <span
-                                class="text-sm bg-purple-100 text-purple-800 px-2 py-1 rounded-full dark:bg-purple-900 dark:text-purple-200"
-                                data-translate-key="project3Category">Healthcare</span>
-                            <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="project3Title">
-                                Healthcare Access Program</h3>
-                            <p class="text-slate-600 text-sm mb-4 dark:text-slate-300"
-                                data-translate-key="project3Desc">Facilitating access to healthcare services for
-                                underserved populations. This project includes health screenings and educational
-                                workshops.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-slate-500 dark:text-slate-400"><i
-                                        class="far fa-calendar-alt ml-1"></i> 2019-2021</span>
-                                <a href="#"
-                                    class="text-primary-600 text-sm font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
-                                    data-translate-key="viewDetails3">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <!-- CTA -->
+  <div class="text-center mt-12">
+    <a href="#"
+      class="inline-flex items-center justify-center px-5 py-3 rounded-xl font-semibold bg-primary-600 text-white hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-400 shadow-lg hover:shadow-xl transition"
+      data-translate-key="viewAllProjects">
+      View All Projects
+    </a>
+  </div>
+</div>
+</section>
 
-                <div class="text-center mt-12">
-                    <a href="#" class="btn-primary" data-translate-key="viewAllProjects">
-                        View All Projects
-                    </a>
-                </div>
-            </div>
-        </section>
+<!-- =========================
+=           NEWS            =
+==========================-->
+<section id="news"
+class="py-16 bg-gradient-to-b from-primary-50 to-slate-50 dark:from-slate-900 dark:to-slate-950">
+<div class="container mx-auto px-4">
+  <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+    <div class="mb-6 md:mb-0">
+      <span
+        class="text-primary-700 font-semibold text-lg bg-primary-100 px-4 py-1 rounded-full dark:text-primary-200 dark:bg-primary-800/50 backdrop-blur-md"
+        data-translate-key="newsTag">News and Events</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mt-2 dark:text-primary-100"
+        data-translate-key="newsTitle">Latest Updates from BNG Foundation</h2>
+    </div>
+    <a href="#"
+      class="inline-flex items-center justify-center px-5 py-3 rounded-xl font-semibold bg-primary-600 text-white hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-400 shadow-lg hover:shadow-xl transition"
+      data-translate-key="viewAllNews">
+      View All News
+    </a>
+  </div>
 
-        <section id="news"
-            class="py-16 bg-gradient-to-b from-primary-50 to-slate-50 dark:from-slate-800 dark:to-slate-900">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-col md:flex-row justify-between items-center mb-10">
-                    <div class="mb-6 md:mb-0">
-                        <span
-                            class="text-primary-700 font-semibold text-lg bg-primary-100 px-4 py-1 rounded-full dark:text-primary-200 dark:bg-primary-900/50"
-                            data-translate-key="newsTag">News and Events</span>
-                        <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mt-2 dark:text-primary-200"
-                            data-translate-key="newsTitle">Latest Updates from BNG Foundation</h2>
-                    </div>
-                    <a href="#" class="btn-primary" data-translate-key="viewAllNews">
-                        View All News
-                    </a>
-                </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- News Card 1 -->
+    <div
+      class="card-hover rounded-2xl overflow-hidden bg-white/90 dark:bg-slate-800/60 backdrop-blur-lg border border-slate-200/70 dark:border-slate-700/60 ring-1 ring-black/5 dark:ring-white/5 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition">
+      <div class="h-48 overflow-hidden">
+        <img src="./image/when-to-not-donate-rice-expert.jpg" alt="Charity Event"
+          class="w-full h-full object-cover transition duration-500 hover:scale-105">
+      </div>
+      <div class="p-6">
+        <span class="text-xs bg-primary-600 text-white px-2 py-1 rounded-full"
+          data-translate-key="news1Category">Events</span>
+        <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="news1Title">
+          Successful Charity Gala</h3>
+        <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="news1Desc">
+          The charity gala raised significant funds for community projects, bringing together supporters and
+          volunteers for a night of inspiration.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-xs text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i>
+            2023/05/12</span>
+          <a href="#"
+            class="text-primary-600 text-xs font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
+            data-translate-key="readMore">Read More</a>
+        </div>
+      </div>
+    </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg dark:bg-slate-800">
-                        <div class="h-48 overflow-hidden">
-                            <img src="./image/when-to-not-donate-rice-expert.jpg" alt="Charity Event"
-                                class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <span class="text-xs bg-primary-600 text-white px-2 py-1 rounded-full"
-                                data-translate-key="news1Category">Events</span>
-                            <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="news1Title">
-                                Successful Charity Gala</h3>
-                            <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="news1Desc">
-                                The charity gala raised significant funds for community projects, bringing together
-                                supporters and volunteers for a night of inspiration.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs text-slate-500 dark:text-slate-400"><i
-                                        class="far fa-calendar-alt ml-1"></i> 2023/05/12</span>
-                                <a href="#"
-                                    class="text-primary-600 text-xs font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
-                                    data-translate-key="readMore">Read More</a>
-                            </div>
-                        </div>
-                    </div>
+    <!-- News Card 2 -->
+    <div
+      class="card-hover rounded-2xl overflow-hidden bg-white/90 dark:bg-slate-800/60 backdrop-blur-lg border border-slate-200/70 dark:border-slate-700/60 ring-1 ring-black/5 dark:ring-white/5 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition">
+      <div class="h-48 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=2070&q=80"
+          alt="Charity Recognition" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+      </div>
+      <div class="p-6">
+        <span class="text-xs bg-violet-500 text-black px-2 py-1 rounded-full"
+          data-translate-key="news2Category">Achievements</span>
+        <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="news2Title">
+          Foundation Recognized Among Top NGOs</h3>
+        <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="news2Desc">
+          BNG Foundation has been recognized for its outstanding contributions to community development and support.
+        </p>
+        <div class="flex justify-between items-center">
+          <span class="text-xs text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i>
+            2023/04/28</span>
+          <a href="#"
+            class="text-primary-600 text-xs font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
+            data-translate-key="readMore2">Read More</a>
+        </div>
+      </div>
+    </div>
 
-                    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg dark:bg-slate-800">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                                alt="Charity Recognition" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <span class="text-xs bg-violet-500 text-white px-2 py-1 rounded-full"
-                                data-translate-key="news2Category">Achievements</span>
-                            <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="news2Title">
-                                Foundation Recognized Among Top NGOs</h3>
-                            <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="news2Desc">
-                                BNG Foundation has been recognized for its outstanding contributions to community
-                                development and support.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs text-slate-500 dark:text-slate-400"><i
-                                        class="far fa-calendar-alt ml-1"></i> 2023/04/28</span>
-                                <a href="#"
-                                    class="text-primary-600 text-xs font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
-                                    data-translate-key="readMore2">Read More</a>
-                            </div>
-                        </div>
-                    </div>
+    <!-- News Card 3 -->
+    <div
+      class="card-hover rounded-2xl overflow-hidden bg-white/90 dark:bg-slate-800/60 backdrop-blur-lg border border-slate-200/70 dark:border-slate-700/60 ring-1 ring-black/5 dark:ring-white/5 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition">
+      <div class="h-48 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=2069&q=80"
+          alt="Renewable Energy Investment" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+      </div>
+      <div class="p-6">
+        <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-full"
+          data-translate-key="news3Category">Sustainability</span>
+        <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="news3Title">
+          Investment in Community Projects</h3>
+        <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="news3Desc">
+          The foundation is investing in sustainable community projects to promote long-term self-reliance and
+          environmental protection.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-xs text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt ml-1"></i>
+            2023/04/15</span>
+          <a href="#"
+            class="text-primary-600 text-xs font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
+            data-translate-key="readMore3">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
 
-                    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg dark:bg-slate-800">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
-                                alt="Renewable Energy Investment" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-full"
-                                data-translate-key="news3Category">Sustainability</span>
-                            <h3 class="text-xl font-bold mt-3 mb-2 dark:text-white" data-translate-key="news3Title">
-                                Investment in Community Projects</h3>
-                            <p class="text-slate-600 text-sm mb-4 dark:text-slate-300" data-translate-key="news3Desc">
-                                The foundation is investing in sustainable community projects to promote long-term
-                                self-reliance and environmental protection.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs text-slate-500 dark:text-slate-400"><i
-                                        class="far fa-calendar-alt ml-1"></i> 2023/04/15</span>
-                                <a href="#"
-                                    class="text-primary-600 text-xs font-semibold hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
-                                    data-translate-key="readMore3">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- =========================
+=   SHARED CARD UTILITIES   =
+==========================-->
+<!-- اگر از Tailwind استفاده می‌کنید، این کلاس‌ها را به کارت‌ها داده‌ایم: project-card-glass -->
+<style>
+/* در صورت نبود پردازشگر @apply، کلاس پایه کارت را با CSS عادی شبیه‌سازی می‌کنیم */
+.project-card-glass {
+  border-radius: 1rem; /* rounded-2xl */
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
+  transition: box-shadow .3s ease, transform .3s ease;
+  border: 1px solid rgba(226, 232, 240, .7); /* slate-200/70 */
+  position: relative;
+}
+.project-card-glass:hover {
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,.25);
+  transform: translateY(-4px);
+}
+
+/* دارک مود */
+:root.dark .project-card-glass {
+  background: rgba(30, 41, 59, 0.6); /* slate-800/60 */
+  border-color: rgba(51, 65, 85, .6); /* slate-700/60 */
+  box-shadow: 0 10px 15px -3px rgba(255,255,255,.05), 0 4px 6px -4px rgba(255,255,255,.05);
+}
+:root.dark .project-card-glass:hover {
+  box-shadow: 0 25px 50px -12px rgba(255,255,255,.12);
+}
+</style>
+
+<!-- =========================
+=       TABS SCRIPT         =
+==========================-->
+<script>
+(function () {
+  const tabs = document.querySelectorAll('#projects .project-tab');
+  const cards = document.querySelectorAll('#projects [data-category]');
+
+  // استایل اولیه برای تب «همه»
+  const setActive = (btn) => {
+    tabs.forEach(b => {
+      b.classList.remove('text-primary-600', 'dark:text-primary-400', 'border-b-2', 'border-primary-600', 'dark:border-primary-400', 'bg-white', 'dark:bg-slate-800');
+      b.classList.add('text-slate-500', 'dark:text-slate-400');
+    });
+    btn.classList.remove('text-slate-500', 'dark:text-slate-400');
+    btn.classList.add('text-primary-600', 'dark:text-primary-400', 'border-b-2', 'border-primary-600', 'dark:border-primary-400', 'bg-white', 'dark:bg-slate-800');
+  };
+
+  // اگر صفحه بار اول لود شد، تب "all" را فعال کن
+  const defaultTab = Array.from(tabs).find(t => t.dataset.tab === 'all') || tabs[0];
+  if (defaultTab) setActive(defaultTab);
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      setActive(tab);
+
+      cards.forEach(card => {
+        const c = card.getAttribute('data-category');
+        if (target === 'all' || c === target) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+})();
+</script>
+
 
         <section id="gallery"
             class="py-16 bg-gradient-to-b from-slate-50 to-primary-50 dark:from-slate-800 dark:to-slate-900">
@@ -1388,6 +2396,8 @@
                 viewDetails2: 'View Details',
                 project3Category: 'Healthcare', project3Title: 'Healthcare Access Program', project3Desc: 'Facilitating access to healthcare services for underserved populations. This project includes health screenings and educational workshops.',
                 viewDetails3: 'View Details',
+                project4Category: 'Empowerment', project4Title: 'Women Empowerment Program', project4Desc: 'Vocational training and business support for women to become self-sufficient and empowered.',
+                viewDetails4: 'View Details',
                 viewAllProjects: 'View All Projects',
                 newsTag: 'News and Events', newsTitle: 'Latest Updates from BNG Foundation', viewAllNews: 'View All News',
                 news1Category: 'Events', news1Title: 'Successful Charity Gala', news1Desc: 'The charity gala raised significant funds for community projects, bringing together supporters and volunteers for a night of inspiration.',
@@ -1433,6 +2443,8 @@
                 viewDetails2: 'مشاهده جزئیات',
                 project3Category: 'صحت', project3Title: 'برنامه دسترسی به خدمات صحی', project3Desc: 'تسهیل دسترسی به خدمات صحی برای جمعیت‌های محروم. این پروژه شامل غربالگری‌های صحی و کارگاه‌های آموزشی است.',
                 viewDetails3: 'مشاهده جزئیات',
+                project4Category: 'توانمندسازی', project4Title: 'برنامه توانمندسازی زنان', project4Desc: 'آموزش‌های فنی و حمایت برای زنان جهت کسب استقلال مالی و توانمندسازی.',
+                viewDetails4: 'مشاهده جزئیات',
                 viewAllProjects: 'مشاهده همه پروژه‌ها',
                 newsTag: 'اخبار و رویدادها', newsTitle: 'آخرین به‌روزرسانی‌های بنیاد BNG', viewAllNews: 'مشاهده همه اخبار',
                 news1Category: 'رویدادها', news1Title: 'جشن خیریه موفق', news1Desc: 'جشن خیریه مبالغ قابل توجهی را برای پروژه‌های اجتماعی جمع‌آوری کرد و حامیان و داوطلبان را برای یک شب الهام‌بخش گرد هم آورد.',
@@ -1485,6 +2497,10 @@
                 darkModeToggle.checked = false;
                 darkModeToggleMobile.checked = false;
             }
+            // Update the hero background overlay when dark mode changes
+            if (typeof updateHeroBackground === 'function') {
+                updateHeroBackground();
+            }
         }
 
         function toggleDarkMode() {
@@ -1535,23 +2551,25 @@
                 }
             });
             localStorage.setItem('language', lang);
-            const isPersian = lang === 'fa';
-            languageToggle.checked = isPersian;
-            languageToggleMobile.checked = isPersian;
+            // Reflect the selected language in the dropdowns
+            languageToggle.value = lang;
+            languageToggleMobile.value = lang;
         }
 
-        function toggleLanguage() {
-            const currentLang = localStorage.getItem('language') || 'en';
-            const newLang = currentLang === 'en' ? 'fa' : 'en';
-            setLanguage(newLang);
-        }
-
-        languageToggle.addEventListener('change', toggleLanguage);
-        languageToggleMobile.addEventListener('change', toggleLanguage);
+        // Update language when the dropdown selection changes
+        languageToggle.addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+        });
+        languageToggleMobile.addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+        });
 
         // Set initial language
         const savedLang = localStorage.getItem('language') || 'en';
         setLanguage(savedLang);
+
+        // ----------------------------------------------
+        // Hero section slideshow handled purely via CSS animations. See the CSS definitions for .hero-section in the <style> block.
 
         // Animated counters
         const counters = document.querySelectorAll('.stats-counter');
@@ -1666,12 +2684,27 @@
             contactForm.reset();
         });
 
-        // Project tabs functionality
+        // Project tabs functionality with filtering
         const projectTabs = document.querySelectorAll('.project-tab');
+        // Select only the project cards within the projects grid. These cards have the class 'project-card-glass'.
+        const projectCards = document.querySelectorAll('.project-card-glass');
+
         projectTabs.forEach(tab => {
             tab.addEventListener('click', () => {
+                // Toggle active tab styling
                 projectTabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
+
+                const target = tab.getAttribute('data-tab');
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    // Show the card if the tab is 'all' or matches the card category
+                    if (target === 'all' || target === category) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
         });
 
@@ -1692,6 +2725,5 @@
         });
     </script>
 </body>
-
 
 </html>
